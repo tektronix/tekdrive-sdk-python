@@ -43,6 +43,7 @@ setup(
     description=(
         "A Python package that allows for simple access to the TekDrive API."
     ),
+    install_requires=["requests >=2.6.0, <3.0"],
     extras_require=extras,
     keywords="tektronix tekdrive api sdk",
     long_description=README,
