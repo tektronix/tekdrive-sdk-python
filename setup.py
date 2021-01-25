@@ -7,7 +7,7 @@ PACKAGE_NAME = "tekdrive"
 HERE = path.abspath(path.dirname(__file__))
 with open(path.join(HERE, "README.rst"), encoding="utf-8") as fp:
     README = fp.read()
-with open(path.join(HERE, PACKAGE_NAME, "const.py"), encoding="utf-8") as fp:
+with open(path.join(HERE, PACKAGE_NAME, "settings.py"), encoding="utf-8") as fp:
     VERSION = re.search('__version__ = "([^"]+)"', fp.read()).group(1)
 
 extras = {
@@ -19,7 +19,7 @@ extras = {
         "pytest >=2.7.3",
     ],
 }
-extras["dev"] += extras["lint"] + extras["test"]
+extras["dev"] = extras["lint"] + extras["test"]
 
 setup(
     name=PACKAGE_NAME,
@@ -40,10 +40,8 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Topic :: Utilities",
     ],
-    description=(
-        "A Python package that allows for simple access to the TekDrive API."
-    ),
-    install_requires=["requests >=2.6.0, <3.0"],
+    description=("A Python package that allows for simple access to the TekDrive API."),
+    install_requires=["requests >=2.25.0, <3.0"],
     extras_require=extras,
     keywords="tektronix tekdrive api sdk",
     long_description=README,
