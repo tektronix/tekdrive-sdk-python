@@ -18,6 +18,10 @@ class TekDriveAPIException(TekDriveException):
     def message(self) -> str:
         return self.data.get("message")
 
+    @property
+    def errors(self):
+        return self.data.get('errors')
+
 
 class ClientException(TekDriveException):
     """Indicate exceptions that happen client side."""

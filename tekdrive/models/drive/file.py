@@ -1,5 +1,5 @@
 """Provides the User class."""
-from typing import TYPE_CHECKING, Any, Dict, Optional, List, Union
+from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
 from ...endpoints import ENDPOINTS
 from ...utils.casing import to_snake_case
@@ -17,6 +17,7 @@ class File(DriveBase):
         self,
         client: "Client",
         id: Optional[str] = None,
+        name: Optional[str] = None,
         _data: Optional[Dict[str, Any]] = None,
     ):
         fetched = False
@@ -24,6 +25,8 @@ class File(DriveBase):
             self.id = id
         else:
             fetched = True
+
+        self._upload_url = None
 
         super().__init__(client, _data=_data, _fetched=fetched)
 
@@ -34,6 +37,7 @@ class File(DriveBase):
     ):
         """Parse owner and creator into members."""
         if attribute == "owner" or attribute == "creator":
+            print(f"attr {attribute}, value {value}")
             value = Member.from_data(self._client, value)
         super().__setattr__(attribute, value)
 
@@ -53,6 +57,23 @@ class File(DriveBase):
         print(self.__dict__)
         self._fetched = True
 
+    @staticmethod
+    def _create(
+        _client,
+        name=None,
+    ):
+        data = dict(name=name)
+        new_file = _client.post(ENDPOINTS["file_create"], json=data)
+        return new_file
+
     def members(self) -> List[Member]:
         """Return a list of file members"""
-        return self._client.get(ENDPOINTS["file_members"])
+        return self._client.get(ENDPOINTS["file_members"].format(file_id=self.id))
+
+    def upload(self, file: IO):
+        if self._upload_url is None:
+            upload_details = self._client.get(ENDPOINTS["file_members"].format(file_id=self.id))
+            self._upload_url = upload_details["upload_url"]
+
+        # TODO: do we need headers={"Content-Type": "application/octet-stream"} ?
+        self._client.request("PUT", self._upload_url, data=file)

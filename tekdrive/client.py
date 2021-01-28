@@ -3,10 +3,11 @@ import re
 import time
 from logging import getLogger
 from typing import IO, Any, Dict, Optional, Type, Union
+from xml.etree import ElementTree
 
 from .core import (
     AccessKeyAuthorizer,
-    BadRequest,
+    ResponseException,
     Requestor,
     session,
 )
@@ -18,6 +19,7 @@ from .exceptions import (
     TekDriveAPIException,
 )
 from .models.parser import Parser
+from .utils.casing import to_snake_case
 
 
 logger = getLogger("tekdrive")
@@ -53,9 +55,13 @@ class Client:
         self._parser = Parser(self, self._create_model_map())
         self._prepare_core(access_key, requestor_class, requestor_kwargs)
 
+        self.file = models.FileHelper(self, None)
+
     def _create_model_map(self):
         model_map = {
             "File": models.File,
+            "Member": models.Member,
+            "MembersList": models.MembersList,
         }
         return model_map
 
@@ -123,17 +129,16 @@ class Client:
     def _handle_rate_limit(
         self, exception: TekDriveAPIException
     ) -> Optional[Union[int, float]]:
-        for item in exception.items:
-            if item.error_type == "RATELIMIT":
-                amount_search = self._ratelimit_regex.search(item.message)
-                if not amount_search:
-                    break
-                seconds = int(amount_search.group(1))
-                if "minute" in amount_search.group(2):
-                    seconds *= 60
-                if seconds <= int(RATELIMIT_SECONDS):
-                    sleep_seconds = seconds + min(seconds / 10, 1)
-                    return sleep_seconds
+        if exception.error_code == "RATELIMIT":
+            amount_search = self._ratelimit_regex.search(exception.message)
+            if not amount_search:
+                return None
+            seconds = int(amount_search.group(1))
+            if "minute" in amount_search.group(2):
+                seconds *= 60
+            if seconds <= int(RATELIMIT_SECONDS):
+                sleep_seconds = seconds + min(seconds / 10, 1)
+                return sleep_seconds
         return None
 
     def delete(
@@ -260,7 +265,7 @@ class Client:
 
         """
         if data and json:
-            raise ClientException("At most one of `data` and `json` is supported.")
+            raise ClientException("Only supply one of: `json`, `data`.")
         try:
             return self._core.request(
                 method,
@@ -271,18 +276,37 @@ class Client:
                 timeout=TIMEOUT,
                 json=json,
             )
-        except BadRequest as exception:
-            data = exception.response.json()
-            if data.get("errorCode"):
-                raise TekDriveAPIException(data) from exception
-            raise
+        except ResponseException as exception:
+            try:
+                error_info = exception.response.json()
+            except ValueError:
+                # see if an error uploading to storage
+                upload_error_code = None
+                try:
+                    tree = ElementTree.fromstring(exception.response.content)
+                    upload_error_code = tree.find('Code').text
+                except Exception:
+                    pass
 
-    def file(
-        self,
-        id: Optional[str] = None,
-    ):
-        """Return a lazy instance of :class:`~.File` for ``id``.
+                if upload_error_code:
+                    raise Exception(
+                        f"Upload error: {upload_error_code}"
+                    ) from exception
 
-        :param id: The file id.
-        """
-        return models.File(self, id=id)
+                # otherwise some other unexpected response
+                raise Exception(
+                    "Unexpected ResponseException"
+                ) from exception
+            
+            # expected error format from API
+            raise TekDriveAPIException(to_snake_case(error_info)) from exception
+
+    # def file(
+    #     self,
+    #     id: Optional[str] = None,
+    # ):
+    #     """Return a lazy instance of :class:`~.File` for ``id``.
+
+    #     :param id: The file id.
+    #     """
+    #     return models.File(self, id=id)
