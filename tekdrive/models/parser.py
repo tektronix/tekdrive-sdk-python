@@ -4,7 +4,7 @@ from ..exceptions import TekDriveAPIException
 from ..utils.casing import to_snake_case
 
 if TYPE_CHECKING:  # pragma: no cover
-    from .. import Client
+    from .. import TekDrive
 
 
 class Parser:
@@ -25,8 +25,8 @@ class Parser:
         if error:
             raise error
 
-    def __init__(self, client: "Client", models: Optional[Dict[str, Any]] = None):
-        self._client = client
+    def __init__(self, tekdrive: "TekDrive", models: Optional[Dict[str, Any]] = None):
+        self._tekdrive = tekdrive
         self.models = {} if models is None else models
 
     def _parse_dict(self, data: dict):
@@ -49,7 +49,7 @@ class Parser:
         else:
             print(f"UNKNOWN MODEL: {data}")
             return data
-        return model.parse(data, self._client)
+        return model.parse(data, self._tekdrive)
 
     def parse(
         self, data: Optional[Union[Dict[str, Any], List[Any]]]

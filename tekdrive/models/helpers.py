@@ -9,7 +9,7 @@ class FileHelper(TekDriveBase):
 
         :param name: The name of the file.
         """
-        return File(self._client, id=id)
+        return File(self._tekdrive, id=id)
 
     def create(
         self,
@@ -20,7 +20,7 @@ class FileHelper(TekDriveBase):
         :param name: The name for the new file.
         """
         new_file = File._create(
-            _client=self._client,
+            _tekdrive=self._tekdrive,
             name=name,
         )
         print(f"FileHelper.create new_file {new_file}")

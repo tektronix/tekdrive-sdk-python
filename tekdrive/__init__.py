@@ -1,1 +1,1 @@
-from .client import Client  # noqa
+from .tekdrive import TekDrive  # noqa

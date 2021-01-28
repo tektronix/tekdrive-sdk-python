@@ -4,11 +4,11 @@ from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 from ..base import TekDriveBase
 
 if TYPE_CHECKING:  # pragma: no cover
-    from ... import Client
+    from ... import TekDrive
 
 
 class DriveBase(TekDriveBase):
-    """Base class that represents actual Client objects."""
+    """Base class that represents actual TekDrive objects."""
 
     def __eq__(self, other: Union[Any, str]) -> bool:
         """Return whether the other instance equals the current."""
@@ -34,7 +34,7 @@ class DriveBase(TekDriveBase):
 
     def __init__(
         self,
-        client: "Client",
+        tekdrive: "TekDrive",
         _data: Optional[Dict[str, Any]],
         _extra_attribute_to_check: Optional[str] = None,
         _fetched: bool = False,
@@ -42,10 +42,10 @@ class DriveBase(TekDriveBase):
     ):
         """Initialize a DriveBase instance (or a subclass).
 
-        :param client: An instance of :class:`~.Client`.
+        :param tekdrive: An instance of :class:`~.TekDrive`.
 
         """
-        super().__init__(client, _data=_data)
+        super().__init__(tekdrive, _data=_data)
         self._fetched = _fetched
         if _str_field and self.STR_FIELD not in self.__dict__:
             if (

@@ -5,9 +5,9 @@ from ..endpoints import ENDPOINTS
 from .base import TekDriveBase
 
 if TYPE_CHECKING:  # pragma: no cover
-    from .. import Client
+    from .. import TekDrive
 
 
 class User(TekDriveBase):
-    def __init__(self, client: "Client"):
-        super().__init__(client, _data=None)
+    def __init__(self, tekdrive: "TekDrive"):
+        super().__init__(tekdrive, _data=None)

@@ -6,29 +6,26 @@ from .base import DriveBase
 from ..base import BaseList
 
 if TYPE_CHECKING:  # pragma: no cover
-    from .. import Client
+    from .. import TekDrive
 
 
 class Member(DriveBase):
     STR_FIELD = "id"
 
     @classmethod
-    def from_data(cls, client, data):
+    def from_data(cls, tekdrive, data):
         if data == "[deleted]":
             return None
-        return cls(client, data)
+        return cls(tekdrive, data)
 
     def __init__(
         self,
-        client: "Client",
+        tekdrive: "TekDrive",
         _data: Optional[Dict[str, Any]] = None,
     ):
         print(f'member data {_data}')
-        super().__init__(client, _data=_data)
+        super().__init__(tekdrive, _data=_data)
         print(f'member dict {self.__dict__}')
-
-    # def __str__(self):
-    #     return f"Member<{self.id}>"
 
 
 class MembersList(BaseList):

@@ -3,7 +3,7 @@ from copy import deepcopy
 from typing import TYPE_CHECKING, Any, Dict, Iterator, Optional
 
 if TYPE_CHECKING:  # pragma: no cover
-    from .. import Client
+    from .. import TekDrive
 
 
 class TekDriveBase:
@@ -20,17 +20,17 @@ class TekDriveBase:
         argument_dict[key] = value
 
     @classmethod
-    def parse(cls, data: Dict[str, Any], client: "Client") -> Any:
+    def parse(cls, data: Dict[str, Any], tekdrive: "TekDrive") -> Any:
         """Return an instance of ``cls`` from ``data``.
 
         :param data: The structured data.
-        :param client: An instance of :class:`.Client`.
+        :param tekdrive: An instance of :class:`.TekDrive`.
 
         """
-        return cls(client, _data=data)
+        return cls(tekdrive, _data=data)
 
-    def __init__(self, client: "Client", _data: Optional[Dict[str, Any]]):
-        self._client = client
+    def __init__(self, tekdrive: "TekDrive", _data: Optional[Dict[str, Any]]):
+        self._tekdrive = tekdrive
         if _data:
             for attribute, value in _data.items():
                 setattr(self, attribute, value)
@@ -41,15 +41,15 @@ class BaseList(TekDriveBase):
 
     CHILD_ATTRIBUTE = None
 
-    def __init__(self, client: "Client", _data: Dict[str, Any]):
-        super().__init__(client, _data=_data)
+    def __init__(self, tekdrive: "TekDrive", _data: Dict[str, Any]):
+        super().__init__(tekdrive, _data=_data)
 
         if self.CHILD_ATTRIBUTE is None:
             raise NotImplementedError("BaseList must be extended.")
 
         child_list = getattr(self, self.CHILD_ATTRIBUTE)
         for index, item in enumerate(child_list):
-            child_list[index] = client._parser.parse(item)
+            child_list[index] = tekdrive._parser.parse(item)
 
     def __contains__(self, item: Any) -> bool:
         """Test if item exists in the list."""

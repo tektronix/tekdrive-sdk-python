@@ -1,4 +1,4 @@
-"""Provide the Client"""
+"""Provide the TekDrive client"""
 import re
 import time
 from logging import getLogger
@@ -24,7 +24,7 @@ from .utils.casing import to_snake_case
 logger = getLogger("tekdrive")
 
 
-class Client:
+class TekDrive:
 
     _ratelimit_regex = re.compile(r"([0-9]{1,2}) (seconds?|minutes?)")
 
@@ -42,7 +42,7 @@ class Client:
         requestor_kwargs: Dict[str, Any] = None,
         **config_settings: str,
     ):
-        """Initialize a Client instance.
+        """Initialize a TekDrive instance.
 
         :param access_key: Previously generated TekDrive access key.
         :param requestor_class: A class that will be used to create a requestor. If not
