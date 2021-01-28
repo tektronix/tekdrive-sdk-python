@@ -1,7 +1,6 @@
 """Provides the User class."""
 from typing import TYPE_CHECKING, Optional, Dict, Any
 
-# from ..endpoints import ENDPOINTS
 from .base import DriveBase
 from ..base import BaseList
 
