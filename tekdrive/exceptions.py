@@ -23,5 +23,9 @@ class TekDriveAPIException(TekDriveException):
         return self.data.get('errors')
 
 
+class TekDriveStorageException(TekDriveException):
+    """Indicate exceptions that happen uploading/downloading from storage."""
+
+
 class ClientException(TekDriveException):
     """Indicate exceptions that happen client side."""

@@ -1,6 +1,8 @@
 """Provides the User class."""
+import requests
 from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
+from ...exceptions import TekDriveStorageException
 from ...endpoints import ENDPOINTS
 from ...utils.casing import to_snake_case
 from .base import DriveBase
@@ -37,7 +39,6 @@ class File(DriveBase):
     ):
         """Parse owner and creator into members."""
         if attribute == "owner" or attribute == "creator":
-            print(f"attr {attribute}, value {value}")
             value = Member.from_data(self._client, value)
         super().__setattr__(attribute, value)
 
@@ -54,14 +55,26 @@ class File(DriveBase):
         data = to_snake_case(data)
         other = type(self)(self._client, _data=data)
         self.__dict__.update(other.__dict__)
-        print(self.__dict__)
         self._fetched = True
+
+    def _upload_to_storage(self, upload_url, file):
+        try:
+            r = requests.put(
+                upload_url,
+                data=file,
+                headers={
+                    "Content-Type": "application/octet-stream",
+                },
+            )
+            r.raise_for_status()
+        except requests.exceptions.HTTPError as exception:
+            raise TekDriveStorageException("Upload failed") from exception
 
     @staticmethod
     def _create(
         _client,
         name=None,
-    ):
+    ) -> "File":
         data = dict(name=name)
         new_file = _client.post(ENDPOINTS["file_create"], json=data)
         return new_file
@@ -70,10 +83,11 @@ class File(DriveBase):
         """Return a list of file members"""
         return self._client.get(ENDPOINTS["file_members"].format(file_id=self.id))
 
-    def upload(self, file: IO):
+    def upload(self, file: IO) -> None:
+        # TODO: multipart upload support
         if self._upload_url is None:
             upload_details = self._client.get(ENDPOINTS["file_members"].format(file_id=self.id))
             self._upload_url = upload_details["upload_url"]
 
-        # TODO: do we need headers={"Content-Type": "application/octet-stream"} ?
-        self._client.request("PUT", self._upload_url, data=file)
+        # do single upload
+        self._upload_to_storage(self._upload_url, file)

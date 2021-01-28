@@ -3,7 +3,6 @@ import re
 import time
 from logging import getLogger
 from typing import IO, Any, Dict, Optional, Type, Union
-from xml.etree import ElementTree
 
 from .core import (
     AccessKeyAuthorizer,
@@ -247,6 +246,7 @@ class Client:
         path: str,
         params: Optional[Union[str, Dict[str, Union[str, int]]]] = None,
         data: Optional[Union[Dict[str, Union[str, Any]], bytes, IO, str]] = None,
+        headers: Optional[Dict[str, Union[str, Any]]] = None,
         files: Optional[Dict[str, IO]] = None,
         json=None,
     ) -> Any:
@@ -273,6 +273,7 @@ class Client:
                 data=data,
                 files=files,
                 params=params,
+                headers=headers,
                 timeout=TIMEOUT,
                 json=json,
             )
@@ -280,20 +281,6 @@ class Client:
             try:
                 error_info = exception.response.json()
             except ValueError:
-                # see if an error uploading to storage
-                upload_error_code = None
-                try:
-                    tree = ElementTree.fromstring(exception.response.content)
-                    upload_error_code = tree.find('Code').text
-                except Exception:
-                    pass
-
-                if upload_error_code:
-                    raise Exception(
-                        f"Upload error: {upload_error_code}"
-                    ) from exception
-
-                # otherwise some other unexpected response
                 raise Exception(
                     "Unexpected ResponseException"
                 ) from exception
