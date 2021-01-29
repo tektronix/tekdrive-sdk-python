@@ -1,5 +1,6 @@
 from .base import TekDriveBase
 from .drive.file import File
+from ..exceptions import ClientException
 
 
 class FileHelper(TekDriveBase):
@@ -13,14 +14,17 @@ class FileHelper(TekDriveBase):
 
     def create(
         self,
-        name: str,
+        file_path: str = None,
+        name: str = None,
     ) -> File:
         """Create a new file.
-
-        :param name: The name for the new file.
         """
+        if file_path is None and name is None:
+            raise ClientException("Must supply `file_path` or `name`")
+
         new_file = File._create(
             _tekdrive=self._tekdrive,
+            file_path=file_path,
             name=name,
         )
         print(f"FileHelper.create new_file {new_file}")

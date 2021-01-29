@@ -1,4 +1,5 @@
-"""Provides the User class."""
+"""Provides the File class."""
+import os
 import requests
 from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
@@ -19,6 +20,7 @@ class File(DriveBase):
         self,
         tekdrive: "TekDrive",
         id: Optional[str] = None,
+        file_path: Optional[str] = None,
         name: Optional[str] = None,
         _data: Optional[Dict[str, Any]] = None,
     ):
@@ -48,8 +50,7 @@ class File(DriveBase):
 
     def _fetch(self):
         data = self._fetch_data()
-        data = to_snake_case(data)
-        other = type(self)(self._tekdrive, _data=data)
+        other = type(self)(self._tekdrive, _data=to_snake_case(data))
         self.__dict__.update(other.__dict__)
         self._fetched = True
 
@@ -58,7 +59,7 @@ class File(DriveBase):
         upload_details = self._tekdrive.request(route)
         return upload_details["upload_url"]
 
-    def _upload_to_storage(self, upload_url, file):
+    def _upload_to_storage(self, upload_url: str, file: IO):
         try:
             r = requests.put(
                 upload_url,
@@ -74,11 +75,19 @@ class File(DriveBase):
     @staticmethod
     def _create(
         _tekdrive,
-        name=None,
+        file_path: str = None,
+        name: str = None,
     ) -> "File":
+        if file_path and name is None:
+            name = os.path.basename(file_path)
+
         data = dict(name=name)
         route = Route("POST", ENDPOINTS["file_create"])
         new_file = _tekdrive.request(route, json=data)
+
+        if file_path:
+            new_file.upload(file_path)
+
         return new_file
 
     def members(self) -> List[Member]:
@@ -86,10 +95,11 @@ class File(DriveBase):
         route = Route("GET", ENDPOINTS["file_members"], file_id=self.id)
         return self._tekdrive.request(route)
 
-    def upload(self, file: IO) -> None:
+    def upload(self, file_path: str) -> None:
         # TODO: multipart upload support
         if self._upload_url is None:
             self._upload_url = self._fetch_upload_url()
 
         # do single upload
-        self._upload_to_storage(self._upload_url, file)
+        with open(file_path, "rb") as f:
+            self._upload_to_storage(self._upload_url, f)
