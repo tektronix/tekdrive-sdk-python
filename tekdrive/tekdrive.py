@@ -49,7 +49,10 @@ class TekDrive:
         :param requestor_kwargs: Dictionary with additional keyword arguments used to
             initialize the requestor (default: None).
         """
-        self._core = self._authorized_core = self._read_only_core = None
+        if not access_key:
+            raise ClientException("Missing required attribute 'access_key'.")
+
+        self._core = self._authorized_core = None
         self._parser = Parser(self, self._create_model_map())
         self._prepare_core(access_key, requestor_class, requestor_kwargs)
 
