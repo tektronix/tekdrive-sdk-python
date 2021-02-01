@@ -16,6 +16,7 @@ class FileHelper(TekDriveBase):
         self,
         file_path: str = None,
         name: str = None,
+        parent_folder_id: str = None,
     ) -> File:
         """Create a new file.
         """
@@ -26,6 +27,7 @@ class FileHelper(TekDriveBase):
             _tekdrive=self._tekdrive,
             file_path=file_path,
             name=name,
+            parent_folder_id=parent_folder_id,
         )
         print(f"FileHelper.create new_file {new_file}")
         return new_file

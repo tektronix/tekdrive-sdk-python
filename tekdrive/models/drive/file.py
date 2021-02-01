@@ -22,6 +22,7 @@ class File(DriveBase):
         id: Optional[str] = None,
         file_path: Optional[str] = None,
         name: Optional[str] = None,
+        parent_folder_id: Optional[str] = None,
         _data: Optional[Dict[str, Any]] = None,
     ):
         fetched = False
@@ -59,6 +60,10 @@ class File(DriveBase):
         upload_details = self._tekdrive.request(route)
         return upload_details["upload_url"]
 
+    def _update_details(self, data):
+        route = Route("PUT", ENDPOINTS["file_details"], file_id=self.id)
+        return self._tekdrive.request(route, json=data)
+
     def _upload_to_storage(self, upload_url: str, file: IO):
         try:
             r = requests.put(
@@ -77,11 +82,12 @@ class File(DriveBase):
         _tekdrive,
         file_path: str = None,
         name: str = None,
+        parent_folder_id: str = None,
     ) -> "File":
         if file_path and name is None:
             name = os.path.basename(file_path)
 
-        data = dict(name=name)
+        data = dict(name=name, parentFolderId=parent_folder_id)
         route = Route("POST", ENDPOINTS["file_create"])
         new_file = _tekdrive.request(route, json=data)
 
@@ -103,3 +109,12 @@ class File(DriveBase):
         # do single upload
         with open(file_path, "rb") as f:
             self._upload_to_storage(self._upload_url, f)
+
+    def move(self, parent_folder_id: str):
+        data = dict(parentFolderId=parent_folder_id)
+        self._update_details(data)
+        self.parent_folder_id = parent_folder_id
+
+    def save(self) -> None:
+        data = dict(name=self.name)
+        self._update_details(data)
