@@ -16,7 +16,8 @@ extras = {
         "flake8",
     ],
     "test": [
-        "pytest >=2.7.3",
+        "pytest >=6.2.2",
+        "vcrpy >=4.1.1",
     ],
 }
 extras["dev"] = extras["lint"] + extras["test"]
