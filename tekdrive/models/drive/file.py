@@ -20,9 +20,6 @@ class File(DriveBase):
         self,
         tekdrive: "TekDrive",
         id: Optional[str] = None,
-        file_path: Optional[str] = None,
-        name: Optional[str] = None,
-        parent_folder_id: Optional[str] = None,
         _data: Optional[Dict[str, Any]] = None,
     ):
         fetched = False

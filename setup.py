@@ -5,15 +5,17 @@ from setuptools import find_packages, setup
 
 PACKAGE_NAME = "tekdrive"
 HERE = path.abspath(path.dirname(__file__))
-with open(path.join(HERE, "README.rst"), encoding="utf-8") as fp:
-    README = fp.read()
-with open(path.join(HERE, PACKAGE_NAME, "settings.py"), encoding="utf-8") as fp:
-    VERSION = re.search('__version__ = "([^"]+)"', fp.read()).group(1)
+
+with open(path.join(HERE, "README.rst"), encoding="utf-8") as readme:
+    README = readme.read()
+
+with open(path.join(HERE, PACKAGE_NAME, "settings.py"), encoding="utf-8") as settings:
+    VERSION = re.search('__version__ = "([^"]+)"', settings.read()).group(1)
 
 extras = {
     "lint": [
-        "black",
-        "flake8",
+        "black ==20.8b1",
+        "flake8 >=3.8.4",
     ],
     "test": [
         "pytest >=6.2.2",
