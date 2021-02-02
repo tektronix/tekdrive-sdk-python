@@ -21,5 +21,7 @@ ENDPOINTS = {
     "file_download": "/file/{file_id}/contents",
     "file_members": "/file/{file_id}/members",
     "file_upload": "/file/{file_id}/uploadUrl",
+    "folder_create": "/folder",
     "folder_details": "/folder/{folder_id}",
+    "folder_members": "/folder/{folder_id}/members",
 }

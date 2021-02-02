@@ -57,6 +57,7 @@ class TekDrive:
         self._prepare_core(access_key, requestor_class, requestor_kwargs)
 
         self.file = models.FileHelper(self, None)
+        self.folder = models.FolderHelper(self, None)
 
     def _create_model_map(self):
         model_map = {
