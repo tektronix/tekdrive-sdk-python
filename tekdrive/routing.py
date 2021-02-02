@@ -18,6 +18,8 @@ class Route:
 ENDPOINTS = {
     "file_create": "/file",
     "file_details": "/file/{file_id}",
+    "file_download": "/file/{file_id}/contents",
     "file_members": "/file/{file_id}/members",
-    "file_overwrite": "/file/{file_id}/uploadUrl",
+    "file_upload": "/file/{file_id}/uploadUrl",
+    "folder_details": "/folder/{folder_id}",
 }

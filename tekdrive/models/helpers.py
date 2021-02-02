@@ -1,3 +1,5 @@
+from typing import IO, Union
+
 from .base import TekDriveBase
 from .drive.file import File
 from ..exceptions import ClientException
@@ -14,20 +16,19 @@ class FileHelper(TekDriveBase):
 
     def create(
         self,
-        file_path: str = None,
+        path_or_readable: Union[str, IO] = None,
         name: str = None,
         parent_folder_id: str = None,
     ) -> File:
         """Create a new file.
         """
-        if file_path is None and name is None:
-            raise ClientException("Must supply `file_path` or `name`")
+        if path_or_readable is None and name is None:
+            raise ClientException("Must supply `path_or_readable` or `name`")
 
         new_file = File._create(
             _tekdrive=self._tekdrive,
-            file_path=file_path,
+            path_or_readable=path_or_readable,
             name=name,
             parent_folder_id=parent_folder_id,
         )
-        print(f"FileHelper.create new_file {new_file}")
         return new_file
