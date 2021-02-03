@@ -25,8 +25,10 @@ class File(DriveBase):
         fetched = False
         if id:
             self.id = id
-        else:
+        elif _data:
             fetched = True
+        else:
+            raise ClientException("Must supply `id` or `_data`.")
 
         self._upload_url = None
 
@@ -43,7 +45,7 @@ class File(DriveBase):
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):
-        route = Route('GET', '/file/{file_id}', file_id=self.id)
+        route = Route('GET', ENDPOINTS["file_details"], file_id=self.id)
         return self._tekdrive.request(route, objectify=False)
 
     def _fetch(self):
