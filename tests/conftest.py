@@ -1,8 +1,8 @@
-import pytest
 import time
-import vcr
-
 from pathlib import Path
+
+import pytest
+import vcr
 
 
 # Prevent calls to sleep
@@ -42,7 +42,7 @@ def tekdrive_vcr(request):
     with vcr.use_cassette(
         casset_file_path,
         record_mode="once",
-        filter_headers=["authorization"],
+        filter_headers=[("x-is-ak", "TEST_ACCESS_KEY")],
         match_on=["method", "scheme", "host", "port", "path"],
     ) as cassete_maker:
         yield cassete_maker
