@@ -13,6 +13,7 @@ class Route:
 
         # major params:
         self.file_id = params.get('file_id')
+        self.folder_id = params.get('folder_id')
 
 
 ENDPOINTS = {

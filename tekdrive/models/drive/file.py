@@ -163,3 +163,11 @@ class File(DriveBase):
     def save(self) -> None:
         data = dict(name=self.name)
         self._update_details(data)
+
+    def share(self, username: str, edit: bool = False) -> Member:
+        route = Route("POST", ENDPOINTS["file_members"], file_id=self.id)
+        data = {
+            "username": username,
+            "permissions": dict(read=True, edit=edit)
+        }
+        return self._tekdrive.request(route, json=data)

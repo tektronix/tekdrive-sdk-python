@@ -22,9 +22,7 @@ class Member(DriveBase):
         tekdrive: "TekDrive",
         _data: Optional[Dict[str, Any]] = None,
     ):
-        print(f'member data {_data}')
         super().__init__(tekdrive, _data=_data)
-        print(f'member dict {self.__dict__}')
 
 
 class MembersList(BaseList):
