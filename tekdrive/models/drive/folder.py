@@ -1,5 +1,5 @@
 """Provides the Folder class."""
-from typing import TYPE_CHECKING, Any, Dict, Optional, List, Union
+from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
 from ...routing import Route, ENDPOINTS
 from ...utils.casing import to_snake_case
@@ -76,4 +76,14 @@ class Folder(DriveBase):
         data = dict(name=self.name)
         self._update_details(data)
 
-    # TODO: folder should expose an upload() method that uploads a file into the folder
+    def share(self, username: str, edit: bool = False) -> Member:
+        route = Route("POST", ENDPOINTS["folder_members"], folder_id=self.id)
+        data = {
+            "username": username,
+            "permissions": dict(read=True, edit=edit)
+        }
+        return self._tekdrive.request(route, json=data)
+
+    def upload(self, path_or_readable: Union[str, IO], file_name: str):
+        """Create a new file and automatically upload its contents directly into this folder"""
+        return self._tekdrive.file.create(path_or_readable, name=file_name, parent_folder_id=self.id)

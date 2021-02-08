@@ -1,0 +1,115 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/folder/8e1a1ad0-d352-4681-b14e-62c7371d6043?raw_json=1
+  response:
+    body:
+      string: '{"id":"8e1a1ad0-d352-4681-b14e-62c7371d6043","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-02-08T15:56:24.003Z","updatedAt":"2021-02-08T15:56:24.003Z","type":"FOLDER","parentFolderId":"eb1b996b-4eda-4068-a175-ca7135f6731b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '540'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 08 Feb 2021 16:06:05 GMT
+      ETag:
+      - W/"21c-Q6OWtdJRiGjsPZG6yeO/ICl8tJE"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 12a0fab1-57f3-428a-9c1c-224bb8b87027
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"name": "my_new_name"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '23'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: PUT
+    uri: https://drive.api.tekcloud.com/folder/8e1a1ad0-d352-4681-b14e-62c7371d6043?raw_json=1
+  response:
+    body:
+      string: '{"id":"8e1a1ad0-d352-4681-b14e-62c7371d6043","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"my_new_name","folderType":"STANDARD","createdAt":"2021-02-08T15:56:24.003Z","updatedAt":"2021-02-08T16:06:05.807Z","type":"FOLDER","parentFolderId":"eb1b996b-4eda-4068-a175-ca7135f6731b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '541'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 08 Feb 2021 16:06:05 GMT
+      ETag:
+      - W/"21d-a+UCEIf/03KhEPSEr7qygKmpjCk"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - de365fc5-5895-4ed5-87de-452e3972b0ff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/folder/8e1a1ad0-d352-4681-b14e-62c7371d6043?raw_json=1
+  response:
+    body:
+      string: '{"id":"8e1a1ad0-d352-4681-b14e-62c7371d6043","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"my_new_name","folderType":"STANDARD","createdAt":"2021-02-08T15:56:24.003Z","updatedAt":"2021-02-08T16:06:05.807Z","type":"FOLDER","parentFolderId":"eb1b996b-4eda-4068-a175-ca7135f6731b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '541'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 08 Feb 2021 16:06:05 GMT
+      ETag:
+      - W/"21d-a+UCEIf/03KhEPSEr7qygKmpjCk"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 314299e5-df67-484c-aecd-91fe184d00ae
+    status:
+      code: 200
+      message: OK
+version: 1

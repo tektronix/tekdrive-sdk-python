@@ -54,8 +54,7 @@ class DriveBase(TekDriveBase):
             ):
                 return
             raise ValueError(
-                f"An invalid value was specified for {self.STR_FIELD}. Check that the "
-                f"argument for the {self.STR_FIELD} parameter is not empty."
+                f"An invalid value was specified for `{self.STR_FIELD}`."
             )
 
     def __repr__(self) -> str:

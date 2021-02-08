@@ -1,0 +1,80 @@
+interactions:
+- request:
+    body: '{"parentFolderId": "eb1b996b-4eda-4068-a175-ca7135f6731b"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '58'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: PUT
+    uri: https://drive.api.tekcloud.com/folder/8e1a1ad0-d352-4681-b14e-62c7371d6043?raw_json=1
+  response:
+    body:
+      string: '{"id":"8e1a1ad0-d352-4681-b14e-62c7371d6043","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-02-08T15:56:24.003Z","updatedAt":"2021-02-08T15:56:24.003Z","type":"FOLDER","parentFolderId":"eb1b996b-4eda-4068-a175-ca7135f6731b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '540'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 08 Feb 2021 16:03:47 GMT
+      ETag:
+      - W/"21c-Q6OWtdJRiGjsPZG6yeO/ICl8tJE"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 04539414-073f-4188-a440-5364824a439c
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/folder/8e1a1ad0-d352-4681-b14e-62c7371d6043?raw_json=1
+  response:
+    body:
+      string: '{"id":"8e1a1ad0-d352-4681-b14e-62c7371d6043","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-02-08T15:56:24.003Z","updatedAt":"2021-02-08T15:56:24.003Z","type":"FOLDER","parentFolderId":"eb1b996b-4eda-4068-a175-ca7135f6731b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '540'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 08 Feb 2021 16:03:48 GMT
+      ETag:
+      - W/"21c-Q6OWtdJRiGjsPZG6yeO/ICl8tJE"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 05fe1b8a-6e5d-45c0-8f91-3de073aa61df
+    status:
+      code: 200
+      message: OK
+version: 1
