@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/file/3670359c-c453-40b7-bcc1-0281e2f6db94/members?raw_json=1
+  response:
+    body:
+      string: '{"members":[{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '173'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 04 Feb 2021 21:15:03 GMT
+      ETag:
+      - W/"ad-Kg2xv4gisKCQAWnyxMNaZWrRzyQ"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - e099cc7b-90a4-4125-b069-902ad289c34b
+    status:
+      code: 200
+      message: OK
+version: 1
