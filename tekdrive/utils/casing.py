@@ -4,6 +4,27 @@ from typing import Union, Dict, List
 
 SPLIT_RE = re.compile(r"([\-_\s]*[A-Z0-9]+[^A-Z\-_\s]+[\-_\s]*)")
 ACRONYM_RE = re.compile(r"([A-Z]+)(?=[A-Z][a-z])")
+UNDERSCORE_RE = re.compile(r"([^\-_\s])[\-_\s]+([^\-_\s])")
+
+
+def to_camel_case(str_or_iter):
+    """Convert a string, dict, or list of dicts to camel case"""
+    if isinstance(str_or_iter, (list, Mapping)):
+        return _process_keys(str_or_iter, to_camel_case)
+
+    s = str(str_or_iter)
+    if s.isnumeric():
+        return str_or_iter
+
+    if s.isupper():
+        return str_or_iter
+
+    return "".join(
+        [
+            s[0].lower() if not s[:2].isupper() else s[0],
+            UNDERSCORE_RE.sub(lambda m: m.group(1) + m.group(2).upper(), s[1:]),
+        ]
+    )
 
 
 def to_snake_case(str_or_iter: Union[str, Dict, List]):
