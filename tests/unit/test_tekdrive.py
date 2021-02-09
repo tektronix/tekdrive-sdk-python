@@ -12,9 +12,9 @@ class TestTekDrive(UnitTest):
     FAKE_KEY = "abc123"
 
     def test_access_key_required(self):
-        with pytest.raises(ClientException) as excinfo:
+        with pytest.raises(ClientException) as e:
             TekDrive(access_key=None)
-        assert str(excinfo.value).startswith(
+        assert str(e.value).startswith(
             "Missing required attribute 'access_key'."
         )
 

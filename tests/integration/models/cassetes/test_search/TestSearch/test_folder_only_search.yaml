@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/search?name=new&depth=1&type=FOLDER&limit=100
+  response:
+    body:
+      string: '{"results":[{"id":"8a6574f0-0472-44b9-a502-b2b5b9b4d48f","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"new_name","folderType":"STANDARD","createdAt":"2020-09-28T14:23:36.097Z","updatedAt":"2021-02-02T21:48:49.092Z","type":"FOLDER","parentFolderId":"a63a781f-ecbc-442f-b053-c5bd65ef611b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null},{"id":"b0c9dbce-fe01-4f05-8a0d-5e7041c04e6a","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-02-04T19:58:13.190Z","updatedAt":"2021-02-04T19:58:13.190Z","type":"FOLDER","parentFolderId":"a63a781f-ecbc-442f-b053-c5bd65ef611b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null},{"id":"8e1a1ad0-d352-4681-b14e-62c7371d6043","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"my_new_name","folderType":"STANDARD","createdAt":"2021-02-08T15:56:24.003Z","updatedAt":"2021-02-08T16:06:05.807Z","type":"FOLDER","parentFolderId":"eb1b996b-4eda-4068-a175-ca7135f6731b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}],"meta":{"page":1,"limit":100,"offset":0}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1676'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 09 Feb 2021 16:50:12 GMT
+      ETag:
+      - W/"68c-o/MlneLtMH89nOniw309xg3gGq8"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 2c9a2a4f-011f-4fef-99e1-5a9a9bf1d69f
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -13,8 +13,6 @@ class Member(DriveBase):
 
     @classmethod
     def from_data(cls, tekdrive, data):
-        if data == "[deleted]":
-            return None
         return cls(tekdrive, data)
 
     def __init__(
