@@ -59,11 +59,15 @@ class TekDrive:
         self.file = models.FileHelper(self, None)
         self.folder = models.FolderHelper(self, None)
 
+        self.search = models.Search(self)
+
     def _create_model_map(self):
         model_map = {
             "File": models.File,
+            "Folder": models.Folder,
             "Member": models.Member,
             "MembersList": models.MembersList,
+            "PaginatedList": models.PaginatedList,
         }
         return model_map
 

@@ -25,4 +25,5 @@ ENDPOINTS = {
     "folder_create": "/folder",
     "folder_details": "/folder/{folder_id}",
     "folder_members": "/folder/{folder_id}/members",
+    "search": "/search",
 }

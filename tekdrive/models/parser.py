@@ -35,8 +35,11 @@ class Parser:
         if data.get("type") == "FILE":
             print("Detected File")
             model = self.models["File"]
+        elif data.get("type") == "FOLDER":
+            print("Detected Folder")
+            model = self.models["Folder"]
         elif data.get("members"):
-            print("Detected Members list")
+            print("Detected MembersList")
             model = self.models["MembersList"]
         elif {"id", "username", "permissions"}.issubset(data):
             print("Detected Member")
@@ -46,6 +49,9 @@ class Parser:
             file = data["file"]
             file["_upload_url"] = data["upload_url"]
             data = file
+        elif data.get("meta") and data.get("results"):
+            print("Detected PaginatedList")
+            model = self.models["PaginatedList"]
         else:
             print(f"UNKNOWN MODEL: {data}")
             return data
