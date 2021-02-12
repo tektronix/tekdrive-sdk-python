@@ -1,16 +1,5 @@
-Quickstart
-==========
-
-Installation
-------------
-The TekDrive Python SDK can be installed from `PyPI <https://pypi.org/project/tekdrive/>`_:
-
-.. code-block:: shell
-
-    pip install tekdrive
-
 Usage Overview
---------------
+==============
 
 Prerequisites
 ~~~~~~~~~~~~~
@@ -38,4 +27,4 @@ For example, creating a file is as simple as:
 
     td.file.create("/path/to/file.txt", name="My New File")
 
-See the :ref:`Models` section for more.
+See the :ref:`models` section for more.
