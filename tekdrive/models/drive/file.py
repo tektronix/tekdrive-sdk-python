@@ -1,6 +1,7 @@
 """Provides the File class."""
 import os
 import requests
+from datetime import datetime
 from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
 from ...routing import Route, ENDPOINTS
@@ -14,6 +15,30 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 class File(DriveBase):
+    """
+    A class representing a TekDrive file.
+
+    Examples:
+        Load a file by id::
+
+            file_id = "9606be66-8af0-42fc-b199-7c0ca7e30d73"
+            file = td.file(file_id)
+
+    Attributes:
+        bytes (str): File size in bytes.
+        created_at (datetime): When the file was created.
+        creator (:ref:`member`): File creator.
+        file_type (str): File type such as ``"JPG"`` or ``"WFM"``.
+        name (str): Name of the file.
+        owner (:ref:`member`): File owner.
+        parent_folder_id (uuid): Unique ID of the file's parent folder.
+        shared_at (datetime, optional): When the file was shared with the
+            requesting user. Will be ``None`` if the user has direct access.
+        type (str): Type of TekDrive object - will always be ``"FILE"``.
+        permissions (:ref:`permissions`): File permissions for the requesting user.
+        updated_at (datetime, optional): When the file was last updated.
+    """
+
     STR_FIELD = "id"
 
     def __init__(
@@ -37,11 +62,16 @@ class File(DriveBase):
     def __setattr__(
         self,
         attribute: str,
-        value: Union[str, int, "Member"],
+        value: Union[str, int, Dict[str, Any]],
     ):
-        """Parse owner and creator into members."""
-        if attribute == "owner" or attribute == "creator":
-            value = Member.from_data(self._tekdrive, value)
+        # if attribute == "owner" or attribute == "creator":
+        #     value = Member.from_data(self._tekdrive, value)
+        if attribute in ("created_at", "updated_at", "shared_at"):
+            if value is not None:
+                value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%fZ")
+        # TODO: ?
+        # elif attribute == "permissions":
+        #     value = Permissions.from_data(self._tekdrive, value)
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):
@@ -120,11 +150,41 @@ class File(DriveBase):
         return new_file
 
     def members(self) -> List[Member]:
-        """Return a list of file members"""
+        """
+        Get a list of file members.
+
+        Examples:
+            Iterate over all file members::
+
+                for member in file.members():
+                    print(member.username)
+        """
         route = Route("GET", ENDPOINTS["file_members"], file_id=self.id)
         return self._tekdrive.request(route)
 
     def upload(self, path_or_readable: Union[str, IO]) -> None:
+        """
+        Upload file contents. This will overwrite existing content, if any.
+
+        Args:
+            path_or_readable: Path to a local file or a readable stream
+                representing the contents to upload.
+
+        Raises:
+            ClientException: If invalid file path is given.
+
+        Examples:
+            Upload using path::
+
+                here = os.path.dirname(__file__)
+                contents_path = os.path.join(here, "test_file_overwrite.txt")
+                file.upload(contents_path)
+
+            Upload using readable stream::
+
+                with open("./test_file.txt"), "rb") as f:
+                    new_file.upload(f)
+        """
         # TODO: multipart upload support
         if isinstance(path_or_readable, str):
             file_path = path_or_readable
@@ -138,7 +198,29 @@ class File(DriveBase):
             readable = path_or_readable
             self._upload_to_storage(readable)
 
-    def download(self, path_or_writable: Union[str, IO] = None):
+    def download(self, path_or_writable: Union[str, IO] = None) -> None:
+        """
+        Download file contents.
+
+        Args:
+            path_or_writable: Path to a local file or a writable stream
+                where file contents will be written.
+
+        Raises:
+            ClientException: If invalid file path is given.
+
+        Examples:
+            Download to local file using path::
+
+                here = os.path.dirname(__file__)
+                contents_path = os.path.join(here, "test_file_overwrite.txt")
+                file.download(contents_path)
+
+            Download using writable stream::
+
+                with open("./download.csv"), "wb") as f:
+                    file.download(f)
+        """
         if path_or_writable is None:
             # return content directly
             return self._download_from_storage()
@@ -156,18 +238,61 @@ class File(DriveBase):
             writable.write(self._download_from_storage())
 
     def move(self, parent_folder_id: str) -> None:
+        """
+        Move file to a different folder.
+
+        Args:
+            parent_folder_id: Unique ID of folder to move the file into.
+
+        Examples:
+            Move by ID::
+
+                folder_id = "3b525331-9da7-4e8d-b045-4acdba8d9dc7"
+                file.move(folder_id)
+
+            Move to newly created folder::
+
+                folder = td.folder.create("FolderA")
+                file.move(folder.id)
+        """
         data = dict(parentFolderId=parent_folder_id)
         self._update_details(data)
         self.parent_folder_id = parent_folder_id
 
     def save(self) -> None:
+        """
+        Save any changes to file meta. Supported attributes: ``name``.
+
+        Examples:
+            Rename a file::
+
+                file.name = "my_new_name"
+                file.save()
+        """
         data = dict(name=self.name)
         self._update_details(data)
 
-    def share(self, username: str, edit: bool = False) -> Member:
+    def share(self, username: str, edit_access: bool = False) -> Member:
+        """
+        Share the file with an existing or new user.
+
+        Args:
+            username: The username (email) of the sharee.
+            edit_access: Give sharee edit access?
+
+        Examples:
+            Share with read only permissions (default)::
+
+                file_member = file.share("read_only@example.com")
+
+            Share with edit permissions::
+
+                file_member = file.share("edit@example.com", edit_access=True)
+
+        """
         route = Route("POST", ENDPOINTS["file_members"], file_id=self.id)
         data = {
             "username": username,
-            "permissions": dict(read=True, edit=edit)
+            "permissions": dict(read=True, edit=edit_access)
         }
         return self._tekdrive.request(route, json=data)
