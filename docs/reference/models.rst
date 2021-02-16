@@ -8,3 +8,4 @@ Models
    :caption: Models
 
    models/file
+   models/folder

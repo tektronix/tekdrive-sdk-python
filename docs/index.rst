@@ -11,7 +11,7 @@ TekDrive Python SDK
    quickstart/usage
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :Caption: Code Overview
 
    reference/models
