@@ -218,3 +218,27 @@ div input[type="submit"]:focus {
 input[type=text]:focus {
     outline: 1px solid #999;
 }
+
+.py.class > dt {
+    background-color: #e7f2fa;
+}
+
+.py.method {
+    margin: 0 0 1.5em 0;
+}
+
+.py.method > dt {
+    background-color: #bbb;
+    padding: 0.5em;
+}
+
+.py.attribute {
+    margin: 0 0 1em 0;
+    border-left: 2px solid #eee;
+    padding-left: 1em;
+}
+
+/* Indent code block in Python Class docstring */
+.py.class > dd .highlight pre {
+    margin-left: 2em;
+}
