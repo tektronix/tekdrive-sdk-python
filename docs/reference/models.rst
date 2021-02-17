@@ -10,3 +10,4 @@ Models
    models/file
    models/folder
    models/member
+   models/user
