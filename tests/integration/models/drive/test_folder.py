@@ -91,7 +91,7 @@ class TestFolder(IntegrationTest):
         members = folder.members()
         member_count = len(members)
 
-        sharee = folder.share(sharee_username, edit=True)
+        sharee = folder.share(sharee_username, edit_access=True)
         assert sharee.id is not None
         assert sharee.username == sharee_username
         assert sharee.permissions == {

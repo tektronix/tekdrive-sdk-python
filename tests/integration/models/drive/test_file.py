@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime
 
 # from tekdrive.exceptions import ClientException, TekDriveAPIException
 from tekdrive.models import File
@@ -13,7 +14,7 @@ class TestFile(IntegrationTest):
         file_id = "7682b062-aeaf-4b29-997e-d9178db05d5f"
         file = File(self.tekdrive, id=file_id)
         assert file.bytes == "14"
-        assert file.created_at == "2021-02-02T20:40:17.533Z"
+        assert file.created_at == datetime.strptime("2021-02-02T20:40:17.533Z", "%Y-%m-%dT%H:%M:%S.%fZ")
         assert file.creator.id == "4b0dd6d7-9284-4202-b8e7-213569976c63"
         assert file.creator.username == "thomas+tekdrive@initialstate.com"
         assert file.file_type == "TXT"
@@ -30,7 +31,7 @@ class TestFile(IntegrationTest):
         }
         assert file.shared_at is None
         assert file.type == "FILE"
-        assert file.updated_at == "2021-02-02T20:40:18.884Z"
+        assert file.updated_at == datetime.strptime("2021-02-02T20:40:18.884Z", "%Y-%m-%dT%H:%M:%S.%fZ")
         assert file.upload_state == "SUCCESS"
 
     def test_members_only_owner(self, tekdrive_vcr):
@@ -94,7 +95,7 @@ class TestFile(IntegrationTest):
         members = file.members()
         member_count = len(members)
 
-        sharee = file.share(sharee_username, edit=True)
+        sharee = file.share(sharee_username, edit_access=True)
         assert sharee.id is not None
         assert sharee.username == sharee_username
         assert sharee.permissions == {

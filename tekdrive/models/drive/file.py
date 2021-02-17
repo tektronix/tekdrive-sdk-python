@@ -8,7 +8,8 @@ from ...routing import Route, ENDPOINTS
 from ...exceptions import ClientException, TekDriveStorageException
 from ...utils.casing import to_snake_case
 from .base import DriveBase
-from .member import Member
+from .member import Member, MembersList
+from ..user import PartialUser
 
 if TYPE_CHECKING:  # pragma: no cover
     from .. import TekDrive
@@ -27,10 +28,11 @@ class File(DriveBase):
     Attributes:
         bytes (str): File size in bytes.
         created_at (datetime): When the file was created.
-        creator (:ref:`member`): File creator.
+        creator (:ref:`partial_user`): File creator.
         file_type (str): File type such as ``"JPG"`` or ``"WFM"``.
+        id (uuid): Unique ID of the file.
         name (str): Name of the file.
-        owner (:ref:`member`): File owner.
+        owner (:ref:`partial_user`): File owner.
         parent_folder_id (uuid): Unique ID of the file's parent folder.
         shared_at (datetime, optional): When the file was shared with the
             requesting user. Will be ``None`` if the user has direct access.
@@ -64,8 +66,8 @@ class File(DriveBase):
         attribute: str,
         value: Union[str, int, Dict[str, Any]],
     ):
-        # if attribute == "owner" or attribute == "creator":
-        #     value = Member.from_data(self._tekdrive, value)
+        if attribute == "owner" or attribute == "creator":
+            value = PartialUser(**value)
         if attribute in ("created_at", "updated_at", "shared_at"):
             if value is not None:
                 value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%fZ")
@@ -149,7 +151,7 @@ class File(DriveBase):
 
         return new_file
 
-    def members(self) -> List[Member]:
+    def members(self) -> MembersList:
         """
         Get a list of file members.
 
@@ -160,7 +162,9 @@ class File(DriveBase):
                     print(member.username)
         """
         route = Route("GET", ENDPOINTS["file_members"], file_id=self.id)
-        return self._tekdrive.request(route)
+        members = self._tekdrive.request(route)
+        members._parent = self
+        return members
 
     def upload(self, path_or_readable: Union[str, IO]) -> None:
         """
