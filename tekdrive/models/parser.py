@@ -49,7 +49,7 @@ class Parser:
             file = data["file"]
             file["_upload_url"] = data["upload_url"]
             data = file
-        elif data.get("meta") and data.get("results"):
+        elif {"meta", "results"}.issubset(data):
             print("Detected PaginatedList")
             model = self.models["PaginatedList"]
         else:

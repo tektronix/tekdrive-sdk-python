@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/search?name=name_of_things_that_dont_even_exist&depth=1&type=FILE%2CFOLDER&limit=100
+  response:
+    body:
+      string: '{"results":[],"meta":{"page":1,"limit":100,"offset":0}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '55'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 17 Feb 2021 22:07:43 GMT
+      ETag:
+      - W/"37-BG5Yh3oiv3kX6Or++j9U9pZynko"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - f9a2fbb2-baf0-4d0d-9d6b-f5d18522576a
+    status:
+      code: 200
+      message: OK
+version: 1

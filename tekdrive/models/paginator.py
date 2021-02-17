@@ -30,7 +30,7 @@ class PaginatedList(TekDriveBase):
         return getattr(self, self.META_ATTRIBUTE)["page"]
 
     @property
-    def page_limit(self) -> int:
+    def limit_per_page(self) -> int:
         return getattr(self, self.META_ATTRIBUTE)["limit"]
 
 
@@ -41,7 +41,7 @@ class PaginatedListGenerator(TekDriveBase, Iterator):
         tekdrive: "TekDrive",
         route: "Route",
         limit: int = 100,
-        page_limit: int = 100,
+        limit_per_page: int = 100,
         params: Optional[Dict[str, Union[str, int]]] = None,
     ):
         """Initialize a PaginatedListGenerator instance.
@@ -58,7 +58,7 @@ class PaginatedListGenerator(TekDriveBase, Iterator):
         self._list_index = None
         self.limit = limit  # total results limit
         self.params = deepcopy(params) if params else {}
-        self.params["limit"] = page_limit  # page limit
+        self.params["limit"] = min(limit, limit_per_page)  # limit for a single page
         self.route = route
         self.yielded = 0
 
@@ -88,7 +88,7 @@ class PaginatedListGenerator(TekDriveBase, Iterator):
         if not self._list:
             raise StopIteration()
 
-        if len(self._list) == self._list.page_limit:
+        if len(self._list) == self._list.limit_per_page:
             # go to next page
             self.params["page"] = self._list.page + 1
         else:

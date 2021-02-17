@@ -15,3 +15,4 @@ TekDrive Python SDK
    :Caption: Code Overview
 
    reference/models
+   reference/search

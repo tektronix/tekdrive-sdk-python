@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/search?name=new&silo=personal&depth=1&type=FOLDER&limit=1
+  response:
+    body:
+      string: '{"results":[{"id":"8a6574f0-0472-44b9-a502-b2b5b9b4d48f","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"new_name","folderType":"STANDARD","createdAt":"2020-09-28T14:23:36.097Z","updatedAt":"2021-02-02T21:48:49.092Z","type":"FOLDER","parentFolderId":"a63a781f-ecbc-442f-b053-c5bd65ef611b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}],"meta":{"page":1,"limit":1,"offset":0}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '591'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 17 Feb 2021 21:43:49 GMT
+      ETag:
+      - W/"24f-cDgW8hQGhHQf9NwM0K8zwwIYoKg"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 040a2832-0204-4e95-ae47-180cea153555
+    status:
+      code: 200
+      message: OK
+version: 1
