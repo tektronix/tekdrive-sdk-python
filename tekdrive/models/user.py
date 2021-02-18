@@ -15,7 +15,7 @@ class PartialUser:
     Represents a simple User which provides a subset of a full User's attributes.
 
     Attributes:
-        id (uuid): Unique ID for the user
+        id (str): Unique ID for the user
         username (str): Username for the user
     """
     id: str

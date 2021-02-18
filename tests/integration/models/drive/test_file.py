@@ -67,7 +67,7 @@ class TestFile(IntegrationTest):
         file._fetch()
         assert file.parent_folder_id == target_folder_id
 
-    def test_share_defaults_to_read_only(self, tekdrive_vcr):
+    def test_add_member_defaults_to_read_only(self, tekdrive_vcr):
         sharee_username = 'thomas+3tekdrive@initialstate.com'
         file_id = "e5e4b89b-0043-47ec-a982-439081361ed9"
         file = File(self.tekdrive, id=file_id)
@@ -75,7 +75,7 @@ class TestFile(IntegrationTest):
         members = file.members()
         member_count = len(members)
 
-        sharee = file.share(sharee_username)
+        sharee = file.add_member(sharee_username)
         assert sharee.id is not None
         assert sharee.username == sharee_username
         assert sharee.permissions == Permissions(
@@ -88,7 +88,7 @@ class TestFile(IntegrationTest):
         updated_members = file.members()
         assert len(updated_members) == member_count + 1
 
-    def test_share_with_edit(self, tekdrive_vcr):
+    def test_add_member_with_edit(self, tekdrive_vcr):
         sharee_username = 'thomas+3tekdrive@initialstate.com'
         file_id = "7fa7559a-5339-4ec2-8e57-392857d96706"
         file = File(self.tekdrive, id=file_id)
@@ -96,7 +96,7 @@ class TestFile(IntegrationTest):
         members = file.members()
         member_count = len(members)
 
-        sharee = file.share(sharee_username, edit_access=True)
+        sharee = file.add_member(sharee_username, edit_access=True)
         assert sharee.id is not None
         assert sharee.username == sharee_username
         assert sharee.permissions == Permissions(

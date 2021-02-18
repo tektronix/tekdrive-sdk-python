@@ -25,11 +25,11 @@ class Folder(DriveBase):
     Attributes:
         created_at (datetime): When the folder was created.
         creator (:ref:`partial_user`): Folder creator.
-        id (uuid): Unique ID of the folder.
+        id (str): Unique ID of the folder.
         folder_type (str): Folder type such as ``"STANDARD"``, ``"PERSONAL"``, or ``"SHARES"``.
         name (str): Name of the folder.
         owner (:ref:`partial_user`): Folder owner.
-        parent_folder_id (uuid): Unique ID of the folder's parent folder.
+        parent_folder_id (str): Unique ID of the folder's parent folder.
         shared_at (datetime, optional): When the folder was shared with the
             requesting user. Will be ``None`` if the user has direct access.
         type (str): Type of TekDrive object - will always be ``"FOLDER"``.
@@ -139,22 +139,23 @@ class Folder(DriveBase):
         data = dict(name=self.name)
         self._update_details(data)
 
-    def share(self, username: str, edit_access: bool = False) -> Member:
+    # TODO: username or id
+    def add_member(self, username: str, edit_access: bool = False) -> Member:
         """
         Share the folder with an existing or new user.
 
         Args:
             username: The username (email) of the sharee.
-            edit_access: Give sharee edit access?
+            edit_access: Give member edit access?
 
         Examples:
             Share with read only permissions (default)::
 
-                folder_member = folder.share("read_only@example.com")
+                folder_member = folder.add_member("read_only@example.com")
 
             Share with edit permissions::
 
-                folder_member = folder.share("edit@example.com", edit_access=True)
+                folder_member = folder.add_member("edit@example.com", edit_access=True)
 
         """
         route = Route("POST", ENDPOINTS["folder_members"], folder_id=self.id)

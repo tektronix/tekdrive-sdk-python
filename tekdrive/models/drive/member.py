@@ -15,7 +15,7 @@ class Member(DriveBase):
     with their permissions for that object.
 
     Attributes:
-        id (uuid): Unique user ID
+        id (str): Unique user ID
         username (str): Username of the member
         permissions (:ref:`permissions`): Member permissions
     """

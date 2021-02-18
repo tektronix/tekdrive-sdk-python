@@ -31,10 +31,10 @@ class File(DriveBase):
         created_at (datetime): When the file was created.
         creator (:ref:`partial_user`): File creator.
         file_type (str): File type such as ``"JPG"`` or ``"WFM"``.
-        id (uuid): Unique ID of the file.
+        id (str): Unique ID of the file.
         name (str): Name of the file.
         owner (:ref:`partial_user`): File owner.
-        parent_folder_id (uuid): Unique ID of the file's parent folder.
+        parent_folder_id (str): Unique ID of the file's parent folder.
         shared_at (datetime, optional): When the file was shared with the
             requesting user. Will be ``None`` if the user has direct access.
         type (str): Type of TekDrive object - will always be ``"FILE"``.
@@ -276,22 +276,23 @@ class File(DriveBase):
         data = dict(name=self.name)
         self._update_details(data)
 
-    def share(self, username: str, edit_access: bool = False) -> Member:
+    # TODO: username or id
+    def add_member(self, username: str, edit_access: bool = False) -> Member:
         """
         Share the file with an existing or new user.
 
         Args:
             username: The username (email) of the sharee.
-            edit_access: Give sharee edit access?
+            edit_access: Give member edit access?
 
         Examples:
             Share with read only permissions (default)::
 
-                file_member = file.share("read_only@example.com")
+                file_member = file.add_member("read_only@example.com")
 
             Share with edit permissions::
 
-                file_member = file.share("edit@example.com", edit_access=True)
+                file_member = file.add_member("edit@example.com", edit_access=True)
 
         """
         route = Route("POST", ENDPOINTS["file_members"], file_id=self.id)
