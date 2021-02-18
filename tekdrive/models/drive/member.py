@@ -1,8 +1,9 @@
 """Provides the User class."""
-from typing import TYPE_CHECKING, Optional, Dict, Any
+from typing import TYPE_CHECKING, Optional, Dict, Any, Union
 
 from .base import DriveBase
 from ..base import BaseList
+from ..permissions import Permissions
 
 if TYPE_CHECKING:  # pragma: no cover
     from .. import TekDrive
@@ -22,8 +23,24 @@ class Member(DriveBase):
     ):
         super().__init__(tekdrive, _data=_data)
 
+    def __setattr__(
+        self,
+        attribute: str,
+        value: Union[str, int, Dict[str, Any]],
+    ):
+        if attribute == "permissions":
+            value = Permissions(**value)
+        super().__setattr__(attribute, value)
+
 
 class MembersList(BaseList):
     """List of members"""
 
+    _parent = None
+
     CHILD_ATTRIBUTE = "members"
+
+    def remove(self, username_or_id):
+        # TODO: convenience for self._parent.unshare() ?
+        # print(f"parent {self._parent.id}")
+        pass

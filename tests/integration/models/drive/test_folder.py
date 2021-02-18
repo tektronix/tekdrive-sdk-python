@@ -1,6 +1,6 @@
 import pytest
 
-from tekdrive.models import Folder
+from tekdrive.models import Folder, Permissions
 
 from ...base import IntegrationTest
 
@@ -19,13 +19,13 @@ class TestFolder(IntegrationTest):
         assert folder.name == "New Folder"
         assert folder.owner.id == "4b0dd6d7-9284-4202-b8e7-213569976c63"
         assert folder.owner.username == "thomas+tekdrive@initialstate.com"
-        assert folder.permissions == {
-            "creator": True,
-            "edit": True,
-            "owner": True,
-            "public": False,
-            "read": True,
-        }
+        assert folder.permissions == Permissions(
+            creator=True,
+            edit=True,
+            owner=True,
+            public=False,
+            read=True,
+        )
         assert folder.shared_at is None
         assert folder.type == "FOLDER"
         assert folder.updated_at == "2021-02-08T15:56:24.003Z"
@@ -37,10 +37,10 @@ class TestFolder(IntegrationTest):
         assert len(members) == 1
         assert members[0] == '4b0dd6d7-9284-4202-b8e7-213569976c63'  # owner id
         assert members[0].username == "thomas+tekdrive@initialstate.com"
-        assert members[0].permissions["creator"] is True
-        assert members[0].permissions["edit"] is True
-        assert members[0].permissions["read"] is True
-        assert members[0].permissions["owner"] is True
+        assert members[0].permissions.creator is True
+        assert members[0].permissions.edit is True
+        assert members[0].permissions.read is True
+        assert members[0].permissions.owner is True
 
     def test_members_multiple(self, tekdrive_vcr):
         folder_id = "eb1b996b-4eda-4068-a175-ca7135f6731b"
@@ -50,7 +50,8 @@ class TestFolder(IntegrationTest):
         for member in members:
             assert member.id is not None
             assert member.username is not None
-            assert member.permissions is not None
+            assert isinstance(member.permissions, Permissions)
+            assert member.permissions.read is True  # should at least have read
 
     def test_move(self, tekdrive_vcr):
         folder_id = "8e1a1ad0-d352-4681-b14e-62c7371d6043"
@@ -73,12 +74,12 @@ class TestFolder(IntegrationTest):
         sharee = folder.share(sharee_username)
         assert sharee.id is not None
         assert sharee.username == sharee_username
-        assert sharee.permissions == {
-            "creator": False,
-            "edit": False,
-            "owner": False,
-            "read": True,
-        }
+        assert sharee.permissions == Permissions(
+            creator=False,
+            edit=False,
+            owner=False,
+            read=True,
+        )
 
         updated_members = folder.members()
         assert len(updated_members) == member_count + 1
@@ -94,12 +95,12 @@ class TestFolder(IntegrationTest):
         sharee = folder.share(sharee_username, edit_access=True)
         assert sharee.id is not None
         assert sharee.username == sharee_username
-        assert sharee.permissions == {
-            "creator": False,
-            "edit": True,
-            "owner": False,
-            "read": True,
-        }
+        assert sharee.permissions == Permissions(
+            creator=False,
+            edit=True,
+            owner=False,
+            read=True,
+        )
 
         updated_members = folder.members()
         assert len(updated_members) == member_count + 1

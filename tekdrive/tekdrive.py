@@ -165,13 +165,3 @@ class TekDrive:
                 params=params,
                 headers=headers,
             )
-
-    # def file(
-    #     self,
-    #     id: Optional[str] = None,
-    # ):
-    #     """Return a lazy instance of :class:`~.File` for ``id``.
-
-    #     :param id: The file id.
-    #     """
-    #     return models.File(self, id=id)

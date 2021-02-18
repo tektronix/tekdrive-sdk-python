@@ -5,6 +5,7 @@ from ...routing import Route, ENDPOINTS
 from ...utils.casing import to_snake_case
 from .base import DriveBase
 from .member import Member
+from ..permissions import Permissions
 from ..user import PartialUser
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -59,6 +60,8 @@ class Folder(DriveBase):
     ):
         if attribute == "owner" or attribute == "creator":
             value = PartialUser(**value)
+        elif attribute == "permissions":
+            value = Permissions(**value)
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):

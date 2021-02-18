@@ -2,7 +2,7 @@ import pytest
 from datetime import datetime
 
 # from tekdrive.exceptions import ClientException, TekDriveAPIException
-from tekdrive.models import File
+from tekdrive.models import File, Permissions
 
 from ...base import IntegrationTest
 
@@ -22,13 +22,13 @@ class TestFile(IntegrationTest):
         assert file.name == "test_file.txt"
         assert file.owner.id == "4b0dd6d7-9284-4202-b8e7-213569976c63"
         assert file.owner.username == "thomas+tekdrive@initialstate.com"
-        assert file.permissions == {
-            "creator": True,
-            "edit": True,
-            "owner": True,
-            "public": False,
-            "read": True,
-        }
+        assert file.permissions == Permissions(
+            creator=True,
+            edit=True,
+            owner=True,
+            public=False,
+            read=True,
+        )
         assert file.shared_at is None
         assert file.type == "FILE"
         assert file.updated_at == datetime.strptime("2021-02-02T20:40:18.884Z", "%Y-%m-%dT%H:%M:%S.%fZ")
@@ -41,10 +41,10 @@ class TestFile(IntegrationTest):
         assert len(members) == 1
         assert members[0] == '4b0dd6d7-9284-4202-b8e7-213569976c63'  # owner id
         assert members[0].username == "thomas+tekdrive@initialstate.com"
-        assert members[0].permissions["creator"] is True
-        assert members[0].permissions["edit"] is True
-        assert members[0].permissions["read"] is True
-        assert members[0].permissions["owner"] is True
+        assert members[0].permissions.creator is True
+        assert members[0].permissions.edit is True
+        assert members[0].permissions.read is True
+        assert members[0].permissions.owner is True
 
     def test_members_multiple(self, tekdrive_vcr):
         file_id = "3670359c-c453-40b7-bcc1-0281e2f6db94"
@@ -54,7 +54,8 @@ class TestFile(IntegrationTest):
         for member in members:
             assert member.id is not None
             assert member.username is not None
-            assert member.permissions is not None
+            assert isinstance(member.permissions, Permissions)
+            assert member.permissions.read is True  # should at least have read
 
     def test_move(self, tekdrive_vcr):
         file_id = "3670359c-c453-40b7-bcc1-0281e2f6db94"
@@ -77,12 +78,12 @@ class TestFile(IntegrationTest):
         sharee = file.share(sharee_username)
         assert sharee.id is not None
         assert sharee.username == sharee_username
-        assert sharee.permissions == {
-            "creator": False,
-            "edit": False,
-            "owner": False,
-            "read": True,
-        }
+        assert sharee.permissions == Permissions(
+            creator=False,
+            edit=False,
+            owner=False,
+            read=True,
+        )
 
         updated_members = file.members()
         assert len(updated_members) == member_count + 1
@@ -98,12 +99,12 @@ class TestFile(IntegrationTest):
         sharee = file.share(sharee_username, edit_access=True)
         assert sharee.id is not None
         assert sharee.username == sharee_username
-        assert sharee.permissions == {
-            "creator": False,
-            "edit": True,
-            "owner": False,
-            "read": True,
-        }
+        assert sharee.permissions == Permissions(
+            creator=False,
+            edit=True,
+            owner=False,
+            read=True,
+        )
 
         updated_members = file.members()
         assert len(updated_members) == member_count + 1
