@@ -10,4 +10,5 @@ Models
    models/file
    models/folder
    models/member
+   models/permissions
    models/user

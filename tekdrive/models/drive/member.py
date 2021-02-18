@@ -10,6 +10,16 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 class Member(DriveBase):
+    """
+    Represents a user who has access to a TekDrive file or folder along
+    with their permissions for that object.
+
+    Attributes:
+        id (uuid): Unique user ID
+        username (str): Username of the member
+        permissions (:ref:`permissions`): Member permissions
+    """
+
     STR_FIELD = "id"
 
     @classmethod
