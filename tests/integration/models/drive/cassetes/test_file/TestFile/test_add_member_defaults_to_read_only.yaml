@@ -13,7 +13,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: GET
-    uri: https://drive.api.tekcloud.com/file/e5e4b89b-0043-47ec-a982-439081361ed9/members?raw_json=1
+    uri: https://drive.api.tekcloud.com/file/e5e4b89b-0043-47ec-a982-439081361ed9/members
   response:
     body:
       string: '{"members":[{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'
@@ -54,7 +54,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: POST
-    uri: https://drive.api.tekcloud.com/file/e5e4b89b-0043-47ec-a982-439081361ed9/members?raw_json=1
+    uri: https://drive.api.tekcloud.com/file/e5e4b89b-0043-47ec-a982-439081361ed9/members
   response:
     body:
       string: '{"id":"7869c0bf-ad79-4e44-a374-ec87294bab9e","username":"thomas+3tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":false}}'
@@ -90,7 +90,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: GET
-    uri: https://drive.api.tekcloud.com/file/e5e4b89b-0043-47ec-a982-439081361ed9/members?raw_json=1
+    uri: https://drive.api.tekcloud.com/file/e5e4b89b-0043-47ec-a982-439081361ed9/members
   response:
     body:
       string: '{"members":[{"id":"7869c0bf-ad79-4e44-a374-ec87294bab9e","username":"thomas+3tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":false}},{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'

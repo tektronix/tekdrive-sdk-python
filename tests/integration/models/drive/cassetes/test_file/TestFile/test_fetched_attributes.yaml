@@ -13,7 +13,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: GET
-    uri: https://drive.api.tekcloud.com/file/7682b062-aeaf-4b29-997e-d9178db05d5f?raw_json=1
+    uri: https://drive.api.tekcloud.com/file/7682b062-aeaf-4b29-997e-d9178db05d5f
   response:
     body:
       string: '{"id":"7682b062-aeaf-4b29-997e-d9178db05d5f","owner":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"creator":{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com"},"name":"test_file.txt","fileType":"TXT","createdAt":"2021-02-02T20:40:17.533Z","updatedAt":"2021-02-02T20:40:18.884Z","uploadState":"SUCCESS","type":"FILE","bytes":"14","parentFolderId":"a63a781f-ecbc-442f-b053-c5bd65ef611b","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'

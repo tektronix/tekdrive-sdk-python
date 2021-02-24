@@ -13,7 +13,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: GET
-    uri: https://drive.api.tekcloud.com/file/3670359c-c453-40b7-bcc1-0281e2f6db94/members?raw_json=1
+    uri: https://drive.api.tekcloud.com/file/3670359c-c453-40b7-bcc1-0281e2f6db94/members
   response:
     body:
       string: '{"members":[{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'

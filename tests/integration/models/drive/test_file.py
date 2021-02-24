@@ -1,7 +1,7 @@
 import pytest
 from datetime import datetime
 
-# from tekdrive.exceptions import ClientException, TekDriveAPIException
+from tekdrive.exceptions import TekDriveAPIException
 from tekdrive.models import File, Permissions
 
 from ...base import IntegrationTest
@@ -108,6 +108,36 @@ class TestFile(IntegrationTest):
 
         updated_members = file.members()
         assert len(updated_members) == member_count + 1
+
+    def test_add_member_by_id(self, tekdrive_vcr):
+        file_id = "7fa7559a-5339-4ec2-8e57-392857d96706"
+        sharee_id = "67833b18-6941-4728-b326-0e5973b32e75"
+        file = File(self.tekdrive, id=file_id)
+
+        members = file.members()
+        member_count = len(members)
+
+        sharee = file.add_member(user_id=sharee_id, edit_access=True)
+        assert sharee.id is not None
+        assert sharee.username == "thomas+2tekdrive@initialstate.com"
+        assert sharee.permissions == Permissions(
+            creator=False,
+            edit=True,
+            owner=False,
+            read=True,
+        )
+
+        updated_members = file.members()
+        assert len(updated_members) == member_count + 1
+
+    def test_add_member_by_id_which_dne(self, tekdrive_vcr):
+        file_id = "7fa7559a-5339-4ec2-8e57-392857d96706"
+        made_up_user_id = "4307a1f5-edc1-4082-8bb2-05068d6c1d67"
+        file = File(self.tekdrive, id=file_id)
+
+        with pytest.raises(TekDriveAPIException) as e:
+            file.add_member(user_id=made_up_user_id, edit_access=True)
+        assert e.value.error_code == "UNPROCESSABLE_ENTITY"
 
     def test_update_name(self, tekdrive_vcr):
         file_id = "3670359c-c453-40b7-bcc1-0281e2f6db94"

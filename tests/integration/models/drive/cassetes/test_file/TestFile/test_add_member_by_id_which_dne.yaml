@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: '{"permissions": {"read": true, "edit": true}, "id": "4307a1f5-edc1-4082-8bb2-05068d6c1d67"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '91'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: POST
+    uri: https://drive.api.tekcloud.com/file/7fa7559a-5339-4ec2-8e57-392857d96706/members
+  response:
+    body:
+      string: '{"errorCode":"UNPROCESSABLE_ENTITY","message":"Provided member details
+        could not be processed. Check any supplied ids."}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '120'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 24 Feb 2021 21:09:47 GMT
+      ETag:
+      - W/"78-EUiJCJr8LqC8aUgD1PtiffPWlFo"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - b185d388-3b93-45c4-a61a-fc7591630038
+    status:
+      code: 422
+      message: Unprocessable Entity
+version: 1

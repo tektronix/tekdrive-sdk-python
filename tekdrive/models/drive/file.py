@@ -276,28 +276,32 @@ class File(DriveBase):
         data = dict(name=self.name)
         self._update_details(data)
 
-    # TODO: username or id
-    def add_member(self, username: str, edit_access: bool = False) -> Member:
+    def add_member(self, username: str = None, user_id: str = None, edit_access: bool = False) -> Member:
         """
         Share the file with an existing or new user.
 
         Args:
             username: The username (email) of the sharee.
+            user_id: The user ID of the sharee.
             edit_access: Give member edit access?
 
         Examples:
             Share with read only permissions (default)::
 
-                file_member = file.add_member("read_only@example.com")
+                file_member = file.add_member(username="read_only@example.com")
 
             Share with edit permissions::
 
-                file_member = file.add_member("edit@example.com", edit_access=True)
+                file_member = file.add_member(user_id= "354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=True)
 
         """
+        data = dict(permissions=dict(read=True, edit=edit_access))
+        if user_id:
+            data["id"] = user_id
+        elif username:
+            data["username"] = username
+        else:
+            raise ClientException('Must supply `username` or `user_id`.')
+
         route = Route("POST", ENDPOINTS["file_members"], file_id=self.id)
-        data = {
-            "username": username,
-            "permissions": dict(read=True, edit=edit_access)
-        }
         return self._tekdrive.request(route, json=data)

@@ -16,28 +16,27 @@ interactions:
     uri: https://drive.api.tekcloud.com/file/7fa7559a-5339-4ec2-8e57-392857d96706/members
   response:
     body:
-      string: '{"members":[{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'
+      string: '{"members":[{"id":"7869c0bf-ad79-4e44-a374-ec87294bab9e","username":"thomas+3tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":true}},{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '173'
+      - '336'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 08 Feb 2021 15:58:50 GMT
+      - Wed, 24 Feb 2021 19:12:17 GMT
       ETag:
-      - W/"ad-Kg2xv4gisKCQAWnyxMNaZWrRzyQ"
+      - W/"150-bVRPagHXJLkeyY6pOyycq4cpHig"
       Vary:
       - Origin
       X-Request-Id:
-      - ebf0e1a8-a72f-420b-9705-17cbf64a031d
+      - 968692b8-369b-4c0e-b107-2a66bbac8273
     status:
       code: 200
       message: OK
 - request:
-    body: '{"username": "thomas+3tekdrive@initialstate.com", "permissions": {"read":
-      true, "edit": true}}'
+    body: '{"permissions": {"read": true, "edit": true}, "id": "67833b18-6941-4728-b326-0e5973b32e75"}'
     headers:
       Accept:
       - '*/*'
@@ -46,7 +45,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '94'
+      - '91'
       Content-Type:
       - application/json
       User-Agent:
@@ -57,7 +56,7 @@ interactions:
     uri: https://drive.api.tekcloud.com/file/7fa7559a-5339-4ec2-8e57-392857d96706/members
   response:
     body:
-      string: '{"id":"7869c0bf-ad79-4e44-a374-ec87294bab9e","username":"thomas+3tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":true}}'
+      string: '{"id":"67833b18-6941-4728-b326-0e5973b32e75","username":"thomas+2tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":true}}'
     headers:
       Connection:
       - keep-alive
@@ -66,13 +65,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 08 Feb 2021 15:58:50 GMT
+      - Wed, 24 Feb 2021 19:12:17 GMT
       ETag:
-      - W/"a2-aZl59EWEp255zuRiUn29R/7AxlU"
+      - W/"a2-vSasf56Oo8vDeVQvI5ahvdyVxfQ"
       Vary:
       - Origin
       X-Request-Id:
-      - d58375b6-fc64-4120-b0ac-932fa866809e
+      - 1dc1e533-be5c-4779-aac9-714ce43303df
     status:
       code: 200
       message: OK
@@ -93,22 +92,22 @@ interactions:
     uri: https://drive.api.tekcloud.com/file/7fa7559a-5339-4ec2-8e57-392857d96706/members
   response:
     body:
-      string: '{"members":[{"id":"7869c0bf-ad79-4e44-a374-ec87294bab9e","username":"thomas+3tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":true}},{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'
+      string: '{"members":[{"id":"67833b18-6941-4728-b326-0e5973b32e75","username":"thomas+2tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":true}},{"id":"7869c0bf-ad79-4e44-a374-ec87294bab9e","username":"thomas+3tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":true}},{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","permissions":{"owner":true,"creator":true,"read":true,"edit":true}}]}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '336'
+      - '499'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 08 Feb 2021 15:58:50 GMT
+      - Wed, 24 Feb 2021 19:12:17 GMT
       ETag:
-      - W/"150-bVRPagHXJLkeyY6pOyycq4cpHig"
+      - W/"1f3-itFnf9Vkhg05RrI/bxeE61TaNh0"
       Vary:
       - Origin
       X-Request-Id:
-      - bedebd7f-fc4f-4f22-9bde-f051107e5214
+      - 84e6a851-ba91-41e4-82b4-40af6537575e
     status:
       code: 200
       message: OK
