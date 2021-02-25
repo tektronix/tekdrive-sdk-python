@@ -2,6 +2,7 @@ import pickle
 
 import pytest
 from tekdrive.models import Folder
+from tekdrive.exceptions import ClientException
 
 from ...base import UnitTest
 
@@ -72,3 +73,9 @@ class TestFolderModel(UnitTest):
         assert folder._fetched is True
         with pytest.raises(AttributeError):
             folder._unset_hidden_attr
+
+    def test_add_member_no_args(self):
+        folder = Folder(self.tekdrive, id="fol123")
+        with pytest.raises(ClientException) as e:
+            folder.add_member()
+        assert str(e.value) == "Must supply `username` or `user_id`."

@@ -73,3 +73,9 @@ class TestFileModel(UnitTest):
         assert file._fetched is True
         with pytest.raises(AttributeError):
             file._unset_hidden_attr
+
+    def test_add_member_no_args(self):
+        file = File(self.tekdrive, id="file_123")
+        with pytest.raises(ClientException) as e:
+            file.add_member()
+        assert str(e.value) == "Must supply `username` or `user_id`."

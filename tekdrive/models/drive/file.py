@@ -2,7 +2,7 @@
 import os
 import requests
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
+from typing import TYPE_CHECKING, Any, Dict, IO, Optional, Union
 
 from ...routing import Route, ENDPOINTS
 from ...exceptions import ClientException, TekDriveStorageException
@@ -292,7 +292,7 @@ class File(DriveBase):
 
             Share with edit permissions::
 
-                file_member = file.add_member(user_id= "354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=True)
+                file_member = file.add_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=True)
 
         """
         data = dict(permissions=dict(read=True, edit=edit_access))
