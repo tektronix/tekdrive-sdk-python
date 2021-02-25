@@ -40,9 +40,11 @@ class DriveBase(TekDriveBase):
         _fetched: bool = False,
         _str_field: bool = True,
     ):
-        """Initialize a DriveBase instance (or a subclass).
+        """
+        Initialize a DriveBase instance (or a subclass).
 
-        :param tekdrive: An instance of :class:`~.TekDrive`.
+        Args:
+            tekdrive: An instance of :class:`~.TekDrive`.
 
         """
         super().__init__(tekdrive, _data=_data)

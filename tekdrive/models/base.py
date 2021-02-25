@@ -21,10 +21,12 @@ class TekDriveBase:
 
     @classmethod
     def parse(cls, data: Dict[str, Any], tekdrive: "TekDrive") -> Any:
-        """Return an instance of ``cls`` from ``data``.
+        """
+        Return an instance of ``cls`` from ``data``.
 
-        :param data: The structured data.
-        :param tekdrive: An instance of :class:`.TekDrive`.
+        Args:
+            data: The structured data.
+            tekdrive: An instance of :class:`.TekDrive`.
 
         """
         return cls(tekdrive, _data=data)

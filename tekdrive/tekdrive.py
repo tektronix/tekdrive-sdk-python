@@ -41,13 +41,15 @@ class TekDrive:
         requestor_kwargs: Dict[str, Any] = None,
         **config_settings: str,
     ):
-        """Initialize a TekDrive instance.
+        """
+        Initialize a TekDrive instance.
 
-        :param access_key: Previously generated TekDrive access key.
-        :param requestor_class: A class that will be used to create a requestor. If not
-            set, use ``tekdrive.core.Requestor`` (default: None).
-        :param requestor_kwargs: Dictionary with additional keyword arguments used to
-            initialize the requestor (default: None).
+        Args:
+            access_key: Previously generated TekDrive access key.
+            requestor_class: A class that will be used to create a requestor. If not
+                set, use ``tekdrive.core.Requestor``.
+            requestor_kwargs: Dictionary with additional keyword arguments used to
+                initialize the requestor.
         """
         if not access_key:
             raise ClientException("Missing required attribute 'access_key'.")
@@ -129,18 +131,19 @@ class TekDrive:
         json=None,
         objectify: bool = True,
     ) -> Any:
-        """Return the parsed JSON data returned from a request to URL.
+        """
+        Return the parsed JSON data returned from a request to URL.
 
-        :param method: The HTTP method (e.g., GET, POST, PUT, DELETE).
-        :param path: The path to fetch.
-        :param params: The query parameters to add to the request (default: None).
-        :param data: Dictionary, bytes, or file-like object to send in the body of the
-            request (default: None).
-        :param files: Dictionary, filename to file (like) object mapping (default:
-            None).
-        :param json: JSON-serializable object to send in the body of the request with a
-            Content-Type header of application/json (default: None). If ``json`` is
-            provided, ``data`` should not be.
+        Args:
+            method: The HTTP method (e.g., GET, POST, PUT, DELETE).
+            path: The path to fetch.
+            params: The query parameters to add to the request.
+            data: Dictionary, bytes, or file-like object to send in the body of the
+                request.
+            files: Dictionary, filename to file (like) object mapping
+            json: JSON-serializable object to send in the body of the request with a
+                Content-Type header of application/json. If ``json`` is provided,
+                ``data`` should not be.
 
         """
         if objectify:

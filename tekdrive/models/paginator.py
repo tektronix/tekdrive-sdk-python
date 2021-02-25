@@ -44,13 +44,15 @@ class PaginatedListGenerator(TekDriveBase, Iterator):
         limit_per_page: int = 100,
         params: Optional[Dict[str, Union[str, int]]] = None,
     ):
-        """Initialize a PaginatedListGenerator instance.
+        """
+        Initialize a PaginatedListGenerator instance.
 
-        :param tekdrive: An instance of :class:`.TekDrive`.
-        :param route: A Route for an API endpoint returning a paginated list.
-        :param limit: Number of total results to fetch.
-        :param params: A dictionary containing additional query string parameters to
-            send with the request.
+        Args:
+            tekdrive: An instance of :class:`.TekDrive`.
+            route: A Route for an API endpoint returning a paginated list.
+            limit: Number of total results to fetch.
+            params: A dictionary containing additional query string parameters to
+                send with the request.
         """
         super().__init__(tekdrive, _data=None)
         self._exhausted = False
