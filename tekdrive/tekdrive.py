@@ -70,6 +70,7 @@ class TekDrive:
             "Member": models.Member,
             "MembersList": models.MembersList,
             "PaginatedList": models.PaginatedList,
+            "User": models.User
         }
         return model_map
 

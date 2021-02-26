@@ -1,0 +1,41 @@
+"""Provides the User class."""
+from typing import TYPE_CHECKING, Optional, Dict, Any, Union
+
+from .base import DriveBase
+
+if TYPE_CHECKING:  # pragma: no cover
+    from .. import TekDrive
+
+
+class User(DriveBase):
+    """
+    Represents a TekDrive full user.
+
+    Attributes:
+        id (str): Unique user ID.
+        username (str): Username (email) of the user.
+        account_id (str): TekDrive account ID for the user.
+        created_at (datetime): When the user account was created.
+        updated_at (datetime): When the user account was updated.
+        plan (:ref:`plan`): Plan details for the user.
+    """
+
+    STR_FIELD = "id"
+
+    @classmethod
+    def from_data(cls, tekdrive, data):
+        return cls(tekdrive, data)
+
+    def __init__(
+        self,
+        tekdrive: "TekDrive",
+        _data: Optional[Dict[str, Any]] = None,
+    ):
+        super().__init__(tekdrive, _data=_data)
+
+    def __setattr__(
+        self,
+        attribute: str,
+        value: Union[str, int, Dict[str, Any]],
+    ):
+        super().__setattr__(attribute, value)

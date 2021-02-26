@@ -52,6 +52,9 @@ class Parser:
         elif {"meta", "results"}.issubset(data):
             print("Detected PaginatedList")
             model = self.models["PaginatedList"]
+        elif {"account_id", "owner_type", "plan"}.issubset(data):
+            print("Detected User")
+            model = self.models["User"]
         else:
             print(f"UNKNOWN MODEL: {data}")
             return data
