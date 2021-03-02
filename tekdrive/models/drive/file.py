@@ -9,7 +9,7 @@ from ...exceptions import ClientException, TekDriveStorageException
 from ...utils.casing import to_snake_case
 from .base import DriveBase
 from .member import Member, MembersList
-from ..user import PartialUser
+from .user import PartialUser
 from ..permissions import Permissions
 
 if TYPE_CHECKING:  # pragma: no cover

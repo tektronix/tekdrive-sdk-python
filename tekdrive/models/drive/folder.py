@@ -7,7 +7,7 @@ from .base import DriveBase
 from ...exceptions import ClientException
 from .member import Member
 from ..permissions import Permissions
-from ..user import PartialUser
+from .user import PartialUser
 
 if TYPE_CHECKING:  # pragma: no cover
     from .. import TekDrive
