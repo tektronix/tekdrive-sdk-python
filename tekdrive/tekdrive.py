@@ -62,6 +62,7 @@ class TekDrive:
         self.folder = models.FolderHelper(self, None)
 
         self.search = models.Search(self)
+        self.user = models.User(self)
 
     def _create_model_map(self):
         model_map = {
@@ -70,7 +71,7 @@ class TekDrive:
             "Member": models.Member,
             "MembersList": models.MembersList,
             "PaginatedList": models.PaginatedList,
-            "User": models.User
+            "DriveUser": models.DriveUser
         }
         return model_map
 

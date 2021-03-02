@@ -1,4 +1,4 @@
-"""Provides the Permissions Data Class."""
+"""Provides the Permissions dataclass."""
 from dataclasses import dataclass
 
 

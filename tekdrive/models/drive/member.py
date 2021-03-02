@@ -1,4 +1,4 @@
-"""Provides the User class."""
+"""Provides the Member class."""
 from typing import TYPE_CHECKING, Optional, Dict, Any, Union
 
 from .base import DriveBase

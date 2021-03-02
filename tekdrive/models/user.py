@@ -14,6 +14,19 @@ class User(TekDriveBase):
         super().__init__(tekdrive, _data=None)
 
     def me(self) -> DriveUser:
+        """
+        Get details of the authenticated user.
+
+        Examples:
+            Fetch user details::
+
+                me = td.user.me()
+
+            Get the plan the user is on::
+
+                plan = td.user.me().plan
+
+        """
         route = Route("GET", ENDPOINTS["user"])
         return self._tekdrive.request(route)
 
