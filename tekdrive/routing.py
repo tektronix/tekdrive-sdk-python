@@ -28,5 +28,6 @@ ENDPOINTS = {
     "folder_members": "/folder/{folder_id}/members",
     "folder_member": "/folder/{folder_id}/members/{member_id}",
     "search": "/search",
+    "usage": "/user/usage",
     "user": "/user",
 }

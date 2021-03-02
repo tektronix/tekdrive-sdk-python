@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/user/usage
+  response:
+    body:
+      string: '{"totalBytesOwned":"1030853940","filesOwnedCount":70,"totalBytesOwnedInTrash":"0","filesOwnedInTrashCount":0,"totalBytesCreated":"1030853940","filesCreatedCount":70,"storageSizeLimit":"2000000000"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '197'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 02 Mar 2021 19:21:10 GMT
+      ETag:
+      - W/"c5-i/97lYMD7WVh1jvg7/HMMUgnWpo"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 73c4e4a0-4dde-470b-a2a4-078b3271c65e
+    status:
+      code: 200
+      message: OK
+version: 1

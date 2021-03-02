@@ -8,4 +8,5 @@ from .paginator import PaginatedList  # noqa
 from .parser import Parser  # noqa
 from .permissions import Permissions  # noqa
 from .search import Search  # noqa
+from .usage import Usage  # noqa
 from .user import User  # noqa

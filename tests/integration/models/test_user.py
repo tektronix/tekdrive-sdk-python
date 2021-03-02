@@ -1,7 +1,7 @@
 import pytest
 from datetime import datetime
 
-from tekdrive.models import User, DriveUser, Plan
+from tekdrive.models import DriveUser, User, Plan, Usage
 from tekdrive.enums import SharingType
 
 from ..base import IntegrationTest
@@ -29,3 +29,14 @@ class TestSearch(IntegrationTest):
         assert plan.access_key_limit == 20
         assert plan.storage_limit == 2e9
         assert plan.sharing_type == SharingType.UNLIMITED
+
+    def test_usage(self, tekdrive_vcr):
+        usage = User(self.tekdrive).usage()
+        assert isinstance(usage, Usage)
+        assert usage.files_created_count == 70
+        assert usage.files_owned_count == 70
+        assert usage.files_owned_in_trash_count == 0
+        assert usage.storage_freeable == 0
+        assert usage.storage_limit == 2e9
+        assert usage.storage_remaining == 969146060
+        assert usage.storage_used == 1030853940
