@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class SharingType(Enum):
-    unlimited = "UNLIMITED"
-    permissions_limited = "PERMISSIONS_LIMITED"
-    disabled = "DISABLED"
+    UNLIMITED = "UNLIMITED"
+    PERMISSIONS_LIMITED = "PERMISSIONS_LIMITED"
+    DISABLED = "DISABLED"
 
 
 # TODO: Object types (FILE and FOLDER)

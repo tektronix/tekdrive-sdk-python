@@ -1,5 +1,6 @@
 """Provides the User class."""
 from dataclasses import dataclass
+from datetime import datetime
 from typing import TYPE_CHECKING, Optional, Dict, Any, Union
 
 from .base import DriveBase
@@ -55,4 +56,7 @@ class DriveUser(DriveBase):
     ):
         if attribute == "plan":
             value = Plan.from_data(self._tekdrive, value)
+        elif attribute in ("created_at", "updated_at", "shared_at"):
+            if value is not None:
+                value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%fZ")
         super().__setattr__(attribute, value)

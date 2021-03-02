@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/user
+  response:
+    body:
+      string: '{"id":"4b0dd6d7-9284-4202-b8e7-213569976c63","username":"thomas+tekdrive@initialstate.com","accountId":"act_2s9zm7keogrmij","createdAt":"2020-09-04T16:39:47.369Z","updatedAt":"2020-09-04T16:39:55.079Z","ownerType":"USER","plan":{"id":"pln_testsmall","name":"Test
+        Small Limits","limits":{"storageSizeLimit":"2000000000","systemSizeLimit":"4000000000","accessKeyLimit":20,"sharingType":"UNLIMITED"}}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '398'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 02 Mar 2021 17:39:36 GMT
+      ETag:
+      - W/"18e-Qvoo9uxrRge199op2aAVtHVxyyM"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - b6c190c9-9fcd-4616-9c92-3eb2ea9763d7
+    status:
+      code: 200
+      message: OK
+version: 1

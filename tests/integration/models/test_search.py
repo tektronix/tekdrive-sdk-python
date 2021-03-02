@@ -1,6 +1,5 @@
 import pytest
 
-from tekdrive.exceptions import ClientException
 from tekdrive.models import Search, File, Folder
 
 from ..base import IntegrationTest
