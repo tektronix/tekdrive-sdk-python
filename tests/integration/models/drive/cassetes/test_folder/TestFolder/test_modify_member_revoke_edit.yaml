@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: '{"permissions": {"read": true, "edit": false}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '46'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: PUT
+    uri: https://drive.api.tekcloud.com/folder/8e1a1ad0-d352-4681-b14e-62c7371d6043/members/7869c0bf-ad79-4e44-a374-ec87294bab9e
+  response:
+    body:
+      string: '{"id":"7869c0bf-ad79-4e44-a374-ec87294bab9e","username":"thomas+3tekdrive@initialstate.com","permissions":{"owner":false,"creator":false,"read":true,"edit":false}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '163'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 03 Mar 2021 21:31:57 GMT
+      ETag:
+      - W/"a3-FP9IlVQK+FYsu36OJ24jwq+dqak"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 3d5d06bf-4d81-4272-a1f7-43b762e921ee
+    status:
+      code: 200
+      message: OK
+version: 1

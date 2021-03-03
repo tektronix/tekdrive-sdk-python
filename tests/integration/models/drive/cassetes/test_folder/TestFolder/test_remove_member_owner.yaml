@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - pytekdrivecore/0.0.1.alpha
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: DELETE
+    uri: https://drive.api.tekcloud.com/folder/8e1a1ad0-d352-4681-b14e-62c7371d6043/members/4b0dd6d7-9284-4202-b8e7-213569976c63
+  response:
+    body:
+      string: '{"errorCode":"FORBIDDEN","message":"Cannot remove owner"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '57'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 03 Mar 2021 21:31:56 GMT
+      ETag:
+      - W/"39-MCLXyDvTlv9rEWUuqbUndMcAWWA"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 91348ddf-6b8a-4b27-bb96-e49d96e320e6
+    status:
+      code: 403
+      message: Forbidden
+version: 1
