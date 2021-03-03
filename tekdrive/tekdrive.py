@@ -26,7 +26,6 @@ logger = getLogger("tekdrive")
 
 
 class TekDrive:
-
     def __enter__(self):
         """Handle the context manager open."""
         return self
@@ -71,7 +70,7 @@ class TekDrive:
             "Member": models.Member,
             "MembersList": models.MembersList,
             "PaginatedList": models.PaginatedList,
-            "DriveUser": models.DriveUser
+            "DriveUser": models.DriveUser,
         }
         return model_map
 
@@ -100,7 +99,7 @@ class TekDrive:
         json=None,
     ):
         if data and json:
-            raise ClientException("Only supply one of: `json`, `data`.")
+            raise ClientException("Only supply one of: 'json', 'data'.")
         try:
             return self._core.request(
                 method,
@@ -116,9 +115,7 @@ class TekDrive:
             try:
                 error_info = exception.response.json()
             except ValueError:
-                raise Exception(
-                    "Unexpected ResponseException"
-                ) from exception
+                raise Exception("Unexpected ResponseException") from exception
 
             # expected error format from API
             raise TekDriveAPIException(to_snake_case(error_info)) from exception
@@ -131,7 +128,7 @@ class TekDrive:
         headers: Optional[Dict[str, Union[str, Any]]] = None,
         files: Optional[Dict[str, IO]] = None,
         json=None,
-        objectify: bool = True,
+        should_parse: bool = True,
     ) -> Any:
         """
         Return the parsed JSON data returned from a request to URL.
@@ -148,7 +145,7 @@ class TekDrive:
                 ``data`` should not be.
 
         """
-        if objectify:
+        if should_parse:
             return self._parser.parse(
                 self._request(
                     method=route.method,

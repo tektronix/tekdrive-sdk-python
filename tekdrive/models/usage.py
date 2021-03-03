@@ -7,6 +7,7 @@ class Usage:
     """
     Represents TekDrive usage details and stats.
     """
+
     total_bytes_owned: str
     files_owned_count: int
     total_bytes_owned_in_trash: str

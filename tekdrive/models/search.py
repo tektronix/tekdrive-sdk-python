@@ -60,7 +60,7 @@ class Search(TekDriveBase):
             file_type=file_type,
             upload_state=upload_state,
             name=name,
-            order_by=order_by
+            order_by=order_by,
         )
 
     def folders(
@@ -97,7 +97,7 @@ class Search(TekDriveBase):
             silo=silo,
             depth=depth,
             name=name,
-            order_by=order_by
+            order_by=order_by,
         )
 
     def query(
@@ -146,14 +146,16 @@ class Search(TekDriveBase):
         if include_folders is True:
             search_types.append("FOLDER")
 
-        params = to_camel_case(dict(
-            folder_id=folder_id,
-            name=name,
-            silo=silo,
-            depth=depth,
-            file_type=file_type,
-            type=",".join(search_types),
-            upload_state=upload_state,
-            order_by=order_by
-        ))
+        params = to_camel_case(
+            dict(
+                folder_id=folder_id,
+                name=name,
+                silo=silo,
+                depth=depth,
+                file_type=file_type,
+                type=",".join(search_types),
+                upload_state=upload_state,
+                order_by=order_by,
+            )
+        )
         return PaginatedListGenerator(self._tekdrive, route, limit=limit, params=params)

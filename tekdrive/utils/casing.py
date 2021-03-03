@@ -47,8 +47,9 @@ def _break_words(string: str, separator: str = "_", split=SPLIT_RE.split):
 
 
 def _fix_abbrevations(string: str) -> str:
-    """Fix acronyms, initialisms, and abbrevations, e.g. `ObjectID` should
-    be `object_id` not `object_i_d`
+    """
+    Fix acronyms, initialisms, and abbrevations, e.g. "ObjectID" should
+    be "object_id" not "object_i_d"
     """
     return ACRONYM_RE.sub(lambda m: m.group(0).title(), string)
 

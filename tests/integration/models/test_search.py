@@ -7,7 +7,6 @@ from ..base import IntegrationTest
 
 @pytest.mark.integration
 class TestSearch(IntegrationTest):
-
     def test_query_returns_nothing(self, tekdrive_vcr):
         name = "name_of_things_that_dont_even_exist"
         results = Search(self.tekdrive).query(name=name)
@@ -16,14 +15,18 @@ class TestSearch(IntegrationTest):
 
     def test_query_files_only(self, tekdrive_vcr):
         name = "new_"
-        results = Search(self.tekdrive).query(name=name, include_files=True, include_folders=False)
+        results = Search(self.tekdrive).query(
+            name=name, include_files=True, include_folders=False
+        )
         for result in results:
             assert isinstance(result, File)
             assert name in result.name.lower()
 
     def test_query_folders_only(self, tekdrive_vcr):
         name = "new"
-        results = Search(self.tekdrive).query(name=name, include_files=False, include_folders=True)
+        results = Search(self.tekdrive).query(
+            name=name, include_files=False, include_folders=True
+        )
         for result in results:
             assert isinstance(result, Folder)
             assert name in result.name.lower()

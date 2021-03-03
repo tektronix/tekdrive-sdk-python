@@ -66,8 +66,8 @@ class Folder(DriveBase):
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):
-        route = Route('GET', ENDPOINTS["folder_details"], folder_id=self.id)
-        return self._tekdrive.request(route, objectify=False)
+        route = Route("GET", ENDPOINTS["folder_details"], folder_id=self.id)
+        return self._tekdrive.request(route, should_parse=False)
 
     def _fetch(self):
         data = self._fetch_data()
@@ -140,7 +140,9 @@ class Folder(DriveBase):
         data = dict(name=self.name)
         self._update_details(data)
 
-    def add_member(self, username: str = None, user_id: str = None, edit_access: bool = False) -> Member:
+    def add_member(
+        self, username: str = None, user_id: str = None, edit_access: bool = False
+    ) -> Member:
         """
         Share the folder with an existing or new user.
 
@@ -165,9 +167,51 @@ class Folder(DriveBase):
         elif username:
             data["username"] = username
         else:
-            raise ClientException('Must supply `username` or `user_id`.')
+            raise ClientException("Must supply `username` or `user_id`.")
 
         route = Route("POST", ENDPOINTS["folder_members"], folder_id=self.id)
+        return self._tekdrive.request(route, json=data)
+
+    def remove_member(self, user_id: str) -> None:
+        """
+        Revoke access for a current folder member.
+
+        Args:
+            user_id: The user ID of the member.
+
+        Examples:
+            Remove member::
+
+                folder.remove_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5")
+
+        """
+        route = Route(
+            "DELETE", ENDPOINTS["folder_member"], folder_id=self.id, member_id=user_id
+        )
+        self._tekdrive.request(route)
+
+    def modify_member(self, user_id: str, edit_access: bool) -> Member:
+        """
+        Modify an existing folder member.
+
+        Args:
+            user_id: The user ID of the member.
+            edit_access: Give member edit access?
+
+        Examples:
+            Grant edit access::
+
+                updated_folder_member = folder.modify_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=True)
+
+            Revoke edit access::
+
+                updated_folder_member = folder.modify_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=False)
+
+        """
+        route = Route(
+            "PUT", ENDPOINTS["folder_member"], folder_id=self.id, member_id=user_id
+        )
+        data = dict(permissions=dict(read=True, edit=edit_access))
         return self._tekdrive.request(route, json=data)
 
     def upload(self, path_or_readable: Union[str, IO], file_name: str):
@@ -194,4 +238,6 @@ class Folder(DriveBase):
                 with open("./test_file.txt"), "rb") as f:
                     folder.upload(f)
         """
-        return self._tekdrive.file.create(path_or_readable, name=file_name, parent_folder_id=self.id)
+        return self._tekdrive.file.create(
+            path_or_readable, name=file_name, parent_folder_id=self.id
+        )

@@ -55,9 +55,7 @@ class DriveBase(TekDriveBase):
                 and _extra_attribute_to_check in self.__dict__
             ):
                 return
-            raise ValueError(
-                f"An invalid value was specified for `{self.STR_FIELD}`."
-            )
+            raise ValueError(f"An invalid value was specified for `{self.STR_FIELD}`.")
 
     def __repr__(self) -> str:
         """Return an object initialization representation of the instance."""

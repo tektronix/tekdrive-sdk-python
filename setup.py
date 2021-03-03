@@ -4,12 +4,12 @@ from os import path
 from setuptools import find_packages, setup
 
 PACKAGE_NAME = "tekdrive"
-HERE = path.abspath(path.dirname(__file__))
+here = path.abspath(path.dirname(__file__))
 
-with open(path.join(HERE, "README.rst"), encoding="utf-8") as readme:
+with open(path.join(here, "README.rst"), encoding="utf-8") as readme:
     README = readme.read()
 
-with open(path.join(HERE, PACKAGE_NAME, "settings.py"), encoding="utf-8") as settings:
+with open(path.join(here, PACKAGE_NAME, "settings.py"), encoding="utf-8") as settings:
     VERSION = re.search('__version__ = "([^"]+)"', settings.read()).group(1)
 
 extras = {
@@ -26,9 +26,9 @@ extras["dev"] = extras["lint"] + extras["test"]
 
 setup(
     name=PACKAGE_NAME,
-    author="Thomas Buida",
+    author="Initial State",
     author_email="thomas@initialstate.com",
-    python_requires="~=3.6",
+    python_requires=">=3.6",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Environment :: Console",

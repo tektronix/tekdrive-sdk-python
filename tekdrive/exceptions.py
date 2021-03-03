@@ -20,7 +20,7 @@ class TekDriveAPIException(TekDriveException):
 
     @property
     def errors(self):
-        return self.data.get('errors')
+        return self.data.get("errors")
 
 
 class TekDriveStorageException(TekDriveException):

@@ -13,6 +13,7 @@ class Permissions:
         read (bool): Has read access?
         owner (bool): Is the object owner?
     """
+
     read: bool
     edit: bool
     owner: bool = None

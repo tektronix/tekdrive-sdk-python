@@ -77,8 +77,8 @@ class File(DriveBase):
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):
-        route = Route('GET', ENDPOINTS["file_details"], file_id=self.id)
-        return self._tekdrive.request(route, objectify=False)
+        route = Route("GET", ENDPOINTS["file_details"], file_id=self.id)
+        return self._tekdrive.request(route, should_parse=False)
 
     def _fetch(self):
         data = self._fetch_data()
@@ -276,7 +276,9 @@ class File(DriveBase):
         data = dict(name=self.name)
         self._update_details(data)
 
-    def add_member(self, username: str = None, user_id: str = None, edit_access: bool = False) -> Member:
+    def add_member(
+        self, username: str = None, user_id: str = None, edit_access: bool = False
+    ) -> Member:
         """
         Share the file with an existing or new user.
 
@@ -301,7 +303,7 @@ class File(DriveBase):
         elif username:
             data["username"] = username
         else:
-            raise ClientException('Must supply `username` or `user_id`.')
+            raise ClientException("Must supply `username` or `user_id`.")
 
         route = Route("POST", ENDPOINTS["file_members"], file_id=self.id)
         return self._tekdrive.request(route, json=data)
@@ -316,10 +318,12 @@ class File(DriveBase):
         Examples:
             Remove member::
 
-                file_member = file.remove_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5")
+                file.remove_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5")
 
         """
-        route = Route("DELETE", ENDPOINTS["file_member"], file_id=self.id, member_id=user_id)
+        route = Route(
+            "DELETE", ENDPOINTS["file_member"], file_id=self.id, member_id=user_id
+        )
         self._tekdrive.request(route)
 
     def modify_member(self, user_id: str, edit_access: bool) -> Member:
@@ -340,6 +344,8 @@ class File(DriveBase):
                 updated_file_member = file.modify_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=False)
 
         """
-        route = Route("PUT", ENDPOINTS["file_member"], file_id=self.id, member_id=user_id)
+        route = Route(
+            "PUT", ENDPOINTS["file_member"], file_id=self.id, member_id=user_id
+        )
         data = dict(permissions=dict(read=True, edit=edit_access))
         return self._tekdrive.request(route, json=data)

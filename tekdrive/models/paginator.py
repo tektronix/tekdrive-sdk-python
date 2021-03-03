@@ -20,7 +20,7 @@ class PaginatedList(TekDriveBase):
         return getattr(self, self.CHILD_ATTRIBUTE)[index]
 
     def __setattr__(self, attribute: str, value: Any):
-        """Objectify the CHILD_ATTRIBUTE attribute."""
+        """Parse the CHILD_ATTRIBUTE attribute."""
         if attribute == self.CHILD_ATTRIBUTE:
             value = self._tekdrive._parser.parse(value)
         super().__setattr__(attribute, value)
@@ -35,7 +35,6 @@ class PaginatedList(TekDriveBase):
 
 
 class PaginatedListGenerator(TekDriveBase, Iterator):
-
     def __init__(
         self,
         tekdrive: "TekDrive",

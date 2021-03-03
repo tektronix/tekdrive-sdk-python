@@ -37,7 +37,7 @@ class Plan(DriveBase):
         """
         The number of access keys allowed by the plan.
         """
-        return self.limits.get('access_key_limit')
+        return self.limits.get("access_key_limit")
 
     @property
     def sharing_type(self) -> SharingType:

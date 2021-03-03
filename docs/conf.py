@@ -84,9 +84,9 @@ html_theme = "alabaster"
 #
 html_theme_options = {
     "fixed_sidebar": False,
-    "extra_nav_links": OrderedDict([
-        ("TekDrive Home", "https://www.tek.com/software/tekdrive")
-    ])
+    "extra_nav_links": OrderedDict(
+        [("TekDrive Home", "https://www.tek.com/software/tekdrive")]
+    ),
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -107,7 +107,7 @@ html_sidebars = {
         "sidebar-top.html",
         "navigation.html",
         "relations.html",  # needs "show_related": True theme option to display
-        "searchbox.html"
+        "searchbox.html",
     ]
 }
 
@@ -124,15 +124,12 @@ latex_elements = {
     # The paper size ("letterpaper" or "a4paper").
     #
     # "papersize": "letterpaper",
-
     # The font size ("10pt", "11pt" or "12pt").
     #
     # "pointsize": "10pt",
-
     # Additional stuff for the LaTeX preamble.
     #
     # "preamble": "",
-
     # Latex figure (float) alignment
     #
     # "figure_align": "htbp",
@@ -142,8 +139,13 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "tekdrive.tex", "tekdrive Documentation",
-     "Thomas Buida \\textless{}thomas@initialstate.com\\textgreater{}", "manual"),
+    (
+        master_doc,
+        "tekdrive.tex",
+        "tekdrive Documentation",
+        "Thomas Buida \\textless{}thomas@initialstate.com\\textgreater{}",
+        "manual",
+    ),
 ]
 
 
@@ -151,10 +153,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, "tekdrive", "tekdrive Documentation",
-     [author], 1)
-]
+man_pages = [(master_doc, "tekdrive", "tekdrive Documentation", [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -163,9 +162,15 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, "tekdrive", "tekdrive Documentation",
-     author, "tekdrive", "TekDrive Python SDK.",
-     "Miscellaneous"),
+    (
+        master_doc,
+        "tekdrive",
+        "tekdrive Documentation",
+        author,
+        "tekdrive",
+        "TekDrive Python SDK.",
+        "Miscellaneous",
+    ),
 ]
 
 

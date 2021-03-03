@@ -14,9 +14,7 @@ class TestTekDrive(UnitTest):
     def test_access_key_required(self):
         with pytest.raises(ClientException) as e:
             TekDrive(access_key=None)
-        assert str(e.value).startswith(
-            "Missing required attribute 'access_key'."
-        )
+        assert str(e.value).startswith("Missing required attribute 'access_key'.")
 
     def test_custom_requestor_class(self):
         class CustomRequestor(Requestor):
@@ -34,10 +32,7 @@ class TestTekDrive(UnitTest):
         base_url = "https://drive.dev-api.tekcloud.com"
         td = TekDrive(
             access_key="abc123",
-            requestor_kwargs={
-                "base_url": base_url,
-                "session": session
-            },
+            requestor_kwargs={"base_url": base_url, "session": session},
         )
 
         assert td._core._requestor._http is session
@@ -54,8 +49,6 @@ class TestParser(UnitTest):
             assert self.tekdrive._parser.parse_error(data) is None
 
     def test_parse_error_has_error_code(self):
-        data = {
-            "errorCode": "SOME_ERROR_CODE"
-        }
+        data = {"errorCode": "SOME_ERROR_CODE"}
         error = self.tekdrive._parser.parse_error(data)
         assert isinstance(error, TekDriveAPIException)

@@ -7,7 +7,6 @@ from ..exceptions import ClientException
 
 
 class FileHelper(TekDriveBase):
-
     def __call__(self, id: str) -> File:
         """
         Return a lazy instance of :class:`~.File`.
@@ -38,7 +37,6 @@ class FileHelper(TekDriveBase):
 
 
 class FolderHelper(TekDriveBase):
-
     def __call__(self, id: str) -> Folder:
         """
         Return a lazy instance of :class:`~.Folder`.

@@ -42,8 +42,8 @@ class TestFolderModel(UnitTest):
         f2 = Folder(self.tekdrive, _data={"id": "aaaaaa"})
         assert f1 == f1
         assert f2 == f2
-        assert f1 == 'abc123'
-        assert f2 == 'aaaaaa'
+        assert f1 == "abc123"
+        assert f2 == "aaaaaa"
 
     def test_equality(self):
         f1 = Folder(self.tekdrive, _data={"id": "fol123"})

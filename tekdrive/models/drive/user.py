@@ -19,6 +19,7 @@ class PartialUser:
         id (str): Unique ID for the user
         username (str): Username for the user
     """
+
     id: str
     username: str
 
