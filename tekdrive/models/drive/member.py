@@ -5,7 +5,7 @@ from .base import DriveBase
 from ..base import BaseList
 from ..permissions import Permissions
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 
@@ -48,9 +48,9 @@ class MembersList(BaseList):
 
     _parent = None
 
-    CHILD_ATTRIBUTE = "members"
+    LIST_ATTRIBUTE = "members"
 
-    def remove(self, username_or_id):
+    def remove(self, username: str = None, user_id: str = None):
         # TODO: convenience for self._parent.unshare() ?
         # print(f"parent {self._parent.id}")
         pass

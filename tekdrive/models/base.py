@@ -1,24 +1,11 @@
 """Provide the TekDriveBase model"""
-from copy import deepcopy
 from typing import TYPE_CHECKING, Any, Dict, Iterator, Optional
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 
 class TekDriveBase:
-    @staticmethod
-    def _safely_add_arguments(argument_dict, key, **new_arguments):
-        """Replace argument_dict[key] with a deepcopy and update.
-
-        This method is often called when new parameters need to be added to a request.
-        By calling this method and adding the new or updated parameters we can insure we
-        don't modify the dictionary passed in by the caller.
-        """
-        value = deepcopy(argument_dict[key]) if key in argument_dict else {}
-        value.update(new_arguments)
-        argument_dict[key] = value
-
     @classmethod
     def parse(cls, data: Dict[str, Any], tekdrive: "TekDrive") -> Any:
         """
@@ -39,36 +26,30 @@ class TekDriveBase:
 
 
 class BaseList(TekDriveBase):
-    """An abstract class to coerce a list into a TekDriveBase."""
 
-    CHILD_ATTRIBUTE = None
+    LIST_ATTRIBUTE = None
 
     def __init__(self, tekdrive: "TekDrive", _data: Dict[str, Any]):
         super().__init__(tekdrive, _data=_data)
 
-        if self.CHILD_ATTRIBUTE is None:
-            raise NotImplementedError("BaseList must be extended.")
+        if self.LIST_ATTRIBUTE is None:
+            raise NotImplementedError("LIST_ATTRIBUTE is required.")
 
-        child_list = getattr(self, self.CHILD_ATTRIBUTE)
-        for index, item in enumerate(child_list):
-            child_list[index] = tekdrive._parser.parse(item)
+        child_list = getattr(self, self.LIST_ATTRIBUTE)
+        for idx, item in enumerate(child_list):
+            child_list[idx] = tekdrive._parser.parse(item)
 
     def __contains__(self, item: Any) -> bool:
-        """Test if item exists in the list."""
-        return item in getattr(self, self.CHILD_ATTRIBUTE)
+        return item in getattr(self, self.LIST_ATTRIBUTE)
 
-    def __getitem__(self, index: int) -> Any:
-        """Return the item at position index in the list."""
-        return getattr(self, self.CHILD_ATTRIBUTE)[index]
+    def __getitem__(self, idx: int) -> Any:
+        return getattr(self, self.LIST_ATTRIBUTE)[idx]
 
     def __iter__(self) -> Iterator[Any]:
-        """Return an iterator to the list."""
-        return getattr(self, self.CHILD_ATTRIBUTE).__iter__()
+        return getattr(self, self.LIST_ATTRIBUTE).__iter__()
 
     def __len__(self) -> int:
-        """Return the number of items in the list."""
-        return len(getattr(self, self.CHILD_ATTRIBUTE))
+        return len(getattr(self, self.LIST_ATTRIBUTE))
 
     def __str__(self) -> str:
-        """Return a string representation of the list."""
-        return str(getattr(self, self.CHILD_ATTRIBUTE))
+        return str(getattr(self, self.LIST_ATTRIBUTE))

@@ -2,26 +2,26 @@ from copy import deepcopy
 from .base import TekDriveBase
 from typing import TYPE_CHECKING, Any, Dict, Iterator, Optional, Union
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
     from ..routing import Route
 
 
 class PaginatedList(TekDriveBase):
-    CHILD_ATTRIBUTE = "results"
+    LIST_ATTRIBUTE = "results"
     META_ATTRIBUTE = "meta"
 
     def __len__(self) -> int:
         """Return the number of items in the full list."""
-        return len(getattr(self, self.CHILD_ATTRIBUTE))
+        return len(getattr(self, self.LIST_ATTRIBUTE))
 
     def __getitem__(self, index: int) -> Any:
         """Return the item at position index in the list."""
-        return getattr(self, self.CHILD_ATTRIBUTE)[index]
+        return getattr(self, self.LIST_ATTRIBUTE)[index]
 
     def __setattr__(self, attribute: str, value: Any):
-        """Parse the CHILD_ATTRIBUTE attribute."""
-        if attribute == self.CHILD_ATTRIBUTE:
+        """Parse the LIST_ATTRIBUTE attribute."""
+        if attribute == self.LIST_ATTRIBUTE:
             value = self._tekdrive._parser.parse(value)
         super().__setattr__(attribute, value)
 

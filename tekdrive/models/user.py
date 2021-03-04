@@ -6,7 +6,7 @@ from .base import TekDriveBase
 from . import DriveUser
 from .usage import Usage
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 

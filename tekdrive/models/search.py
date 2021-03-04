@@ -8,7 +8,7 @@ from . import File, Folder
 from ..exceptions import ClientException
 from ..utils.casing import to_camel_case
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 

@@ -2,7 +2,7 @@
 from logging import getLogger
 from typing import TYPE_CHECKING, IO, Any, Dict, Optional, Type, Union
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .routing import Route
 
 from .core import (
@@ -26,13 +26,6 @@ logger = getLogger("tekdrive")
 
 
 class TekDrive:
-    def __enter__(self):
-        """Handle the context manager open."""
-        return self
-
-    def __exit__(self, *_args):
-        """Handle the context manager close."""
-
     def __init__(
         self,
         access_key: str,
@@ -53,7 +46,7 @@ class TekDrive:
         if not access_key:
             raise ClientException("Missing required attribute 'access_key'.")
 
-        self._core = self._authorized_core = None
+        self._core = None
         self._parser = Parser(self, self._create_model_map())
         self._prepare_core(access_key, requestor_class, requestor_kwargs)
 
@@ -62,6 +55,14 @@ class TekDrive:
 
         self.search = models.Search(self)
         self.user = models.User(self)
+
+    def __enter__(self):
+        """Context manager enter"""
+        return self
+
+    def __exit__(self, *_args):
+        """Context manager exit"""
+        pass
 
     def _create_model_map(self):
         model_map = {
@@ -86,7 +87,7 @@ class TekDrive:
 
         authorizer = AccessKeyAuthorizer(access_key, requestor=requestor)
 
-        self._core = self._authorized_core = session(authorizer)
+        self._core = session(authorizer)
 
     def _request(
         self,

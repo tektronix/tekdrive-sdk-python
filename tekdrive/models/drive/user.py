@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Optional, Dict, Any, Union
 from .base import DriveBase
 from .plan import Plan
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 
@@ -38,10 +38,6 @@ class DriveUser(DriveBase):
     """
 
     STR_FIELD = "id"
-
-    # @classmethod
-    # def from_data(cls, tekdrive, data):
-    #     return cls(tekdrive, data)
 
     def __init__(
         self,

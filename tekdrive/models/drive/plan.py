@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Optional, Dict, Any
 from .base import DriveBase
 from ...enums import SharingType
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 

@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 from ..exceptions import TekDriveAPIException
 from ..utils.casing import to_snake_case
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 

@@ -9,7 +9,7 @@ from .member import Member
 from ..permissions import Permissions
 from .user import PartialUser
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from .. import TekDrive
 
 

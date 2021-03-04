@@ -9,7 +9,7 @@ from ..exceptions import ClientException
 class FileHelper(TekDriveBase):
     def __call__(self, id: str) -> File:
         """
-        Return a lazy instance of :class:`~.File`.
+        Return a lazy instance of File.
 
         Args:
             name: The name of the file.
@@ -26,7 +26,7 @@ class FileHelper(TekDriveBase):
         Create a new file.
         """
         if path_or_readable is None and name is None:
-            raise ClientException("Must supply `path_or_readable` or `name`")
+            raise ClientException("Must supply 'path_or_readable' or 'name'.")
 
         return File._create(
             _tekdrive=self._tekdrive,
@@ -39,7 +39,7 @@ class FileHelper(TekDriveBase):
 class FolderHelper(TekDriveBase):
     def __call__(self, id: str) -> Folder:
         """
-        Return a lazy instance of :class:`~.Folder`.
+        Return a lazy instance of Folder.
 
         Args:
             name: The name of the folder.
