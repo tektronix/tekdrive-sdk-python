@@ -46,7 +46,7 @@ setup(
     description=("A Python package that allows for simple access to the TekDrive API."),
     install_requires=["requests >=2.25.0, <3.0"],
     extras_require=extras,
-    keywords="tektronix tekdrive api sdk",
+    keywords="tektronix tekdrive tekcloud",
     long_description=README,
     packages=find_packages(exclude=["tests", "tests.*"]),
     version=VERSION,

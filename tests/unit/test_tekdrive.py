@@ -1,8 +1,6 @@
 import pytest
-from unittest import mock
 
 from tekdrive import TekDrive
-from tekdrive.core import Requestor
 from tekdrive.exceptions import ClientException, TekDriveAPIException
 
 from .base import UnitTest
@@ -16,27 +14,13 @@ class TestTekDrive(UnitTest):
             TekDrive(access_key=None)
         assert str(e.value).startswith("Missing required attribute 'access_key'.")
 
-    def test_custom_requestor_class(self):
-        class CustomRequestor(Requestor):
-            pass
-
-        td = TekDrive(
-            access_key="abc123",
-            requestor_class=CustomRequestor,
-        )
-        assert isinstance(td._core._requestor, CustomRequestor)
-        assert not isinstance(self.tekdrive._core._requestor, CustomRequestor)
-
-    def test_custom_requestor_kwargs(self):
-        session = mock.Mock(headers={})
+    def test_custom_base_url(self):
         base_url = "https://drive.dev-api.tekcloud.com"
         td = TekDrive(
             access_key="abc123",
-            requestor_kwargs={"base_url": base_url, "session": session},
+            base_url=base_url,
         )
-
-        assert td._core._requestor._http is session
-        assert td._core._requestor.base_url == base_url
+        assert td._session._request_wrapper.base_url == base_url
 
 
 class TestParser(UnitTest):

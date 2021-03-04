@@ -8,4 +8,4 @@ class UnitTest:
         self.tekdrive = TekDrive(access_key="abc123")
 
         # prevent unit test from making HTTP request
-        self.tekdrive._core._requestor._http = None
+        self.tekdrive._session._request_wrapper._http = None

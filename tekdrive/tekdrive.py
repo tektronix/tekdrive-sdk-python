@@ -1,21 +1,18 @@
 """Provide the TekDrive client"""
 from logging import getLogger
-from typing import TYPE_CHECKING, IO, Any, Dict, Optional, Type, Union
+from typing import TYPE_CHECKING, IO, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from .routing import Route
 
-from .core import (
-    AccessKeyAuthorizer,
-    ResponseException,
-    Requestor,
-    session,
-)
+from .authorizer import AccessKeyAuthorizer
+from .session import create_session
 
 from . import models
-from .settings import TIMEOUT
+from .settings import TIMEOUT, BASE_URL
 from .exceptions import (
     ClientException,
+    ResponseException,
     TekDriveAPIException,
 )
 from .models.parser import Parser
@@ -29,30 +26,27 @@ class TekDrive:
     def __init__(
         self,
         access_key: str,
-        requestor_class: Optional[Type[Requestor]] = None,
-        requestor_kwargs: Dict[str, Any] = None,
-        **config_settings: str,
+        base_url: str = BASE_URL,
     ):
         """
         Initialize a TekDrive instance.
 
         Args:
             access_key: Previously generated TekDrive access key.
-            requestor_class: A class that will be used to create a requestor. If not
-                set, use ``tekdrive.core.Requestor``.
-            requestor_kwargs: Dictionary with additional keyword arguments used to
-                initialize the requestor.
         """
         if not access_key:
             raise ClientException("Missing required attribute 'access_key'.")
 
-        self._core = None
-        self._parser = Parser(self, self._create_model_map())
-        self._prepare_core(access_key, requestor_class, requestor_kwargs)
+        # create authorizer and session
+        self._authorizer = AccessKeyAuthorizer(access_key=access_key)
+        self._session = create_session(authorizer=self._authorizer, base_url=base_url)
 
+        # prepare parser
+        self._parser = Parser(self, self._create_model_map())
+
+        # models and helpers
         self.file = models.FileHelper(self, None)
         self.folder = models.FolderHelper(self, None)
-
         self.search = models.Search(self)
         self.user = models.User(self)
 
@@ -75,20 +69,6 @@ class TekDrive:
         }
         return model_map
 
-    def _prepare_core(
-        self, access_key: str, requestor_class=None, requestor_kwargs=None
-    ):
-        requestor_class = requestor_class or Requestor
-        requestor_kwargs = requestor_kwargs or {}
-
-        requestor = requestor_class(
-            **requestor_kwargs,
-        )
-
-        authorizer = AccessKeyAuthorizer(access_key, requestor=requestor)
-
-        self._core = session(authorizer)
-
     def _request(
         self,
         method,
@@ -102,7 +82,7 @@ class TekDrive:
         if data and json:
             raise ClientException("Only supply one of: 'json', 'data'.")
         try:
-            return self._core.request(
+            return self._session.request(
                 method,
                 path,
                 data=data,
@@ -132,7 +112,7 @@ class TekDrive:
         should_parse: bool = True,
     ) -> Any:
         """
-        Return the parsed JSON data returned from a request to URL.
+        Return JSON data returned from a request using the provided route.
 
         Args:
             method: The HTTP method (e.g., GET, POST, PUT, DELETE).
@@ -144,27 +124,18 @@ class TekDrive:
             json: JSON-serializable object to send in the body of the request with a
                 Content-Type header of application/json. If ``json`` is provided,
                 ``data`` should not be.
-
+            should_parse: Should the response be parsed into a TekDrive model?
         """
+        data = self._request(
+            method=route.method,
+            path=route.path,
+            data=data,
+            files=files,
+            json=json,
+            params=params,
+            headers=headers,
+        )
         if should_parse:
-            return self._parser.parse(
-                self._request(
-                    method=route.method,
-                    path=route.path,
-                    data=data,
-                    files=files,
-                    json=json,
-                    params=params,
-                    headers=headers,
-                )
-            )
+            return self._parser.parse(data)
         else:
-            return self._request(
-                method=route.method,
-                path=route.path,
-                data=data,
-                files=files,
-                json=json,
-                params=params,
-                headers=headers,
-            )
+            return data
