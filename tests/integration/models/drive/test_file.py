@@ -3,6 +3,7 @@ from datetime import datetime
 
 from tekdrive.exceptions import TekDriveAPIException
 from tekdrive.models import File, Permissions
+from tekdrive.enums import ObjectType
 
 from ...base import IntegrationTest
 
@@ -31,7 +32,7 @@ class TestFile(IntegrationTest):
             read=True,
         )
         assert file.shared_at is None
-        assert file.type == "FILE"
+        assert file.type == ObjectType.FILE
         assert file.updated_at == datetime.strptime(
             "2021-02-02T20:40:18.884Z", "%Y-%m-%dT%H:%M:%S.%fZ"
         )

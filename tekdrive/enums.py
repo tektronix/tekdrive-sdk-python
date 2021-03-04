@@ -7,5 +7,8 @@ class SharingType(Enum):
     DISABLED = "DISABLED"
 
 
-# TODO: Object types (FILE and FOLDER)
+class ObjectType(Enum):
+    FILE = "FILE"
+    FOLDER = "FOLDER"
+
 # TODO: Folder types (STANDARD, SHARES, PERSONAL)

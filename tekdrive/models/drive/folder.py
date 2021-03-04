@@ -1,10 +1,12 @@
 """Provides the Folder class."""
+from datetime import datetime
 from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
 from ...routing import Route, ENDPOINTS
 from ...utils.casing import to_snake_case
 from .base import DriveBase
 from ...exceptions import ClientException
+from ...enums import ObjectType
 from .member import Member
 from ..permissions import Permissions
 from .user import PartialUser
@@ -61,8 +63,13 @@ class Folder(DriveBase):
     ):
         if attribute == "owner" or attribute == "creator":
             value = PartialUser(**value)
+        elif attribute in ("created_at", "updated_at", "shared_at"):
+            if value is not None:
+                value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%fZ")
         elif attribute == "permissions":
             value = Permissions(**value)
+        elif attribute == "type":
+            value = ObjectType(value)
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):

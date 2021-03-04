@@ -1,7 +1,9 @@
 import pytest
+from datetime import datetime
 
 from tekdrive.models import Folder, Permissions
 from tekdrive.exceptions import TekDriveAPIException
+from tekdrive.enums import ObjectType
 
 from ...base import IntegrationTest
 
@@ -11,7 +13,9 @@ class TestFolder(IntegrationTest):
     def test_fetched_attributes(self, tekdrive_vcr):
         folder_id = "8e1a1ad0-d352-4681-b14e-62c7371d6043"
         folder = Folder(self.tekdrive, id=folder_id)
-        assert folder.created_at == "2021-02-08T15:56:24.003Z"
+        assert folder.created_at == datetime.strptime(
+            "2021-02-08T15:56:24.003Z", "%Y-%m-%dT%H:%M:%S.%fZ"
+        )
         assert folder.creator.id == "4b0dd6d7-9284-4202-b8e7-213569976c63"
         assert folder.creator.username == "thomas+tekdrive@initialstate.com"
         assert folder.folder_type == "STANDARD"
@@ -27,8 +31,10 @@ class TestFolder(IntegrationTest):
             read=True,
         )
         assert folder.shared_at is None
-        assert folder.type == "FOLDER"
-        assert folder.updated_at == "2021-02-08T15:56:24.003Z"
+        assert folder.type == ObjectType.FOLDER
+        assert folder.updated_at == datetime.strptime(
+            "2021-02-08T15:56:24.003Z", "%Y-%m-%dT%H:%M:%S.%fZ"
+        )
 
     def test_members_only_owner(self, tekdrive_vcr):
         folder_id = "8e1a1ad0-d352-4681-b14e-62c7371d6043"

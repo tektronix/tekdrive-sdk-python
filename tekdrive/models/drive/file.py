@@ -10,6 +10,7 @@ from ...utils.casing import to_snake_case
 from .base import DriveBase
 from .member import Member, MembersList
 from .user import PartialUser
+from ...enums import ObjectType
 from ..permissions import Permissions
 
 if TYPE_CHECKING:
@@ -69,11 +70,13 @@ class File(DriveBase):
     ):
         if attribute == "owner" or attribute == "creator":
             value = PartialUser(**value)
-        if attribute in ("created_at", "updated_at", "shared_at"):
+        elif attribute in ("created_at", "updated_at", "shared_at"):
             if value is not None:
                 value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%fZ")
         elif attribute == "permissions":
             value = Permissions(**value)
+        elif attribute == "type":
+            value = ObjectType(value)
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):
