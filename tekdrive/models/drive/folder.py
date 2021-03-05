@@ -6,7 +6,7 @@ from ...routing import Route, ENDPOINTS
 from ...utils.casing import to_snake_case
 from .base import DriveBase
 from ...exceptions import ClientException
-from ...enums import ObjectType
+from ...enums import FolderType, ObjectType
 from .member import Member
 from ..permissions import Permissions
 from .user import PartialUser
@@ -70,6 +70,8 @@ class Folder(DriveBase):
             value = Permissions(**value)
         elif attribute == "type":
             value = ObjectType(value)
+        elif attribute == "folder_type":
+            value = FolderType(value)
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):

@@ -3,7 +3,7 @@ from datetime import datetime
 
 from tekdrive.models import Folder, Permissions
 from tekdrive.exceptions import TekDriveAPIException
-from tekdrive.enums import ObjectType
+from tekdrive.enums import FolderType, ObjectType
 
 from ...base import IntegrationTest
 
@@ -18,7 +18,7 @@ class TestFolder(IntegrationTest):
         )
         assert folder.creator.id == "4b0dd6d7-9284-4202-b8e7-213569976c63"
         assert folder.creator.username == "thomas+tekdrive@initialstate.com"
-        assert folder.folder_type == "STANDARD"
+        assert folder.folder_type == FolderType.STANDARD
         assert folder.id == folder_id
         assert folder.name == "New Folder"
         assert folder.owner.id == "4b0dd6d7-9284-4202-b8e7-213569976c63"

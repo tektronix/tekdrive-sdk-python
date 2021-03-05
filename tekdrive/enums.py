@@ -11,4 +11,8 @@ class ObjectType(Enum):
     FILE = "FILE"
     FOLDER = "FOLDER"
 
-# TODO: Folder types (STANDARD, SHARES, PERSONAL)
+
+class FolderType(Enum):
+    STANDARD = "STANDARD"
+    SHARES = "SHARES"
+    PERSONAL = "PERSONAL"
