@@ -18,6 +18,7 @@ class RequestWrapper(object):
         """
         self._http = session or requests.Session()
         self._http.headers["User-Agent"] = f"pytekdrivecore/{__version__}"
+        self._http.headers["Accept-Version"] = "v1"
 
         self.base_url = base_url
 

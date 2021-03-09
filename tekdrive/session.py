@@ -26,6 +26,7 @@ from .settings import TIMEOUT, BASE_URL
 
 if TYPE_CHECKING:
     from requests import Response
+    from .routing import Route
 
 log = logging.getLogger(__package__)
 
@@ -156,8 +157,7 @@ class Session(object):
 
     def request(
         self,
-        method: str,
-        path: str,
+        route: "Route",
         data: dict = None,
         files: dict = None,
         json: object = None,
@@ -186,8 +186,8 @@ class Session(object):
         json = self.safe_copy_dict(json)
 
         return self._request(
-            method=method,
-            url=urljoin(self._request_wrapper.base_url, path),
+            method=route.method,
+            url=urljoin(self._request_wrapper.base_url, route.path),
             data=data,
             files=files,
             json=json,

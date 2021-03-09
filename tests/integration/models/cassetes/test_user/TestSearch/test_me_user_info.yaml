@@ -6,10 +6,12 @@ interactions:
       - '*/*'
       Accept-Encoding:
       - gzip, deflate
+      Accept-Version:
+      - v1
       Connection:
       - keep-alive
       User-Agent:
-      - pytekdrivecore/0.0.1.alpha
+      - pytekdrivecore/0.0.1
       x-is-ak:
       - TEST_ACCESS_KEY
     method: GET
@@ -26,13 +28,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 02 Mar 2021 17:39:36 GMT
+      - Tue, 09 Mar 2021 19:46:52 GMT
       ETag:
       - W/"18e-Qvoo9uxrRge199op2aAVtHVxyyM"
       Vary:
       - Origin
       X-Request-Id:
-      - b6c190c9-9fcd-4616-9c92-3eb2ea9763d7
+      - 9f0d6cfb-9463-4845-91ad-d18c1f6d163a
     status:
       code: 200
       message: OK

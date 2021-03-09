@@ -2,9 +2,6 @@
 from logging import getLogger
 from typing import TYPE_CHECKING, IO, Any, Dict, Optional, Union
 
-if TYPE_CHECKING:
-    from .routing import Route
-
 from .authorizer import AccessKeyAuthorizer
 from .session import create_session
 
@@ -18,6 +15,8 @@ from .exceptions import (
 from .models.parser import Parser
 from .utils.casing import to_snake_case
 
+if TYPE_CHECKING:
+    from .routing import Route
 
 logger = getLogger("tekdrive")
 
@@ -71,8 +70,7 @@ class TekDrive:
 
     def _request(
         self,
-        method,
-        path,
+        route: "Route",
         params: Optional[Union[str, Dict[str, Union[str, int]]]] = None,
         data: Optional[Union[Dict[str, Union[str, Any]], bytes, IO, str]] = None,
         headers: Optional[Dict[str, Union[str, Any]]] = None,
@@ -83,8 +81,7 @@ class TekDrive:
             raise ClientException("Only supply one of: 'json', 'data'.")
         try:
             return self._session.request(
-                method,
-                path,
+                route=route,
                 data=data,
                 files=files,
                 params=params,
@@ -127,8 +124,7 @@ class TekDrive:
             should_parse: Should the response be parsed into a TekDrive model?
         """
         data = self._request(
-            method=route.method,
-            path=route.path,
+            route=route,
             data=data,
             files=files,
             json=json,
