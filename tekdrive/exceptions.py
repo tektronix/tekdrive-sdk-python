@@ -13,9 +13,11 @@ class TekDriveAPIException(TekDriveException):
     def __init__(
         self,
         data: dict,
-        *optional_args: str,
+        *,
+        headers: dict = {},
     ):
         self.data = data
+        self.headers = headers
 
     @property
     def error_code(self) -> str:
@@ -28,6 +30,10 @@ class TekDriveAPIException(TekDriveException):
     @property
     def errors(self):
         return self.data.get("errors")
+
+    @property
+    def request_id(self):
+        return self.headers.get("X-Request-Id")
 
 
 class TekDriveStorageException(TekDriveException):

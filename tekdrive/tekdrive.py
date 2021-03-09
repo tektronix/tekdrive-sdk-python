@@ -96,7 +96,7 @@ class TekDrive:
                 raise Exception("Unexpected ResponseException") from exception
 
             # expected error format from API
-            raise TekDriveAPIException(to_snake_case(error_info)) from exception
+            raise TekDriveAPIException(to_snake_case(error_info), headers=exception.response.headers) from exception
 
     def request(
         self,

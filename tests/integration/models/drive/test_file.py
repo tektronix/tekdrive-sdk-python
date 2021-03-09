@@ -142,6 +142,7 @@ class TestFile(IntegrationTest):
         with pytest.raises(TekDriveAPIException) as e:
             file.add_member(user_id=made_up_user_id, edit_access=True)
         assert e.value.error_code == "UNPROCESSABLE_ENTITY"
+        assert e.value.request_id == "b185d388-3b93-45c4-a61a-fc7591630038"
 
     def test_remove_member_by_id(self, tekdrive_vcr):
         file_id = "7fa7559a-5339-4ec2-8e57-392857d96706"
@@ -181,6 +182,7 @@ class TestFile(IntegrationTest):
             file.remove_member(user_id=owner_user_id)
         assert e.value.error_code == "FORBIDDEN"
         assert e.value.message == "Cannot remove owner"
+        assert e.value.request_id == "82efe8d8-77e7-4f30-b1a2-069bc0f86052"
 
     def test_modify_member_revoke_edit(self, tekdrive_vcr):
         file_id = "fcfba73d-4ef7-408e-bb74-a2b45d5a947a"
@@ -199,6 +201,7 @@ class TestFile(IntegrationTest):
             file.modify_member(user_id=owner_user_id, edit_access=False)
         assert e.value.error_code == "FORBIDDEN"
         assert e.value.message == "Cannot update owner"
+        assert e.value.request_id == "ff96ab2e-e0c8-4b65-9a7c-4dd92343d95f"
 
     def test_update_name(self, tekdrive_vcr):
         file_id = "3670359c-c453-40b7-bcc1-0281e2f6db94"

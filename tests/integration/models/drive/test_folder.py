@@ -140,6 +140,7 @@ class TestFolder(IntegrationTest):
         with pytest.raises(TekDriveAPIException) as e:
             folder.add_member(user_id=made_up_user_id, edit_access=True)
         assert e.value.error_code == "UNPROCESSABLE_ENTITY"
+        assert e.value.request_id == "c98d1115-fe2a-4a13-b947-a2a660138cfe"
 
     def test_remove_member_by_id(self, tekdrive_vcr):
         folder_id = "8e1a1ad0-d352-4681-b14e-62c7371d6043"
@@ -179,6 +180,7 @@ class TestFolder(IntegrationTest):
             folder.remove_member(user_id=owner_user_id)
         assert e.value.error_code == "FORBIDDEN"
         assert e.value.message == "Cannot remove owner"
+        assert e.value.request_id == "91348ddf-6b8a-4b27-bb96-e49d96e320e6"
 
     def test_modify_member_revoke_edit(self, tekdrive_vcr):
         folder_id = "8e1a1ad0-d352-4681-b14e-62c7371d6043"
@@ -197,6 +199,7 @@ class TestFolder(IntegrationTest):
             folder.modify_member(user_id=owner_user_id, edit_access=False)
         assert e.value.error_code == "FORBIDDEN"
         assert e.value.message == "Cannot update owner"
+        assert e.value.request_id == "2074c72c-b78c-48cd-8a19-d7092562a64c"
 
     def test_update_name(self, tekdrive_vcr):
         folder_id = "8e1a1ad0-d352-4681-b14e-62c7371d6043"
