@@ -33,6 +33,8 @@ class TekDrive:
 
         Args:
             access_key: Previously generated TekDrive access key.
+            base_url: Base url for the TekDrive API.
+            debug_mode: Should enable debug logging?
         """
         if not access_key:
             raise ClientException("Missing required attribute 'access_key'.")
