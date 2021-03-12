@@ -28,7 +28,7 @@ if TYPE_CHECKING:
     from requests import Response
     from .routing import Route
 
-log = logging.getLogger(__package__)
+log = logging.getLogger(__name__)
 
 
 class Session(object):
@@ -84,7 +84,7 @@ class Session(object):
                 headers=headers,
                 timeout=timeout,
             )
-            log.debug(f"Response: {response.status_code}")
+            log.debug(f"Response status: {response.status_code}")
 
             # update the rate limit state from response headers
             self._rate_limit.update_from_headers(response.headers)

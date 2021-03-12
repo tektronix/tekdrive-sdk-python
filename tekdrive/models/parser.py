@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 from ..exceptions import TekDriveAPIException
@@ -5,6 +6,8 @@ from ..utils.casing import to_snake_case
 
 if TYPE_CHECKING:
     from .. import TekDrive
+
+log = logging.getLogger(__name__)
 
 
 class Parser:
@@ -33,16 +36,12 @@ class Parser:
         """Create model from dict."""
         data = to_snake_case(data)
         if data.get("type") == "FILE":
-            print("Detected File")
             model = self.models["File"]
         elif data.get("type") == "FOLDER":
-            print("Detected Folder")
             model = self.models["Folder"]
         elif data.get("members"):
-            print("Detected MembersList")
             model = self.models["MembersList"]
         elif {"id", "username", "permissions"}.issubset(data):
-            print("Detected Member")
             model = self.models["Member"]
         elif {"file", "upload_url"}.issubset(data):
             model = self.models["File"]
@@ -50,20 +49,19 @@ class Parser:
             file["_upload_url"] = data["upload_url"]
             data = file
         elif {"meta", "results"}.issubset(data):
-            print("Detected PaginatedList")
             model = self.models["PaginatedList"]
         elif {"account_id", "owner_type", "plan"}.issubset(data):
-            print("Detected DriveUser")
             model = self.models["DriveUser"]
         else:
-            print(f"UNKNOWN MODEL: {data}")
+            log.debug(f"Parsing found unknown model for: {data}")
             return data
+        log.debug(f"Parsing using model: {model}")
         return model.parse(data, self._tekdrive)
 
     def parse(
         self, data: Optional[Union[Dict[str, Any], List[Any]]]
     ) -> Optional[Union[Dict[str, Any], List[Any]]]:
-        print(f"parse data {data}")
+        log.debug(f"Parse data: {data}")
         if data is None:
             # HTTP 204 No Content
             return None

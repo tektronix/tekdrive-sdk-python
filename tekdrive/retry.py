@@ -4,7 +4,7 @@ import time
 from dataclasses import dataclass
 from random import random
 
-log = logging.getLogger(__package__)
+log = logging.getLogger(__name__)
 
 
 @dataclass
@@ -39,6 +39,7 @@ class RateLimit:
         """
         Update rate limit fields
         """
+        log.debug(f"Update rate limit from headers: {headers}")
         if "x-ratelimit-remaining" not in headers:
             if self.remaining is not None:
                 self.remaining -= 1

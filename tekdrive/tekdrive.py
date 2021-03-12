@@ -1,5 +1,5 @@
 """Provide the TekDrive client"""
-from logging import getLogger
+import logging
 from typing import TYPE_CHECKING, IO, Any, Dict, Optional, Union
 
 from .authorizer import AccessKeyAuthorizer
@@ -18,7 +18,7 @@ from .utils.casing import to_snake_case
 if TYPE_CHECKING:
     from .routing import Route
 
-logger = getLogger("tekdrive")
+logging.getLogger("tekdrive").addHandler(logging.NullHandler())
 
 
 class TekDrive:
@@ -26,6 +26,7 @@ class TekDrive:
         self,
         access_key: str,
         base_url: str = BASE_URL,
+        debug_mode: bool = False
     ):
         """
         Initialize a TekDrive instance.
@@ -35,6 +36,9 @@ class TekDrive:
         """
         if not access_key:
             raise ClientException("Missing required attribute 'access_key'.")
+
+        if debug_mode:
+            logging.basicConfig(level=logging.DEBUG)
 
         # create authorizer and session
         self._authorizer = AccessKeyAuthorizer(access_key=access_key)
