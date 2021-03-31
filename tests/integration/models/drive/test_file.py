@@ -216,3 +216,26 @@ class TestFile(IntegrationTest):
         # refresh data
         file._fetch()
         assert file.name == new_name
+
+    def test_delete(self, tekdrive_vcr):
+        file_id = "d11758f8-5644-4078-8f02-7168104208dd"
+        file = File(self.tekdrive, id=file_id)
+        file.delete()
+
+        with pytest.raises(TekDriveAPIException) as e:
+            file._fetch()
+        assert e.value.error_code == "FILE_NOT_FOUND"
+
+    def test_delete_not_found(self, tekdrive_vcr):
+        file_id = "457b7075-555c-4031-95b1-2a55c33b20dc"
+        file = File(self.tekdrive, id=file_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            file.delete()
+        assert e.value.error_code == "FILE_NOT_FOUND"
+
+    def test_delete_forbidden(self, tekdrive_vcr):
+        file_id = "d11758f8-5644-4078-8f02-7168104208dd"
+        file = File(self.tekdrive, id=file_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            file.delete()
+        assert e.value.error_code == "FORBIDDEN"

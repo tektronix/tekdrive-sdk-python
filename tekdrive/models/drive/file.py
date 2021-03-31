@@ -169,6 +169,13 @@ class File(DriveBase):
         members._parent = self
         return members
 
+    def delete(self) -> None:
+        """
+        Delete the file.
+        """
+        route = Route("DELETE", ENDPOINTS["file_delete"], file_id=self.id)
+        self._tekdrive.request(route)
+
     def upload(self, path_or_readable: Union[str, IO]) -> None:
         """
         Upload file contents. This will overwrite existing content, if any.
