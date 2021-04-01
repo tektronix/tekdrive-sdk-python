@@ -25,6 +25,7 @@ ENDPOINTS = {
     "file_create": "/file",
     "file_details": "/file/{file_id}",
     "file_delete": "/file/{file_id}",
+    "file_restore": "/file/{file_id}",
     "file_download": "/file/{file_id}/contents",
     "file_members": "/file/{file_id}/members",
     "file_member": "/file/{file_id}/members/{member_id}",

@@ -248,3 +248,15 @@ class TestFile(IntegrationTest):
         with pytest.raises(TekDriveAPIException) as e:
             file.delete()
         assert e.value.error_code == "FORBIDDEN"
+
+    def test_restore(self, tekdrive_vcr):
+        # TODO:rachel It's a succcess! 200
+        pass
+
+    def test_restore_forbidden(self, tekdrive_vcr):
+        # TODO:rachel user has read access to file but doesn't have edit permissions for a file that does exist
+        pass
+
+    def test_restore_not_found(self, tekdrive_vcr):
+        # TODO:rachel file id does not exist
+        pass

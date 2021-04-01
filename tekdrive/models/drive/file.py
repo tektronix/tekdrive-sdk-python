@@ -169,6 +169,18 @@ class File(DriveBase):
         members._parent = self
         return members
 
+    def restore(self) -> None:
+        """
+        Restore the file from user's trashcan.
+
+        Examples:
+            Restore - remove from trash::
+
+                file.restore()
+        """
+        route = Route("POST", ENDPOINTS["file_restore"], file_id=self.id)
+        self._tekdrive.request(route)
+
     def delete(self, hard_delete: bool = False) -> None:
         """
         Delete the file, by default it will be placed in the user's trashcan.
