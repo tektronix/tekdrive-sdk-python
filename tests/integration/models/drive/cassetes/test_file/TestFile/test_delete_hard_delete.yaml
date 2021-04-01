@@ -17,7 +17,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: DELETE
-    uri: https://drive.api.tekcloud.com/file/d11758f8-5644-4078-8f02-7168104208dd
+    uri: https://drive.api.tekcloud.com/file/6aaaced0-1884-41e2-a4d9-36e0e0f6f1d7?hardDelete=true
   response:
     body:
       string: ''
@@ -25,13 +25,13 @@ interactions:
       Connection:
       - keep-alive
       Date:
-      - Wed, 31 Mar 2021 18:40:14 GMT
+      - Thu, 01 Apr 2021 18:12:06 GMT
       ETag:
       - W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
       Vary:
       - Origin
       X-Request-Id:
-      - 8f7a661b-3081-4765-a601-c1830b4b9c84
+      - efd7ed96-144e-4ad1-8642-dae6f0fe6d3d
     status:
       code: 204
       message: No Content
@@ -51,7 +51,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: GET
-    uri: https://drive.api.tekcloud.com/file/d11758f8-5644-4078-8f02-7168104208dd
+    uri: https://drive.api.tekcloud.com/file/6aaaced0-1884-41e2-a4d9-36e0e0f6f1d7
   response:
     body:
       string: '{"errorCode":"FILE_NOT_FOUND"}'
@@ -63,13 +63,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 31 Mar 2021 18:40:14 GMT
+      - Thu, 01 Apr 2021 18:12:06 GMT
       ETag:
       - W/"1e-82rTU5gxGyPxvn7k7gGvYUa/Wq8"
       Vary:
       - Origin
       X-Request-Id:
-      - 0cb83213-da8b-4250-8e06-33f7fa9221ee
+      - 445779af-a5a9-4305-82ef-222f0a01a614
     status:
       code: 404
       message: Not Found

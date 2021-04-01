@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: DELETE
+    uri: https://drive.api.tekcloud.com/file/05e340ea-eb6d-4c01-aa7e-6752d2e00111?hardDelete=False
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 01 Apr 2021 18:07:46 GMT
+      ETag:
+      - W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - e981d969-8617-4a5b-9eec-e7c8d57fd542
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/file/05e340ea-eb6d-4c01-aa7e-6752d2e00111
+  response:
+    body:
+      string: '{"errorCode":"FILE_GONE","message":"File is in the trash."}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '59'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 01 Apr 2021 18:07:46 GMT
+      ETag:
+      - W/"3b-CaymliTTw32o1TsU7YxmvonY0u4"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - b903b876-7a5e-4198-bf83-5b110bc21536
+    status:
+      code: 410
+      message: Gone
+version: 1

@@ -217,10 +217,19 @@ class TestFile(IntegrationTest):
         file._fetch()
         assert file.name == new_name
 
-    def test_delete(self, tekdrive_vcr):
-        file_id = "d11758f8-5644-4078-8f02-7168104208dd"
+    def test_delete_default(self, tekdrive_vcr):
+        file_id = "05e340ea-eb6d-4c01-aa7e-6752d2e00111"
         file = File(self.tekdrive, id=file_id)
         file.delete()
+
+        with pytest.raises(TekDriveAPIException) as e:
+            file._fetch()
+        assert e.value.error_code == "FILE_GONE"
+
+    def test_delete_hard_delete(self, tekdrive_vcr):
+        file_id = "6aaaced0-1884-41e2-a4d9-36e0e0f6f1d7"
+        file = File(self.tekdrive, id=file_id)
+        file.delete(hard_delete=True)
 
         with pytest.raises(TekDriveAPIException) as e:
             file._fetch()

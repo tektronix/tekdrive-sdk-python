@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, Dict, IO, Optional, Union
 
 from ...routing import Route, ENDPOINTS
 from ...exceptions import ClientException, TekDriveStorageException
-from ...utils.casing import to_snake_case
+from ...utils.casing import to_snake_case, to_camel_case
 from .base import DriveBase
 from .member import Member, MembersList
 from .user import PartialUser
@@ -169,17 +169,29 @@ class File(DriveBase):
         members._parent = self
         return members
 
-    def delete(self,hard_delete: bool = True) -> None:
+    def delete(self, hard_delete: bool = False) -> None:
         """
-        Delete the file.
+        Delete the file, by default it will be placed in the user's trashcan.
 
         Args:
             hard_delete: Permanently delete the file?
+
+        Examples:
+            Delete - placing in trash::
+
+                file.delete()
+
+            Delete - immediately delete::
+
+                file.delete(hard_delete=True)
         """
-        data = dict(hardDelete=hard_delete)
+        params = to_camel_case(
+            # TODO: can just use `hard_delete=hard_delete` once API properly lowercases param value
+            dict(hard_delete='true' if hard_delete else 'false')
+        )
 
         route = Route("DELETE", ENDPOINTS["file_delete"], file_id=self.id)
-        self._tekdrive.request(route,json=data)
+        self._tekdrive.request(route, params=params)
 
     def upload(self, path_or_readable: Union[str, IO]) -> None:
         """
