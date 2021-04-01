@@ -169,12 +169,17 @@ class File(DriveBase):
         members._parent = self
         return members
 
-    def delete(self) -> None:
+    def delete(self,hard_delete: bool = True) -> None:
         """
         Delete the file.
+
+        Args:
+            hard_delete: Permanently delete the file?
         """
+        data = dict(hardDelete=hard_delete)
+
         route = Route("DELETE", ENDPOINTS["file_delete"], file_id=self.id)
-        self._tekdrive.request(route)
+        self._tekdrive.request(route,json=data)
 
     def upload(self, path_or_readable: Union[str, IO]) -> None:
         """
