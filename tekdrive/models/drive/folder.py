@@ -114,6 +114,30 @@ class Folder(DriveBase):
         members._parent = self
         return members
 
+    def delete(self, hard_delete: bool = False) -> None:
+        """
+        Delete the folder, by default it will be placed in the user's trashcan.
+
+        Args:
+            hard_delete: Permanently delete the folder?
+
+        Examples:
+            Delete - placing in trash::
+
+                folder.delete()
+
+            Delete - immediately delete::
+
+                folder.delete(hard_delete=True)
+        """
+        params = to_camel_case(
+            # TODO: can just use `hard_delete=hard_delete` once API properly lowercases param value
+            dict(hard_delete='true' if hard_delete else 'false')
+        )
+
+        route = Route("DELETE", ENDPOINTS["folder_delete"], folder_id=self.id)
+        self._tekdrive.request(route, params=params)
+
     def move(self, parent_folder_id: str) -> None:
         """
         Move folder.
