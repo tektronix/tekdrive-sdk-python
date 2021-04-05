@@ -214,3 +214,39 @@ class TestFolder(IntegrationTest):
         # refresh data
         folder._fetch()
         assert folder.name == new_name
+
+    def test_delete_default(self, tekdrive_vcr):
+        # TODO: get sample folder
+        # folder_id = "05e340ea-eb6d-4c01-aa7e-6752d2e00111"
+        # folder = Folder(self.tekdrive, id=folder_id)
+        # folder.delete()
+
+        # with pytest.raises(TekDriveAPIException) as e:
+        #     folder._fetch()
+        # assert e.value.error_code == "FOLDER_GONE"
+
+    def test_delete_hard_delete(self, tekdrive_vcr):
+        # TODO: get sample folder
+        # folder_id = "6aaaced0-1884-41e2-a4d9-36e0e0f6f1d7"
+        # folder = Folder(self.tekdrive, id=folder_id)
+        # folder.delete(hard_delete=True)
+
+        # with pytest.raises(TekDriveAPIException) as e:
+        #     folder._fetch()
+        # assert e.value.error_code == "FOLDER_NOT_FOUND"
+
+    def test_delete_not_found(self, tekdrive_vcr):
+        # TODO: get sample folder
+        # folder_id = "457b7075-555c-4031-95b1-2a55c33b20dc"
+        # folder = Folder(self.tekdrive, id=folder_id)
+        # with pytest.raises(TekDriveAPIException) as e:
+        #     folder.delete()
+        # assert e.value.error_code == "FOLDER_NOT_FOUND"
+
+    def test_delete_forbidden(self, tekdrive_vcr):
+        # TODO: get sample folder
+        # folder_id = "d11758f8-5644-4078-8f02-7168104208dd"
+        # folder = Folder(self.tekdrive, id=folder_id)
+        # with pytest.raises(TekDriveAPIException) as e:
+        #     folder.delete()
+        # assert e.value.error_code == "FORBIDDEN"
