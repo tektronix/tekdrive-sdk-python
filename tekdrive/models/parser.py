@@ -1,7 +1,8 @@
 import logging
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-from ..exceptions import TekDriveAPIException
+from ..enums import ErrorCode
+from ..exceptions import TekDriveAPIException, FileGoneAPIException
 from ..utils.casing import to_snake_case
 
 if TYPE_CHECKING:
@@ -13,20 +14,24 @@ log = logging.getLogger(__name__)
 class Parser:
     @classmethod
     def parse_error(
-        cls, data: Union[List[Any], Dict[str, Dict[str, str]]]
+        cls, data: Union[List[Any], Dict[str, Dict[str, str]]], *, headers
     ) -> Optional[TekDriveAPIException]:
-        """Convert JSON response into an error object"""
-        error_code = data.get("errorCode")
+        """Convert JSON response into an API error"""
+        data = to_snake_case(data)
+        error_code = data.get("error_code")
         if error_code is None:
+            # doesnt match expected error format from API
             return None
-        return TekDriveAPIException(to_snake_case(data))
 
-    @classmethod
-    def check_error(cls, data: Union[List[Any], Dict[str, Dict[str, str]]]):
-        """Raise an error if the argument resolves to an error object."""
-        error = cls.parse_error(data)
-        if error:
-            raise error
+        try:
+            error_code = ErrorCode(error_code)
+        except ValueError:
+            return TekDriveAPIException(data, headers=headers)
+
+        if error_code == ErrorCode.FILE_GONE:
+            return FileGoneAPIException(to_snake_case(data), headers=headers)
+        # TODO: create additional specific api exceptions and add here
+        return TekDriveAPIException(data, headers=headers)
 
     def __init__(self, tekdrive: "TekDrive", models: Optional[Dict[str, Any]] = None):
         self._tekdrive = tekdrive
@@ -75,3 +80,18 @@ class Parser:
             return self._parse_dict(data)
 
         return data
+
+    # def parse_error(
+    #     self, data, *, headers={}
+    # ):
+    #     data = to_snake_case(data)
+    #     error_code = data.get("error_code")
+    #     if error_code is None:
+    #         return TekDriveAPIException(data, headers=headers)
+
+    #     print('PARSE ERROR')
+    #     print(error_code)
+    #     assert error_code == ErrorCodes.FILE_GONE.value
+    #     if error_code == ErrorCodes.FILE_GONE.value:
+    #         return FileGoneAPIException(data, headers=headers)
+    #     return TekDriveAPIException(data, headers=headers)

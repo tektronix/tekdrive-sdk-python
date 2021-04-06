@@ -1,7 +1,7 @@
 import pytest
 
 from tekdrive import TekDrive
-from tekdrive.exceptions import ClientException, TekDriveAPIException
+from tekdrive.exceptions import ClientException, TekDriveAPIException, FileGoneAPIException
 
 from .base import UnitTest
 
@@ -30,9 +30,14 @@ class TestParser(UnitTest):
 
     def test_parse_error_no_error_code(self):
         for data in ({}, {"a": 1}):
-            assert self.tekdrive._parser.parse_error(data) is None
+            assert self.tekdrive._parser.parse_error(data, headers=None) is None
 
     def test_parse_error_has_error_code(self):
         data = {"errorCode": "SOME_ERROR_CODE"}
-        error = self.tekdrive._parser.parse_error(data)
+        error = self.tekdrive._parser.parse_error(data, headers=None)
         assert isinstance(error, TekDriveAPIException)
+
+    def test_parse_file_gone(self):
+        data = {"errorCode": "FILE_GONE", "message": "File is in the trash."}
+        error = self.tekdrive._parser.parse_error(data, headers=None)
+        assert isinstance(error, FileGoneAPIException)

@@ -101,8 +101,13 @@ class TekDrive:
             except ValueError:
                 raise Exception("Unexpected ResponseException") from exception
 
-            # expected error format from API
-            raise TekDriveAPIException(to_snake_case(error_info), headers=exception.response.headers) from exception
+            api_error = self._parser.parse_error(error_info, headers=exception.response.headers)
+            if api_error:
+                # expected error format from API with known error code
+                raise api_error from exception
+            else:
+                # raise generic api exception
+                raise TekDriveAPIException(to_snake_case(error_info), headers=exception.response.headers) from exception
 
     def request(
         self,

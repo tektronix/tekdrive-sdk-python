@@ -16,3 +16,7 @@ class FolderType(Enum):
     STANDARD = "STANDARD"
     SHARES = "SHARES"
     PERSONAL = "PERSONAL"
+
+
+class ErrorCode(Enum):
+    FILE_GONE = "FILE_GONE"

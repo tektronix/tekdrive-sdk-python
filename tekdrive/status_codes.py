@@ -11,6 +11,7 @@ from .exceptions import (
     Forbidden,
     NotFound,
     Conflict,
+    Gone,
     Unprocessable,
     ServerError,
 )
@@ -33,6 +34,7 @@ STATUS_TO_EXCEPTION_MAPPING = {
     http_codes.CONFLICT: Conflict,
     http_codes.FORBIDDEN: Forbidden,
     http_codes.NOT_FOUND: NotFound,
+    http_codes.GONE: Gone,
     http_codes.GATEWAY_TIMEOUT: ServerError,
     http_codes.INTERNAL_SERVER_ERROR: ServerError,
     http_codes.SERVICE_UNAVAILABLE: ServerError,

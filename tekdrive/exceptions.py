@@ -9,6 +9,7 @@ class TekDriveException(Exception):
     """The base TekDrive Exception that all other exception classes extend."""
 
 
+# API Exceptions
 class TekDriveAPIException(TekDriveException):
     def __init__(
         self,
@@ -34,6 +35,13 @@ class TekDriveAPIException(TekDriveException):
     @property
     def request_id(self):
         return self.headers.get("X-Request-Id")
+
+
+# class FileNotFoundAPIException(TekDriveAPIException):
+#     """Indicates file is gone."""
+
+class FileGoneAPIException(TekDriveAPIException):
+    """Indicates file is gone."""
 
 
 class TekDriveStorageException(TekDriveException):
@@ -102,6 +110,10 @@ class NotFound(ResponseException):
 
 class Conflict(ResponseException):
     """Indicate a conflicting change in the target resource."""
+
+
+class Gone(ResponseException):
+    """Indicate acess to the target resource is no longer available."""
 
 
 class Unprocessable(ResponseException):
