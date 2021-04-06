@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: POST
+    uri: https://drive.api.tekcloud.com/file/83c78bcf-2beb-4232-aa2a-730988ff5356
+  response:
+    body:
+      string: '{"errorCode":"FILE_NOT_FOUND"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 06 Apr 2021 14:51:21 GMT
+      ETag:
+      - W/"1e-82rTU5gxGyPxvn7k7gGvYUa/Wq8"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 5aeca5ad-8b7d-426e-b90f-37da8a7df24e
+    status:
+      code: 404
+      message: Not Found
+version: 1

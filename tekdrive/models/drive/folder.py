@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
 from ...routing import Route, ENDPOINTS
-from ...utils.casing import to_snake_case
+from ...utils.casing import to_snake_case, to_camel_case
 from .base import DriveBase
 from ...exceptions import ClientException
 from ...enums import FolderType, ObjectType
@@ -113,6 +113,42 @@ class Folder(DriveBase):
         members = self._tekdrive.request(route)
         members._parent = self
         return members
+
+    def restore(self) -> None:
+        """
+        Restore the folder from user's trashcan.
+
+        Examples:
+            Restore - remove from trash::
+
+                folder.restore()
+        """
+        route = Route("POST", ENDPOINTS["folder_restore"], folder_id=self.id)
+        self._tekdrive.request(route)
+
+    def delete(self, hard_delete: bool = False) -> None:
+        """
+        Delete the folder, by default it will be placed in the user's trashcan.
+
+        Args:
+            hard_delete: Permanently delete the folder?
+
+        Examples:
+            Delete - placing in trash::
+
+                folder.delete()
+
+            Delete - immediately delete::
+
+                folder.delete(hard_delete=True)
+        """
+        params = to_camel_case(
+            # TODO: can just use `hard_delete=hard_delete` once API properly lowercases param value
+            dict(hard_delete='true' if hard_delete else 'false')
+        )
+
+        route = Route("DELETE", ENDPOINTS["folder_delete"], folder_id=self.id)
+        self._tekdrive.request(route, params=params)
 
     def move(self, parent_folder_id: str) -> None:
         """

@@ -250,13 +250,26 @@ class TestFile(IntegrationTest):
         assert e.value.error_code == "FORBIDDEN"
 
     def test_restore(self, tekdrive_vcr):
-        # TODO:rachel It's a succcess! 200
-        pass
+        file_id = "268203c5-8493-4f60-9023-400fe3642a58"
+        expected_parent_folder_id = "e3d6b6b9-5867-460e-85af-986e50a65bc0"
+        file = File(self.tekdrive, id=file_id)
+        file.delete()
+        file.restore()
+        file._fetch()
+        assert file.id == file_id
+        assert file.parent_folder_id == expected_parent_folder_id
 
     def test_restore_forbidden(self, tekdrive_vcr):
-        # TODO:rachel user has read access to file but doesn't have edit permissions for a file that does exist
-        pass
+        # user has read access to file but doesn't have edit permissions for a file that does exist
+        file_id = "3670359c-c453-40b7-bcc1-0281e2f6db94"
+        file = File(self.tekdrive, id=file_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            file.restore()
+        assert e.value.error_code == "FORBIDDEN"
 
     def test_restore_not_found(self, tekdrive_vcr):
-        # TODO:rachel file id does not exist
-        pass
+        file_id = "83c78bcf-2beb-4232-aa2a-730988ff5356"
+        file = File(self.tekdrive, id=file_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            file.restore()
+        assert e.value.error_code == "FILE_NOT_FOUND"

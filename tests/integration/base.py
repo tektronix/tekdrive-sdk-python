@@ -12,4 +12,4 @@ class IntegrationTest:
         self.setup_tekdrive()
 
     def setup_tekdrive(self):
-        self.tekdrive = TekDrive(access_key="<TEST_ACCESS_KEY>")
+        self.tekdrive = TekDrive(access_key="")

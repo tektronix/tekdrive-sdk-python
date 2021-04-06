@@ -1,0 +1,118 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: DELETE
+    uri: https://drive.api.tekcloud.com/folder/ba0b6d84-e3e8-4df0-8408-7086148ad8ce?hardDelete=false
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 06 Apr 2021 14:55:45 GMT
+      ETag:
+      - W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 22ba5ea3-ac82-4014-85b8-b67af0ede23c
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: POST
+    uri: https://drive.api.tekcloud.com/folder/ba0b6d84-e3e8-4df0-8408-7086148ad8ce
+  response:
+    body:
+      string: '{"id":"ba0b6d84-e3e8-4df0-8408-7086148ad8ce","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-04-06T14:54:52.826Z","updatedAt":"2021-04-06T14:55:45.482Z","trashedAt":null,"type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '593'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 06 Apr 2021 14:55:45 GMT
+      ETag:
+      - W/"251-/B85wKEC6AfWyr7eQpyJjjGNksM"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - b30ea990-a46b-46aa-9915-9efc6205bd9c
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/folder/ba0b6d84-e3e8-4df0-8408-7086148ad8ce
+  response:
+    body:
+      string: '{"id":"ba0b6d84-e3e8-4df0-8408-7086148ad8ce","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-04-06T14:54:52.826Z","updatedAt":"2021-04-06T14:55:45.482Z","trashedAt":null,"type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '593'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 06 Apr 2021 14:55:45 GMT
+      ETag:
+      - W/"251-/B85wKEC6AfWyr7eQpyJjjGNksM"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 3e42c2b0-b6c5-4733-a40e-e68be2c5e781
+    status:
+      code: 200
+      message: OK
+version: 1
