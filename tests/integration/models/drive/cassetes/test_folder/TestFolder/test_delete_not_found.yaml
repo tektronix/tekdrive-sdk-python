@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: DELETE
+    uri: https://drive.api.tekcloud.com/folder/6169c073-4530-4da4-895c-f1d161bd4984?hardDelete=false
+  response:
+    body:
+      string: '{"errorCode":"FOLDER_NOT_FOUND"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '32'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 06 Apr 2021 14:24:49 GMT
+      ETag:
+      - W/"20-NBcyBYXAbLWtlPmpk0p3Qe1pv/g"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 577723bf-efc1-4a6a-8aae-65eb3f5b9aa7
+    status:
+      code: 404
+      message: Not Found
+version: 1

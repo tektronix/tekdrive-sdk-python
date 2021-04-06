@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: DELETE
+    uri: https://drive.api.tekcloud.com/folder/660d092d-eeb1-40c8-bd2c-ce29ccd58371?hardDelete=true
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Date:
+      - Tue, 06 Apr 2021 14:21:56 GMT
+      ETag:
+      - W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - c6587a23-6a8b-429c-a88e-bc51553f386a
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/folder/660d092d-eeb1-40c8-bd2c-ce29ccd58371
+  response:
+    body:
+      string: '{"errorCode":"FOLDER_NOT_FOUND"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '32'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 06 Apr 2021 14:21:56 GMT
+      ETag:
+      - W/"20-NBcyBYXAbLWtlPmpk0p3Qe1pv/g"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 4f5fec95-0dd5-4b31-b2bf-46a17d734d2a
+    status:
+      code: 404
+      message: Not Found
+version: 1

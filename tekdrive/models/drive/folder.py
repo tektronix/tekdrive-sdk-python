@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Any, Dict, IO, Optional, List, Union
 
 from ...routing import Route, ENDPOINTS
-from ...utils.casing import to_snake_case
+from ...utils.casing import to_snake_case, to_camel_case
 from .base import DriveBase
 from ...exceptions import ClientException
 from ...enums import FolderType, ObjectType
@@ -113,6 +113,18 @@ class Folder(DriveBase):
         members = self._tekdrive.request(route)
         members._parent = self
         return members
+
+    def restore(self) -> None:
+        """
+        Restore the folder from user's trashcan.
+
+        Examples:
+            Restore - remove from trash::
+
+                folder.restore()
+        """
+        route = Route("POST", ENDPOINTS["folder_restore"], folder_id=self.id)
+        self._tekdrive.request(route)
 
     def delete(self, hard_delete: bool = False) -> None:
         """

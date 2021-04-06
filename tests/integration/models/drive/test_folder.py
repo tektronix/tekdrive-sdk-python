@@ -7,7 +7,6 @@ from tekdrive.enums import FolderType, ObjectType
 
 from ...base import IntegrationTest
 
-
 @pytest.mark.integration
 class TestFolder(IntegrationTest):
     def test_fetched_attributes(self, tekdrive_vcr):
@@ -216,37 +215,56 @@ class TestFolder(IntegrationTest):
         assert folder.name == new_name
 
     def test_delete_default(self, tekdrive_vcr):
-        # TODO: get sample folder
-        # folder_id = "05e340ea-eb6d-4c01-aa7e-6752d2e00111"
-        # folder = Folder(self.tekdrive, id=folder_id)
-        # folder.delete()
+        folder_id = "dd7c15c0-b653-400a-981e-7d5d5013ac7f"
+        folder = Folder(self.tekdrive, id=folder_id)
+        folder.delete()
 
-        # with pytest.raises(TekDriveAPIException) as e:
-        #     folder._fetch()
-        # assert e.value.error_code == "FOLDER_GONE"
+        with pytest.raises(TekDriveAPIException) as e:
+            folder._fetch()
+        assert e.value.error_code == "FOLDER_GONE"
 
     def test_delete_hard_delete(self, tekdrive_vcr):
-        # TODO: get sample folder
-        # folder_id = "6aaaced0-1884-41e2-a4d9-36e0e0f6f1d7"
-        # folder = Folder(self.tekdrive, id=folder_id)
-        # folder.delete(hard_delete=True)
+        folder_id = "660d092d-eeb1-40c8-bd2c-ce29ccd58371"
+        folder = Folder(self.tekdrive, id=folder_id)
+        folder.delete(hard_delete=True)
 
-        # with pytest.raises(TekDriveAPIException) as e:
-        #     folder._fetch()
-        # assert e.value.error_code == "FOLDER_NOT_FOUND"
+        with pytest.raises(TekDriveAPIException) as e:
+            folder._fetch()
+        assert e.value.error_code == "FOLDER_NOT_FOUND"
 
     def test_delete_not_found(self, tekdrive_vcr):
-        # TODO: get sample folder
-        # folder_id = "457b7075-555c-4031-95b1-2a55c33b20dc"
-        # folder = Folder(self.tekdrive, id=folder_id)
-        # with pytest.raises(TekDriveAPIException) as e:
-        #     folder.delete()
-        # assert e.value.error_code == "FOLDER_NOT_FOUND"
+        folder_id = "6169c073-4530-4da4-895c-f1d161bd4984"
+        folder = Folder(self.tekdrive, id=folder_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            folder.delete()
+        assert e.value.error_code == "FOLDER_NOT_FOUND"
 
     def test_delete_forbidden(self, tekdrive_vcr):
-        # TODO: get sample folder
-        # folder_id = "d11758f8-5644-4078-8f02-7168104208dd"
-        # folder = Folder(self.tekdrive, id=folder_id)
-        # with pytest.raises(TekDriveAPIException) as e:
-        #     folder.delete()
-        # assert e.value.error_code == "FORBIDDEN"
+        folder_id = "edfecdfa-e48f-42cb-9eb1-89fa6dc6e803"
+        folder = Folder(self.tekdrive, id=folder_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            folder.delete()
+        assert e.value.error_code == "FORBIDDEN"
+
+    def test_restore(self, tekdrive_vcr):
+        folder_id = "ba0b6d84-e3e8-4df0-8408-7086148ad8ce"
+        folder = Folder(self.tekdrive, id=folder_id)
+        folder.delete()
+        folder.restore()
+        folder._fetch()
+        assert folder.id == folder_id
+
+    # def test_restore_forbidden(self, tekdrive_vcr):
+    #     # TODO:rachel user has read access to folder but doesn't have edit permissions for a file that does exist
+    #     folder_id = ""
+    #     folder = Folder(self.tekdrive, id=folder_id)
+    #     with pytest.raises(TekDriveAPIException) as e:
+    #         folder.restore()
+    #     assert e.value.error_code == "FORBIDDEN"
+
+    def test_restore_not_found(self, tekdrive_vcr):
+        folder_id = "71578f0f-c4a5-4f49-a6bb-61f419a38b74"
+        folder = Folder(self.tekdrive, id=folder_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            folder.restore()
+        assert e.value.error_code == "FOLDER_NOT_FOUND"
