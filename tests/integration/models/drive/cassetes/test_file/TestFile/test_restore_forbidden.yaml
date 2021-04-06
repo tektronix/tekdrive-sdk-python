@@ -16,8 +16,8 @@ interactions:
       - pytekdrivecore/0.0.1
       x-is-ak:
       - TEST_ACCESS_KEY
-    method: DELETE
-    uri: https://drive.api.tekcloud.com/folder/edfecdfa-e48f-42cb-9eb1-89fa6dc6e803?hardDelete=false
+    method: POST
+    uri: https://drive.api.tekcloud.com/file/3670359c-c453-40b7-bcc1-0281e2f6db94
   response:
     body:
       string: '{"errorCode":"FORBIDDEN"}'
@@ -29,13 +29,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 06 Apr 2021 14:21:57 GMT
+      - Tue, 06 Apr 2021 18:19:33 GMT
       ETag:
-      - W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+      - W/"1e-82rTU5gxGyPxvn7k7gGvYUa/Wq8"
       Vary:
       - Origin
       X-Request-Id:
-      - 3f101f11-181c-4eec-9750-7ea302a203a2
+      - 50102f66-8873-4855-9b96-c45c2f34d5ac
     status:
       code: 401
       message: Forbidden

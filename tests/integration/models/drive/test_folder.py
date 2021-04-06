@@ -248,19 +248,21 @@ class TestFolder(IntegrationTest):
 
     def test_restore(self, tekdrive_vcr):
         folder_id = "ba0b6d84-e3e8-4df0-8408-7086148ad8ce"
+        expected_parent_folder_id = "e3d6b6b9-5867-460e-85af-986e50a65bc0"
         folder = Folder(self.tekdrive, id=folder_id)
         folder.delete()
         folder.restore()
         folder._fetch()
         assert folder.id == folder_id
+        assert folder.parent_folder_id == expected_parent_folder_id
 
-    # def test_restore_forbidden(self, tekdrive_vcr):
-    #     # TODO:rachel user has read access to folder but doesn't have edit permissions for a file that does exist
-    #     folder_id = ""
-    #     folder = Folder(self.tekdrive, id=folder_id)
-    #     with pytest.raises(TekDriveAPIException) as e:
-    #         folder.restore()
-    #     assert e.value.error_code == "FORBIDDEN"
+    def test_restore_forbidden(self, tekdrive_vcr):
+        # user has read access to folder but doesn't have edit permissions for a file that does exist
+        folder_id = "cbdbebeb-87a4-4024-b5b6-ac13a7401d57"
+        folder = Folder(self.tekdrive, id=folder_id)
+        with pytest.raises(TekDriveAPIException) as e:
+            folder.restore()
+        assert e.value.error_code == "FORBIDDEN"
 
     def test_restore_not_found(self, tekdrive_vcr):
         folder_id = "71578f0f-c4a5-4f49-a6bb-61f419a38b74"
