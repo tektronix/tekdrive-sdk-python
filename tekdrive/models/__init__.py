@@ -10,5 +10,6 @@ from .parser import Parser  # noqa
 from .permissions import Permissions  # noqa
 from .search import Search  # noqa
 from .trashcan import Trashcan  # noqa
+from .tree import Tree  # noqa
 from .usage import Usage  # noqa
 from .user import User  # noqa

@@ -54,6 +54,7 @@ class TekDrive:
         self.folder = models.FolderHelper(self, None)
         self.search = models.Search(self)
         self.trash = models.Trashcan(self)
+        self.tree = models.Tree(self)
         self.user = models.User(self)
 
     def __enter__(self):
