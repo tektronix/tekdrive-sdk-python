@@ -1,4 +1,5 @@
 import pytest
+from tekdrive.exceptions import TekDriveAPIException
 from tekdrive.utils.casing import to_snake_case, to_camel_case
 from tekdrive.models import Trashcan, File, Folder
 
@@ -12,9 +13,10 @@ class TestTrash(IntegrationTest):
         for idx, result in enumerate(results):
             assert len(result.trasher) == 0
 
-    # def test_trash_empty_forbidden(self, tekdrive_vcr):
-    #     TODO: need a forbidden trashcan
-    #     assert e.value.error_code == "FORBIDDEN"
+    def test_trash_empty_forbidden(self, tekdrive_vcr):
+        with pytest.raises(TekDriveAPIException) as e:
+            Trashcan(self.tekdrive).empty()
+        assert e.value.error_code == "FORBIDDEN"
 
     def test_list_of_trash(self, tekdrive_vcr):
         results = Trashcan(self.tekdrive).get()
@@ -56,6 +58,9 @@ class TestTrash(IntegrationTest):
             assert len(result.trasher) > 0
         assert idx == 2
 
-    # def test_trash_get_forbidden(self, tekdrive_vcr):
-        # TODO: need a forbidden trashed item
-        # assert e.value.error_code == "FORBIDDEN"
+    def test_trash_get_forbidden(self, tekdrive_vcr):
+        with pytest.raises(TekDriveAPIException) as e:
+            results=Trashcan(self.tekdrive).get()
+            for idx, result in enumerate(results):
+                print(result)
+        assert e.value.error_code == "FORBIDDEN"
