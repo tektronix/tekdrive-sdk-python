@@ -1,6 +1,6 @@
 import pytest
 
-from tekdrive.models import Search, File, Folder, Trashcan
+from tekdrive.models import Search, File, Folder
 
 from ..base import IntegrationTest
 
@@ -71,7 +71,7 @@ class TestSearch(IntegrationTest):
             assert result.parent_folder_id == personal_silo_folder_id
         assert idx + 1 <= limit
 
-    def test_query_include_trash(self,tekdrive_vcr):
+    def test_query_include_trash(self, tekdrive_vcr):
         name = "Bark"
         results = Search(self.tekdrive).query(
             name=name, include_trashed=True

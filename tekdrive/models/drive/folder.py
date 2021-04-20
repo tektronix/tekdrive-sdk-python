@@ -10,6 +10,7 @@ from ...enums import FolderType, ObjectType
 from .member import Member
 from ..permissions import Permissions
 from .user import PartialUser
+from .file import File
 
 if TYPE_CHECKING:
     from .. import TekDrive
@@ -98,6 +99,13 @@ class Folder(DriveBase):
         route = Route("POST", ENDPOINTS["folder_create"])
         new_folder = _tekdrive.request(route, json=data)
         return new_folder
+
+    def children(self) -> List[Union[File, "Folder"]]:
+        # TODO: Rachel
+        # 1. make a call to /tree with folderId query param set to self.id
+        # 2. grab `children` from results and parse into File and Folder models
+        # 3. return list of children
+        pass
 
     def members(self) -> List[Member]:
         """

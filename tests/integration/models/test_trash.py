@@ -1,17 +1,16 @@
 import pytest
 from tekdrive.exceptions import TekDriveAPIException
-from tekdrive.utils.casing import to_snake_case, to_camel_case
-from tekdrive.models import Trashcan, File, Folder
+from tekdrive.models import Trashcan
 
 from ..base import IntegrationTest
+
 
 @pytest.mark.integration
 class TestTrash(IntegrationTest):
     def test_trash_was_emptied(self, tekdrive_vcr):
         Trashcan(self.tekdrive).empty()
         results = Trashcan(self.tekdrive).get()
-        for idx, result in enumerate(results):
-            assert len(result.trasher) == 0
+        assert sum(1 for _ in results) == 0
 
     def test_trash_empty_forbidden(self, tekdrive_vcr):
         with pytest.raises(TekDriveAPIException) as e:
@@ -20,9 +19,8 @@ class TestTrash(IntegrationTest):
 
     def test_list_of_trash(self, tekdrive_vcr):
         results = Trashcan(self.tekdrive).get()
-        for idx, result in enumerate(results):
-            assert len(result.trasher) > 0
-        assert idx > 0
+        expected_trash_item_count = 8
+        assert sum(1 for _ in results) == expected_trash_item_count
 
     def test_list_of_trash_created_at(self, tekdrive_vcr):
         results = Trashcan(self.tekdrive).get(order_by="createdAt")
@@ -53,14 +51,15 @@ class TestTrash(IntegrationTest):
         assert bytes[1] >= bytes[0]
 
     def test_list_of_trash_limit(self, tekdrive_vcr):
-        results = Trashcan(self.tekdrive).get(limit=3)
-        for idx, result in enumerate(results):
-            assert len(result.trasher) > 0
-        assert idx == 2
+        limit = 3
+        results = Trashcan(self.tekdrive).get(limit=limit)
+        items = [result for result in results]
+        assert len(items) <= limit
 
     def test_trash_get_forbidden(self, tekdrive_vcr):
         with pytest.raises(TekDriveAPIException) as e:
-            results=Trashcan(self.tekdrive).get()
+            results = Trashcan(self.tekdrive).get()
             for idx, result in enumerate(results):
-                print(result)
+                pass
+            assert idx == 0  # should raise on first iteration
         assert e.value.error_code == "FORBIDDEN"
