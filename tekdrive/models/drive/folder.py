@@ -54,7 +54,7 @@ class Folder(DriveBase):
             self.id = id
         else:
             fetched = True
-
+        self._children = None
         super().__init__(tekdrive, _data=_data, _fetched=fetched)
 
     def __setattr__(
@@ -73,6 +73,9 @@ class Folder(DriveBase):
             value = ObjectType(value)
         elif attribute == "folder_type":
             value = FolderType(value)
+        elif attribute == "children":
+            self._children = [File(self._tekdrive, d["id"], _data=d) if d.get('type') == 'FILE' else Folder(self._tekdrive, d["id"], _data=d) for d in value]
+            return
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):
@@ -101,13 +104,15 @@ class Folder(DriveBase):
         return new_folder
 
     def children(self) -> List[Union[File, "Folder"]]:
-        # TODO: Rachel
-        # 1. make a call to /tree with folderId query param set to self.id
-        # 2. grab `children` from results and parse into File and Folder models
-        # 3. return list of children
+        """
+        TODO: docblock
+        """
+        if self._children is not None:
+            return self._children
+
         route = Route("GET", ENDPOINTS["tree"], folder_id=self.id)
-        tree = self._tekdrive.request(route)
-        return tree['tree']['children']
+        # return Folder which is the root of the tree
+        return self._tekdrive.request(route)._children
 
     def members(self) -> List[Member]:
         """

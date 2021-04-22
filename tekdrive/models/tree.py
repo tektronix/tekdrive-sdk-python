@@ -29,7 +29,7 @@ class Tree(TekDriveBase):
         depth: Optional[int] = 1,
         folders_only: bool = False,
         include_trashed: bool = False,
-    ):
+    ) -> Folder:
 
         route = Route("GET", ENDPOINTS["tree"])
         params = to_camel_case(
@@ -42,5 +42,4 @@ class Tree(TekDriveBase):
                 include_trashed='true' if include_trashed else 'false',
             )
         )
-        # TODO: does return need to change?
         return self._tekdrive.request(route)
