@@ -57,9 +57,13 @@ class Parser:
             model = self.models["Trash"]
         elif {"account_id", "owner_type", "plan"}.issubset(data):
             model = self.models["DriveUser"]
-        elif {"tree"}.issubset(data):
+        elif {"tree","type"}.issubset(data):
             # TODO: Rachel handle tree results
-            pass
+            if data.get("type") == "FILE":
+                model = self.models["File"]
+            if data.get("type") == "FOLDER":
+                model = self.models["Folder"]
+            #model = self.models["Treebranch"]
         else:
             log.debug(f"Parsing found unknown model for: {data}")
             return data

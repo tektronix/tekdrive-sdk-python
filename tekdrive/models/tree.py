@@ -42,6 +42,5 @@ class Tree(TekDriveBase):
                 include_trashed='true' if include_trashed else 'false',
             )
         )
-        # TODO: does this need to be a paginated list? Doesn't work when iterating over results
-        #return PaginatedListGenerator(self._tekdrive, route, limit=limit, params=params)
+        # TODO: does return need to change?
         return self._tekdrive.request(route)

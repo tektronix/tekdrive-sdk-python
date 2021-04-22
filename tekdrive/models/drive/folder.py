@@ -105,7 +105,9 @@ class Folder(DriveBase):
         # 1. make a call to /tree with folderId query param set to self.id
         # 2. grab `children` from results and parse into File and Folder models
         # 3. return list of children
-        pass
+        route = Route("GET", ENDPOINTS["tree"], folder_id=self.id)
+        tree = self._tekdrive.request(route)
+        return tree['tree']['children']
 
     def members(self) -> List[Member]:
         """
