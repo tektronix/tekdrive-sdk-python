@@ -110,9 +110,12 @@ class Folder(DriveBase):
         if self._children is not None:
             return self._children
 
-        route = Route("GET", ENDPOINTS["tree"], folder_id=self.id)
+        params = to_camel_case({
+            "folder_id": self.id
+        })
+        route = Route("GET", ENDPOINTS["tree"])
         # return Folder which is the root of the tree
-        return self._tekdrive.request(route)._children
+        return self._tekdrive.request(route, params=params)._children
 
     def members(self) -> List[Member]:
         """

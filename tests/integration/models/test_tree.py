@@ -22,14 +22,12 @@ class TestTree(IntegrationTest):
         results = Tree(self.tekdrive).get(silo=silo)
         assert results.folder_type == FolderType.SHARES
 
-    def test_get_tree_depth(self,tekdrive_vcr):
-        # control levels returned
-        # depth = 2
-        # results = Tree(self.tekdrive).get(depth=depth)
-        # assert results._children == two_levels
+    def test_tree_terminating_node_returns_empty_list(self,tekdrive_vcr):
+        # TODO:
         pass
 
     def test_get_tree_folders_only(self,tekdrive_vcr):
+        # TODO:
         # only return folders
         # folders_only = True
         # results = Tree(self.tekdrive).get(folders_only=folders_only)
