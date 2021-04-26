@@ -270,3 +270,9 @@ class TestFolder(IntegrationTest):
         with pytest.raises(TekDriveAPIException) as e:
             folder.restore()
         assert e.value.error_code == "FOLDER_NOT_FOUND"
+
+    def test_children(self,tekdrive_vcr):
+        folder_id = "61264d17-fba1-4676-bbcc-b46c1f0ddd4c"
+        folder = Folder(self.tekdrive, id=folder_id)
+        results = folder.children()
+

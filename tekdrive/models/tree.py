@@ -42,4 +42,4 @@ class Tree(TekDriveBase):
                 include_trashed='true' if include_trashed else 'false',
             )
         )
-        return self._tekdrive.request(route)
+        return self._tekdrive.request(route,params=params)
