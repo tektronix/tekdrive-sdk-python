@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/tree?depth=1&foldersOnly=true&includeTrashed=false
+  response:
+    body:
+      string: '{"tree":{"id":"587b2c64-38ba-4d3f-bf12-ad5f2b1075b3","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"My
+        Files","folderType":"PERSONAL","createdAt":"2020-09-10T15:29:01.595Z","updatedAt":"2020-09-10T15:29:01.595Z","trashedAt":null,"type":"FOLDER","parentFolderId":null,"permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null,"children":[{"id":"61264d17-fba1-4676-bbcc-b46c1f0ddd4c","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Tree
+        Testing","folderType":"STANDARD","createdAt":"2021-04-21T14:33:20.749Z","updatedAt":"2021-04-21T14:33:25.053Z","trashedAt":null,"type":"FOLDER","parentFolderId":"587b2c64-38ba-4d3f-bf12-ad5f2b1075b3","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}]}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1103'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 26 Apr 2021 20:12:23 GMT
+      ETag:
+      - W/"44f-DJG2fwS5/KWB+oexTuKuQpMyVsw"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 6e5cc644-02b4-433d-a9a9-33802e45d528
+    status:
+      code: 200
+      message: OK
+version: 1

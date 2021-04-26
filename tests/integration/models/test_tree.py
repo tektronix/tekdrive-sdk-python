@@ -23,20 +23,24 @@ class TestTree(IntegrationTest):
         assert results.folder_type == FolderType.SHARES
 
     def test_tree_terminating_node_returns_empty_list(self,tekdrive_vcr):
-        # TODO:
-        pass
+        folder_id = "61264d17-fba1-4676-bbcc-b46c1f0ddd4c"
+        results = Tree(self.tekdrive).get(folder_id=folder_id,depth=2)
+        for result in results._children:
+            if '_children' in vars(result):
+                new_results = Tree(self.tekdrive).get(folder_id=result.id,depth=2)
+                for result in new_results._children:
+                    if '_children' in vars(result):
+                        node_array = result._children
+                        if not node_array:
+                            assert True
 
     def test_get_tree_folders_only(self,tekdrive_vcr):
-        # TODO:
-        # only return folders
-        # folders_only = True
-        # results = Tree(self.tekdrive).get(folders_only=folders_only)
-        # for result in results._children:
-        #   assert result.type==ObjectType.FOLDER
-        pass
+        folders_only = True
+        results = Tree(self.tekdrive).get(folders_only=folders_only)
+        for result in results._children:
+          assert result.type==ObjectType.FOLDER
 
     def test_get_tree_include_trashed(self,tekdrive_vcr):
-        # include trash in return
         include_trashed = True
         expected_number_of_children = 6
         results = Tree(self.tekdrive).get(include_trashed=include_trashed)
