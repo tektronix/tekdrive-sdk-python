@@ -5,7 +5,7 @@ class UnitTest:
     """Base class for unit tests."""
 
     def setup(self):
-        self.tekdrive = TekDrive(access_key="abc123")
+        self.tekdrive = TekDrive(access_key="")
 
         # prevent unit test from making HTTP request
         self.tekdrive._session._request_wrapper._http = None

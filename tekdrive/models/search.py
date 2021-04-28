@@ -31,6 +31,7 @@ class Search(TekDriveBase):
         file_type: Optional[List[str]] = None,
         upload_state: Optional[List[str]] = None,
         order_by: Optional[List[str]] = None,
+        include_trashed: bool = False,
     ) -> Iterator[File]:
         """
         Convenience method for files search.
@@ -61,6 +62,7 @@ class Search(TekDriveBase):
             upload_state=upload_state,
             name=name,
             order_by=order_by,
+            include_trashed=include_trashed,
         )
 
     def folders(
@@ -72,6 +74,7 @@ class Search(TekDriveBase):
         silo: Optional[str] = None,
         depth: Optional[int] = 1,
         order_by: Optional[List[str]] = None,
+        include_trashed: bool = False,
     ) -> Iterator[Folder]:
         """
         Convenience method for folders search.
@@ -98,6 +101,7 @@ class Search(TekDriveBase):
             depth=depth,
             name=name,
             order_by=order_by,
+            include_trashed=include_trashed,
         )
 
     def query(
@@ -113,6 +117,7 @@ class Search(TekDriveBase):
         include_folders: bool = True,
         upload_state: Optional[List[str]] = None,
         order_by: Optional[List[str]] = None,
+        include_trashed: bool = False,
     ) -> Iterator[Union[File, Folder]]:
         """
         Execute search for files and/or folders matching the provided criteria. A global search will
@@ -128,6 +133,7 @@ class Search(TekDriveBase):
             include_files: Include files in the search results? Default: ``True``.
             include_folders: Include folders in the serach results? Default: ``True``.
             upload_state: Limit results to files in the given upload state(s).
+            include_trashed: Include files and folders in the trashcan.
 
         Examples:
             Get files with name like ``"project1"``::
@@ -156,6 +162,8 @@ class Search(TekDriveBase):
                 type=",".join(search_types),
                 upload_state=upload_state,
                 order_by=order_by,
+                # TODO: can just use `include_trashed=include_trashed` once API properly lowercases param value
+                include_trashed='true' if include_trashed else 'false',
             )
         )
         return PaginatedListGenerator(self._tekdrive, route, limit=limit, params=params)

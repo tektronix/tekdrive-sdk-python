@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/trash?orderBy=createdAt&limit=100
+  response:
+    body:
+      string: '{"trash":[{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-01T18:07:46.262Z","trashedDirectly":true,"totalBytes":"81707","itemShareCount":1,"item":{"id":"05e340ea-eb6d-4c01-aa7e-6752d2e00111","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"1478879153-die-hard.jpg","fileType":"JPG","createdAt":"2021-04-01T18:01:38.270Z","updatedAt":"2021-04-01T18:07:46.262Z","trashedAt":"2021-04-01T18:07:46.262Z","uploadState":"SUCCESS","type":"FILE","bytes":"81707","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}},{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-06T14:21:57.034Z","trashedDirectly":true,"totalBytes":"0","itemShareCount":1,"item":{"id":"2f6d7ed5-7f86-4c37-a274-65777d03246f","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"St
+        Pattys 3","folderType":"STANDARD","createdAt":"2021-04-05T18:37:11.279Z","updatedAt":"2021-04-06T14:21:57.034Z","trashedAt":"2021-04-06T14:21:57.034Z","type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}},{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-05T21:26:03.392Z","trashedDirectly":true,"totalBytes":"0","itemShareCount":1,"item":{"id":"cca0ee82-70df-48b8-b71c-1c31a76b4f6e","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"St
+        Pattys 4","folderType":"STANDARD","createdAt":"2021-04-05T18:38:54.405Z","updatedAt":"2021-04-05T21:26:03.392Z","trashedAt":"2021-04-05T21:26:03.392Z","type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}},{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-05T21:26:02.627Z","trashedDirectly":true,"totalBytes":"0","itemShareCount":1,"item":{"id":"5e0898d3-2a50-44ed-b9d9-d4870940ad2b","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"St
+        Pattys","folderType":"STANDARD","createdAt":"2021-04-05T21:24:56.872Z","updatedAt":"2021-04-05T21:26:02.627Z","trashedAt":"2021-04-05T21:26:02.627Z","type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}},{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-05T21:37:30.163Z","trashedDirectly":true,"totalBytes":"0","itemShareCount":1,"item":{"id":"027d0075-3b3d-40b4-83bc-f9631656e073","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"Test1","folderType":"STANDARD","createdAt":"2021-04-05T21:32:13.368Z","updatedAt":"2021-04-05T21:37:30.163Z","trashedAt":"2021-04-05T21:37:30.163Z","type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}},{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-05T21:55:00.709Z","trashedDirectly":true,"totalBytes":"0","itemShareCount":1,"item":{"id":"9da7832f-6465-4462-9ae8-9002b3dad173","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"Test","folderType":"STANDARD","createdAt":"2021-04-05T21:44:57.198Z","updatedAt":"2021-04-05T21:55:00.709Z","trashedAt":"2021-04-05T21:55:00.709Z","type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}},{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-05T21:55:50.151Z","trashedDirectly":true,"totalBytes":"0","itemShareCount":1,"item":{"id":"f14b86f8-4824-4e60-9ad3-7acff4efeed6","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-04-05T21:55:25.559Z","updatedAt":"2021-04-05T21:55:50.151Z","trashedAt":"2021-04-05T21:55:50.151Z","type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}},{"trasher":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"trashedAt":"2021-04-06T14:21:56.501Z","trashedDirectly":true,"totalBytes":"0","itemShareCount":1,"item":{"id":"dd7c15c0-b653-400a-981e-7d5d5013ac7f","owner":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"creator":{"id":"fb00c078-ffdc-49e2-a8f8-3d44644a80b6","username":"thomas+prod-sdk-integration-tests@initialstate.com"},"name":"New
+        Folder","folderType":"STANDARD","createdAt":"2021-04-06T14:05:13.595Z","updatedAt":"2021-04-06T14:21:56.501Z","trashedAt":"2021-04-06T14:21:56.501Z","type":"FOLDER","parentFolderId":"e3d6b6b9-5867-460e-85af-986e50a65bc0","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}}],"meta":{"page":1,"limit":100,"offset":0}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '6834'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 16 Apr 2021 16:04:20 GMT
+      ETag:
+      - W/"1ab2-AsL8C9CCC4C3oO+YvM9hZHZdez4"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 493f0baf-98d1-4097-b810-5f2fee490699
+    status:
+      code: 200
+      message: OK
+version: 1

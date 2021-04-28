@@ -1,0 +1,87 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/tree?folderId=61264d17-fba1-4676-bbcc-b46c1f0ddd4c&depth=2&foldersOnly=false&includeTrashed=false
+  response:
+    body:
+      string: '{"tree":{"id":"61264d17-fba1-4676-bbcc-b46c1f0ddd4c","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Tree
+        Testing","folderType":"STANDARD","createdAt":"2021-04-21T14:33:20.749Z","updatedAt":"2021-04-21T14:33:25.053Z","trashedAt":null,"type":"FOLDER","parentFolderId":"587b2c64-38ba-4d3f-bf12-ad5f2b1075b3","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null,"children":[{"id":"a3129db5-4378-4557-99b3-d07585fec604","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Level
+        2","folderType":"STANDARD","createdAt":"2021-04-21T14:34:10.078Z","updatedAt":"2021-04-21T14:34:14.108Z","trashedAt":null,"type":"FOLDER","parentFolderId":"61264d17-fba1-4676-bbcc-b46c1f0ddd4c","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null,"children":[{"id":"d4651bf1-ef21-4bf9-a368-009b81e86608","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Childless","folderType":"STANDARD","createdAt":"2021-04-26T20:29:27.993Z","updatedAt":"2021-04-26T20:29:33.960Z","trashedAt":null,"type":"FOLDER","parentFolderId":"a3129db5-4378-4557-99b3-d07585fec604","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null},{"id":"1dc76424-f87e-4e64-bb40-8c6b0c623180","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Bark
+        Public St Patty_s Day_2021.03.17-118.jpg","fileType":"JPG","createdAt":"2021-04-21T14:34:46.661Z","updatedAt":"2021-04-21T14:34:48.779Z","trashedAt":null,"uploadState":"SUCCESS","type":"FILE","bytes":"408351","parentFolderId":"a3129db5-4378-4557-99b3-d07585fec604","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null},{"id":"dd94080e-ef4e-4c4e-a9d3-8eacaeb2c516","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Bark
+        Public St Patty_s Day_2021.03.17-116.jpg","fileType":"JPG","createdAt":"2021-04-21T14:34:41.883Z","updatedAt":"2021-04-21T14:34:44.709Z","trashedAt":null,"uploadState":"SUCCESS","type":"FILE","bytes":"385279","parentFolderId":"a3129db5-4378-4557-99b3-d07585fec604","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}]},{"id":"94cd3185-f3f4-4708-8400-069ca99732ef","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Bark
+        Public St Patty_s Day_2021.03.17-27.jpg","fileType":"JPG","createdAt":"2021-04-21T14:34:27.186Z","updatedAt":"2021-04-21T14:34:29.862Z","trashedAt":null,"uploadState":"SUCCESS","type":"FILE","bytes":"339067","parentFolderId":"61264d17-fba1-4676-bbcc-b46c1f0ddd4c","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null},{"id":"dd5dba95-7825-4598-87f2-f29ce6424b12","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Bark
+        Public St Patty_s Day_2021.03.17-33.jpg","fileType":"JPG","createdAt":"2021-04-21T14:34:34.125Z","updatedAt":"2021-04-21T14:34:35.995Z","trashedAt":null,"uploadState":"SUCCESS","type":"FILE","bytes":"289600","parentFolderId":"61264d17-fba1-4676-bbcc-b46c1f0ddd4c","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}]}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4204'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 26 Apr 2021 21:00:14 GMT
+      ETag:
+      - W/"106c-+dmdajJFQZNGpqOzwYJadIFtgk8"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 48d22039-56fc-46af-b104-9f464d5cc95f
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/tree?folderId=a3129db5-4378-4557-99b3-d07585fec604&depth=2&foldersOnly=false&includeTrashed=false
+  response:
+    body:
+      string: '{"tree":{"id":"a3129db5-4378-4557-99b3-d07585fec604","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Level
+        2","folderType":"STANDARD","createdAt":"2021-04-21T14:34:10.078Z","updatedAt":"2021-04-21T14:34:14.108Z","trashedAt":null,"type":"FOLDER","parentFolderId":"61264d17-fba1-4676-bbcc-b46c1f0ddd4c","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null,"children":[{"id":"d4651bf1-ef21-4bf9-a368-009b81e86608","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Childless","folderType":"STANDARD","createdAt":"2021-04-26T20:29:27.993Z","updatedAt":"2021-04-26T20:29:33.960Z","trashedAt":null,"type":"FOLDER","parentFolderId":"a3129db5-4378-4557-99b3-d07585fec604","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null,"children":[]},{"id":"1dc76424-f87e-4e64-bb40-8c6b0c623180","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Bark
+        Public St Patty_s Day_2021.03.17-118.jpg","fileType":"JPG","createdAt":"2021-04-21T14:34:46.661Z","updatedAt":"2021-04-21T14:34:48.779Z","trashedAt":null,"uploadState":"SUCCESS","type":"FILE","bytes":"408351","parentFolderId":"a3129db5-4378-4557-99b3-d07585fec604","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null},{"id":"dd94080e-ef4e-4c4e-a9d3-8eacaeb2c516","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Bark
+        Public St Patty_s Day_2021.03.17-116.jpg","fileType":"JPG","createdAt":"2021-04-21T14:34:41.883Z","updatedAt":"2021-04-21T14:34:44.709Z","trashedAt":null,"uploadState":"SUCCESS","type":"FILE","bytes":"385279","parentFolderId":"a3129db5-4378-4557-99b3-d07585fec604","permissions":{"owner":true,"creator":true,"public":false,"read":true,"edit":true},"sharedAt":null}]}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2397'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 26 Apr 2021 21:00:14 GMT
+      ETag:
+      - W/"95d-Hl8WGejtegvp4DLgpb8aup/m/yk"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 7454b41c-9e4f-45f2-912c-f5563f622252
+    status:
+      code: 200
+      message: OK
+version: 1

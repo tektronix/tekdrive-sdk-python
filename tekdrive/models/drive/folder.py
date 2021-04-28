@@ -10,6 +10,7 @@ from ...enums import FolderType, ObjectType
 from .member import Member
 from ..permissions import Permissions
 from .user import PartialUser
+from .file import File
 
 if TYPE_CHECKING:
     from .. import TekDrive
@@ -53,7 +54,7 @@ class Folder(DriveBase):
             self.id = id
         else:
             fetched = True
-
+        self._children = None
         super().__init__(tekdrive, _data=_data, _fetched=fetched)
 
     def __setattr__(
@@ -72,6 +73,9 @@ class Folder(DriveBase):
             value = ObjectType(value)
         elif attribute == "folder_type":
             value = FolderType(value)
+        elif attribute == "children":
+            self._children = [File(self._tekdrive, d["id"], _data=d) if d.get('type') == 'FILE' else Folder(self._tekdrive, d["id"], _data=d) for d in value]
+            return
         super().__setattr__(attribute, value)
 
     def _fetch_data(self):
@@ -98,6 +102,20 @@ class Folder(DriveBase):
         route = Route("POST", ENDPOINTS["folder_create"])
         new_folder = _tekdrive.request(route, json=data)
         return new_folder
+
+    def children(self) -> List[Union[File, "Folder"]]:
+        """
+        TODO: docblock
+        """
+        if self._children is not None:
+            return self._children
+
+        params = to_camel_case({
+            "folder_id": self.id
+        })
+        route = Route("GET", ENDPOINTS["tree"])
+        # return Folder which is the root of the tree
+        return self._tekdrive.request(route, params=params)._children
 
     def members(self) -> List[Member]:
         """

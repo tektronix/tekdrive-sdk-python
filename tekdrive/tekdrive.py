@@ -53,6 +53,8 @@ class TekDrive:
         self.file = models.FileHelper(self, None)
         self.folder = models.FolderHelper(self, None)
         self.search = models.Search(self)
+        self.trash = models.Trashcan(self)
+        self.tree = models.Tree(self)
         self.user = models.User(self)
 
     def __enter__(self):
@@ -70,6 +72,8 @@ class TekDrive:
             "Member": models.Member,
             "MembersList": models.MembersList,
             "PaginatedList": models.PaginatedList,
+            "TrashPaginatedList": models.TrashPaginatedList,
+            "Trash": models.Trash,
             "DriveUser": models.DriveUser,
         }
         return model_map

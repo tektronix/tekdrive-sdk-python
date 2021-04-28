@@ -55,8 +55,17 @@ class Parser:
             data = file
         elif {"meta", "results"}.issubset(data):
             model = self.models["PaginatedList"]
+        elif {"meta", "trash"}.issubset(data):
+            model = self.models["TrashPaginatedList"]
+        elif data.get("trasher"):
+            data["id"] = f"trash{data['item']['id']}"
+            model = self.models["Trash"]
         elif {"account_id", "owner_type", "plan"}.issubset(data):
             model = self.models["DriveUser"]
+        elif data.get("tree"):
+            tree_folder = data["tree"]
+            data = tree_folder
+            model = self.models["Folder"]
         else:
             log.debug(f"Parsing found unknown model for: {data}")
             return data

@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/0.0.1
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/tree?depth=1&foldersOnly=False&includeTrashed=false
+  response:
+    body:
+      string: '{"errorCode":"FORBIDDEN"}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '25'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 26 Apr 2021 18:59:54 GMT
+      ETag:
+      - W/"19-Bv5Hie+oWd01kTngbGLfJV3rAzk"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 5134369b-2f8a-47f5-9a69-aede66e31ca3
+    status:
+      code: 403
+      message: Forbidden
+version: 1

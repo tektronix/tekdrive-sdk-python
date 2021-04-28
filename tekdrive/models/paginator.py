@@ -34,6 +34,11 @@ class PaginatedList(TekDriveBase):
         return getattr(self, self.META_ATTRIBUTE)["limit"]
 
 
+class TrashPaginatedList(PaginatedList):
+    LIST_ATTRIBUTE = "trash"
+    META_ATTRIBUTE = "meta"
+
+
 class PaginatedListGenerator(TekDriveBase, Iterator):
     def __init__(
         self,
