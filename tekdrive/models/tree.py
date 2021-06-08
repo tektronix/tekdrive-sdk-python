@@ -37,10 +37,8 @@ class Tree(TekDriveBase):
                 folder_id=folder_id,
                 silo=silo,
                 depth=depth,
-                # TODO: can just use `folders_only=folders_only` once API properly lowercases param value
-                folders_only='true' if folders_only else 'false',
-                # TODO: can just use `include_trashed=include_trashed` once API properly lowercases param value
-                include_trashed='true' if include_trashed else 'false',
+                folders_only=folders_only,
+                include_trashed=include_trashed,
             )
         )
         return self._tekdrive.request(route, params=params)

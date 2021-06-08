@@ -198,8 +198,7 @@ class File(DriveBase):
                 file.delete(hard_delete=True)
         """
         params = to_camel_case(
-            # TODO: can just use `hard_delete=hard_delete` once API properly lowercases param value
-            dict(hard_delete='true' if hard_delete else 'false')
+            dict(hard_delete=hard_delete)
         )
 
         route = Route("DELETE", ENDPOINTS["file_delete"], file_id=self.id)

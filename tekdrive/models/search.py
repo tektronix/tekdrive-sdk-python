@@ -162,8 +162,7 @@ class Search(TekDriveBase):
                 type=",".join(search_types),
                 upload_state=upload_state,
                 order_by=order_by,
-                # TODO: can just use `include_trashed=include_trashed` once API properly lowercases param value
-                include_trashed='true' if include_trashed else 'false',
+                include_trashed=include_trashed,
             )
         )
         return PaginatedListGenerator(self._tekdrive, route, limit=limit, params=params)

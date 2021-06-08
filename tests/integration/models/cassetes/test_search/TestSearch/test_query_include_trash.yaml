@@ -15,7 +15,7 @@ interactions:
       x-is-ak:
       - TEST_ACCESS_KEY
     method: GET
-    uri: https://drive.api.tekcloud.com/search?name=Bark&depth=1&type=FILE%2CFOLDER&includeTrashed=true&limit=100
+    uri: https://drive.api.tekcloud.com/search?name=Bark&depth=1&type=FILE%2CFOLDER&includeTrashed=True&limit=100
   response:
     body:
       string: '{"results":[{"id":"b14aa74c-cb66-4700-adb4-030a2389c523","owner":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"creator":{"id":"7bb0af73-e54c-4ed6-bd94-08a99ac6e269","username":"rachel+tekdrive@initialstate.com"},"name":"Bark
@@ -26,17 +26,17 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '1949'
+      - '55'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 19 Apr 2021 15:10:32 GMT
+      - Tue, 08 Jun 2021 18:06:22 GMT
       ETag:
-      - W/"79d-8HgT2yQfItiJarcfSbx2O01y1h4"
+      - W/"37-BG5Yh3oiv3kX6Or++j9U9pZynko"
       Vary:
       - Origin
       X-Request-Id:
-      - a06d5993-91bc-4da5-b1d8-9b05091c4912
+      - c60fc651-5709-4029-bb91-c01e93016425
     status:
       code: 200
       message: OK
