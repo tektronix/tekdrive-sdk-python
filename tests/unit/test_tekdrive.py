@@ -37,7 +37,7 @@ class TestParser(UnitTest):
         error = self.tekdrive._parser.parse_error(data, headers=None)
         assert isinstance(error, TekDriveAPIException)
 
-    def test_parse_file_gone(self):
+    def test_parse_error_maps_correctly(self):
         data = {"errorCode": "FILE_GONE", "message": "File is in the trash."}
         error = self.tekdrive._parser.parse_error(data, headers=None)
         assert isinstance(error, FileGoneAPIException)

@@ -1,5 +1,5 @@
 import pytest
-from tekdrive.exceptions import TekDriveAPIException
+from tekdrive.exceptions import ForbiddenAPIException
 from tekdrive.models import Trashcan
 
 from ..base import IntegrationTest
@@ -13,7 +13,7 @@ class TestTrash(IntegrationTest):
         assert sum(1 for _ in results) == 0
 
     def test_trash_empty_forbidden(self, tekdrive_vcr):
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(ForbiddenAPIException) as e:
             Trashcan(self.tekdrive).empty()
         assert e.value.error_code == "FORBIDDEN"
 
@@ -57,7 +57,7 @@ class TestTrash(IntegrationTest):
         assert len(items) <= limit
 
     def test_trash_get_forbidden(self, tekdrive_vcr):
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(ForbiddenAPIException) as e:
             results = Trashcan(self.tekdrive).get()
             for idx, result in enumerate(results):
                 pass

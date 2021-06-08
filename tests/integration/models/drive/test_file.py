@@ -1,7 +1,7 @@
 import pytest
 from datetime import datetime
 
-from tekdrive.exceptions import TekDriveAPIException
+from tekdrive.exceptions import FileGoneAPIException, FileNotFoundAPIException, ForbiddenAPIException, UnprocessableEntityAPIException
 from tekdrive.models import File, Permissions
 from tekdrive.enums import ObjectType
 
@@ -139,7 +139,7 @@ class TestFile(IntegrationTest):
         made_up_user_id = "4307a1f5-edc1-4082-8bb2-05068d6c1d67"
         file = File(self.tekdrive, id=file_id)
 
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(UnprocessableEntityAPIException) as e:
             file.add_member(user_id=made_up_user_id, edit_access=True)
         assert e.value.error_code == "UNPROCESSABLE_ENTITY"
         assert e.value.request_id == "b185d388-3b93-45c4-a61a-fc7591630038"
@@ -178,7 +178,7 @@ class TestFile(IntegrationTest):
         owner_user_id = "4b0dd6d7-9284-4202-b8e7-213569976c63"
         file = File(self.tekdrive, id=file_id)
 
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(ForbiddenAPIException) as e:
             file.remove_member(user_id=owner_user_id)
         assert e.value.error_code == "FORBIDDEN"
         assert e.value.message == "Cannot remove owner"
@@ -197,7 +197,7 @@ class TestFile(IntegrationTest):
         owner_user_id = "4b0dd6d7-9284-4202-b8e7-213569976c63"
         file = File(self.tekdrive, id=file_id)
 
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(ForbiddenAPIException) as e:
             file.modify_member(user_id=owner_user_id, edit_access=False)
         assert e.value.error_code == "FORBIDDEN"
         assert e.value.message == "Cannot update owner"
@@ -222,7 +222,7 @@ class TestFile(IntegrationTest):
         file = File(self.tekdrive, id=file_id)
         file.delete()
 
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(FileGoneAPIException) as e:
             file._fetch()
         assert e.value.error_code == "FILE_GONE"
 
@@ -231,21 +231,21 @@ class TestFile(IntegrationTest):
         file = File(self.tekdrive, id=file_id)
         file.delete(hard_delete=True)
 
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(FileNotFoundAPIException) as e:
             file._fetch()
         assert e.value.error_code == "FILE_NOT_FOUND"
 
     def test_delete_not_found(self, tekdrive_vcr):
         file_id = "457b7075-555c-4031-95b1-2a55c33b20dc"
         file = File(self.tekdrive, id=file_id)
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(FileNotFoundAPIException) as e:
             file.delete()
         assert e.value.error_code == "FILE_NOT_FOUND"
 
     def test_delete_forbidden(self, tekdrive_vcr):
         file_id = "d11758f8-5644-4078-8f02-7168104208dd"
         file = File(self.tekdrive, id=file_id)
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(ForbiddenAPIException) as e:
             file.delete()
         assert e.value.error_code == "FORBIDDEN"
 
@@ -263,13 +263,13 @@ class TestFile(IntegrationTest):
         # user has read access to file but doesn't have edit permissions for a file that does exist
         file_id = "3670359c-c453-40b7-bcc1-0281e2f6db94"
         file = File(self.tekdrive, id=file_id)
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(ForbiddenAPIException) as e:
             file.restore()
         assert e.value.error_code == "FORBIDDEN"
 
     def test_restore_not_found(self, tekdrive_vcr):
         file_id = "83c78bcf-2beb-4232-aa2a-730988ff5356"
         file = File(self.tekdrive, id=file_id)
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(FileNotFoundAPIException) as e:
             file.restore()
         assert e.value.error_code == "FILE_NOT_FOUND"

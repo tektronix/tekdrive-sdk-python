@@ -1,6 +1,6 @@
 import pytest, json
 from tekdrive.utils.casing import to_snake_case, to_camel_case
-from tekdrive.exceptions import TekDriveAPIException
+from tekdrive.exceptions import ForbiddenAPIException
 from tekdrive.models import Tree
 from tekdrive.enums import FolderType, ObjectType
 
@@ -47,6 +47,6 @@ class TestTree(IntegrationTest):
         assert sum(1 for _ in results._children) == expected_number_of_children
 
     def test_tree_get_forbidden(self, tekdrive_vcr):
-        with pytest.raises(TekDriveAPIException) as e:
+        with pytest.raises(ForbiddenAPIException) as e:
             results = Tree(self.tekdrive).get()
         assert e.value.error_code == "FORBIDDEN"

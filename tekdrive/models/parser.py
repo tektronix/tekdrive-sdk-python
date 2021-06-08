@@ -2,7 +2,7 @@ import logging
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 from ..enums import ErrorCode
-from ..exceptions import TekDriveAPIException, FileGoneAPIException
+from ..exceptions import TekDriveAPIException, ERROR_CODE_TO_API_EXCEPTION_MAPPING
 from ..utils.casing import to_snake_case
 
 if TYPE_CHECKING:
@@ -28,9 +28,9 @@ class Parser:
         except ValueError:
             return TekDriveAPIException(data, headers=headers)
 
-        if error_code == ErrorCode.FILE_GONE:
-            return FileGoneAPIException(to_snake_case(data), headers=headers)
-        # TODO: create additional specific api exceptions and add here
+        if error_code in ERROR_CODE_TO_API_EXCEPTION_MAPPING:
+            return ERROR_CODE_TO_API_EXCEPTION_MAPPING[error_code](to_snake_case(data), headers=headers)
+
         return TekDriveAPIException(data, headers=headers)
 
     def __init__(self, tekdrive: "TekDrive", models: Optional[Dict[str, Any]] = None):
@@ -84,23 +84,6 @@ class Parser:
             return [self.parse(item) for item in data]
 
         if isinstance(data, dict):
-            if "errorCode" in data:
-                raise TekDriveAPIException(to_snake_case(data))
             return self._parse_dict(data)
 
         return data
-
-    # def parse_error(
-    #     self, data, *, headers={}
-    # ):
-    #     data = to_snake_case(data)
-    #     error_code = data.get("error_code")
-    #     if error_code is None:
-    #         return TekDriveAPIException(data, headers=headers)
-
-    #     print('PARSE ERROR')
-    #     print(error_code)
-    #     assert error_code == ErrorCodes.FILE_GONE.value
-    #     if error_code == ErrorCodes.FILE_GONE.value:
-    #         return FileGoneAPIException(data, headers=headers)
-    #     return TekDriveAPIException(data, headers=headers)
