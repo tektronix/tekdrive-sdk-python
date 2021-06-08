@@ -1,6 +1,8 @@
 """Provide exception classes"""
 from typing import TYPE_CHECKING
 
+from .enums import ErrorCode
+
 if TYPE_CHECKING:
     from requests import Response
 
@@ -37,11 +39,38 @@ class TekDriveAPIException(TekDriveException):
         return self.headers.get("X-Request-Id")
 
 
-# class FileNotFoundAPIException(TekDriveAPIException):
-#     """Indicates file is gone."""
+class FileNotFoundAPIException(TekDriveAPIException):
+    """Indicate file is not found."""
+
 
 class FileGoneAPIException(TekDriveAPIException):
-    """Indicates file is gone."""
+    """Indicate file is gone."""
+
+
+class ForbiddenAPIException(TekDriveAPIException):
+    """Indicate action is forbidden."""
+
+
+class FolderGoneAPIException(TekDriveAPIException):
+    """Indicate file is gone."""
+
+
+class FolderNotFoundAPIException(TekDriveAPIException):
+    """Indicate folder is not found."""
+
+
+class UnprocessableEntityAPIException(TekDriveAPIException):
+    """Indicate server could not process the contained instructions."""
+
+
+ERROR_CODE_TO_API_EXCEPTION_MAPPING = {
+    ErrorCode.FILE_GONE: FileGoneAPIException,
+    ErrorCode.FILE_NOT_FOUND: FileNotFoundAPIException,
+    ErrorCode.FORBIDDEN: ForbiddenAPIException,
+    ErrorCode.FOLDER_GONE: FolderGoneAPIException,
+    ErrorCode.FOLDER_NOT_FOUND: FolderNotFoundAPIException,
+    ErrorCode.UNPROCESSABLE_ENTITY: UnprocessableEntityAPIException,
+}
 
 
 class TekDriveStorageException(TekDriveException):
