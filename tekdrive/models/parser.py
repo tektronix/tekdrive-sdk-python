@@ -1,7 +1,7 @@
 import logging
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-from ..enums import ErrorCode
+from ..enums import ErrorCode, ObjectType
 from ..exceptions import TekDriveAPIException, ERROR_CODE_TO_API_EXCEPTION_MAPPING
 from ..utils.casing import to_snake_case
 
@@ -37,32 +37,61 @@ class Parser:
         self._tekdrive = tekdrive
         self.models = {} if models is None else models
 
+    def _is_file(self, data: dict) -> bool:
+        return data.get("type") == ObjectType.FILE.value
+
+    def _is_file_with_upload_url(self, data: dict) -> bool:
+        return {"file", "upload_url"}.issubset(data)
+
+    def _is_folder(self, data: dict) -> bool:
+        return data.get("type") == ObjectType.FOLDER.value
+
+    def _is_members_list(self, data: dict) -> bool:
+        return "members" in data
+
+    def _is_member(self, data: dict) -> bool:
+        return {"id", "username", "permissions"}.issubset(data)
+
+    def _is_paginated_list(self, data: dict) -> bool:
+        return "meta" in data
+
+    def _is_trash(self, data: dict) -> bool:
+        return "trasher" in data
+
+    def _is_drive_user(self, data: dict) -> bool:
+        return {"account_id", "owner_type", "plan"}.issubset(data)
+
+    def _is_tree(self, data: dict) -> bool:
+        return "tree" in data
+
     def _parse_dict(self, data: dict):
         """Create model from dict."""
         data = to_snake_case(data)
-        if data.get("type") == "FILE":
+        if self._is_file(data):
             model = self.models["File"]
-        elif data.get("type") == "FOLDER":
+        elif self._is_folder(data):
             model = self.models["Folder"]
-        elif data.get("members"):
+        elif self._is_members_list(data):
             model = self.models["MembersList"]
-        elif {"id", "username", "permissions"}.issubset(data):
+        elif self._is_member(data):
             model = self.models["Member"]
-        elif {"file", "upload_url"}.issubset(data):
+        elif self._is_file_with_upload_url(data):
             model = self.models["File"]
             file = data["file"]
             file["_upload_url"] = data["upload_url"]
             data = file
-        elif {"meta", "results"}.issubset(data):
-            model = self.models["PaginatedList"]
-        elif {"meta", "trash"}.issubset(data):
-            model = self.models["TrashPaginatedList"]
-        elif data.get("trasher"):
+        elif self._is_paginated_list(data):
+            if "trash" in data:
+                model = self.models["TrashPaginatedList"]
+            else:
+                # generic paginated list
+                model = self.models["PaginatedList"]
+        elif self._is_trash(data):
             data["id"] = f"trash{data['item']['id']}"
             model = self.models["Trash"]
-        elif {"account_id", "owner_type", "plan"}.issubset(data):
+        elif self._is_drive_user(data):
             model = self.models["DriveUser"]
-        elif data.get("tree"):
+        elif self._is_tree(data):
             tree_folder = data["tree"]
             data = tree_folder
             model = self.models["Folder"]
