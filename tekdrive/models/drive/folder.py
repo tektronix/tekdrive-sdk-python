@@ -105,7 +105,13 @@ class Folder(DriveBase):
 
     def children(self) -> List[Union[File, "Folder"]]:
         """
-        TODO: docblock
+        Get a list of child files and folders for the given folder.
+
+        Examples:
+            Iterate over all folder children::
+
+                for child in folder.children():
+                    print(child.id)
         """
         if self._children is not None:
             return self._children
@@ -114,7 +120,6 @@ class Folder(DriveBase):
             "folder_id": self.id
         })
         route = Route("GET", ENDPOINTS["tree"])
-        # return Folder which is the root of the tree
         return self._tekdrive.request(route, params=params)._children
 
     def members(self) -> List[Member]:
