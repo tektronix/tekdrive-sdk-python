@@ -11,4 +11,6 @@ Models
    models/folder
    models/member
    models/permissions
+   models/plan
+   models/trash
    models/user

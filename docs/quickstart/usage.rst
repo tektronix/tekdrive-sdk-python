@@ -5,7 +5,7 @@ Prerequisites
 ~~~~~~~~~~~~~
 Authentication with the TekDrive API is handled through the use of access keys. You will need an access key with the appropriate claims for your use case.
 
-You can learn more about access keys and their claims `here <https://docs.dev-drive.tekcloud.com/#api-authentication-access-key>`_.
+You can learn more about access keys and their claims `here <https://docs.drive.tekcloud.com/#api-authentication-access-key>`_.
 
 :class:`.TekDrive` Instantiation 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,3 +28,6 @@ For example, creating a file is as simple as:
     td.file.create("/path/to/file.txt", name="My New File")
 
 See the :ref:`models` section for more.
+
+
+There are also additional TekDrive classes providing helpful functionality such as :ref:`search` or displaying the directory structure using :ref:`tree`.

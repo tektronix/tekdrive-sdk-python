@@ -1,8 +1,8 @@
-.. _tree:
+.. _trash:
 
-Tree
+Trash
 ======
 
-.. autoclass:: tekdrive.models.Tree
+.. autoclass:: tekdrive.models.Trash
    :inherited-members:
    :exclude-members: parse

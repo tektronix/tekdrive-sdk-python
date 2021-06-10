@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class Trashcan(TekDriveBase):
     """
-    Provides various methods to help with moving TekDrive files and folders to/from the trash.
+    Provides various methods to help with managing items in the trashcan.
     """
 
     def __init__(self, tekdrive: "TekDrive"):
@@ -24,7 +24,7 @@ class Trashcan(TekDriveBase):
         self,
     ) -> None:
         """
-        Empty items currently in the trash.
+        Empty all items currently in the trash.
 
         Examples:
             Empty the trashcan::
@@ -40,6 +40,14 @@ class Trashcan(TekDriveBase):
         order_by: List[str] = ["-trashedAt"],
         limit: Optional[int] = 100,
     ):
+        """
+        Get items currently in the trash.
+
+        Examples:
+            Get the first 10 items in the trashcan::
+
+                td.trash.get(limit=10)
+        """
         route = Route("GET", ENDPOINTS["trash"])
         params = to_camel_case(
             dict(

@@ -221,6 +221,7 @@ input[type=text]:focus {
 
 .py.class > dt {
     background-color: #e7f2fa;
+    padding: 0.5em;
 }
 
 .py.method {
@@ -236,6 +237,10 @@ input[type=text]:focus {
     margin: 0 0 1em 0;
     border-left: 2px solid #eee;
     padding-left: 1em;
+}
+
+.py.attribute:last-of-type {
+    margin-bottom: 2em;
 }
 
 /* Indent code block in Python Class docstring */
