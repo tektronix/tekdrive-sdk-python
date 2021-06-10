@@ -1,11 +1,9 @@
 """Provides the Tree class."""
-from typing import TYPE_CHECKING, Iterator, List, Optional, Union
+from typing import TYPE_CHECKING, Optional
 
 from ..routing import Route, ENDPOINTS
 from .base import TekDriveBase
-from .paginator import PaginatedListGenerator
-from . import File, Folder
-from ..exceptions import ClientException
+from . import Folder
 from ..utils.casing import to_camel_case
 
 if TYPE_CHECKING:

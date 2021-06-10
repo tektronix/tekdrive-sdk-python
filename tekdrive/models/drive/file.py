@@ -197,9 +197,7 @@ class File(DriveBase):
 
                 file.delete(hard_delete=True)
         """
-        params = to_camel_case(
-            dict(hard_delete=hard_delete)
-        )
+        params = to_camel_case(dict(hard_delete=hard_delete))
 
         route = Route("DELETE", ENDPOINTS["file_delete"], file_id=self.id)
         self._tekdrive.request(route, params=params)

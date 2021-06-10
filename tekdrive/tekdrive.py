@@ -23,10 +23,7 @@ logging.getLogger("tekdrive").addHandler(logging.NullHandler())
 
 class TekDrive:
     def __init__(
-        self,
-        access_key: str,
-        base_url: str = BASE_URL,
-        debug_mode: bool = False
+        self, access_key: str, base_url: str = BASE_URL, debug_mode: bool = False
     ):
         """
         Initialize a TekDrive instance.
@@ -105,13 +102,17 @@ class TekDrive:
             except ValueError:
                 raise Exception("Unexpected ResponseException") from exception
 
-            api_error = self._parser.parse_error(error_info, headers=exception.response.headers)
+            api_error = self._parser.parse_error(
+                error_info, headers=exception.response.headers
+            )
             if api_error:
                 # expected error format from API with known error code
                 raise api_error from exception
             else:
                 # raise generic api exception
-                raise TekDriveAPIException(to_snake_case(error_info), headers=exception.response.headers) from exception
+                raise TekDriveAPIException(
+                    to_snake_case(error_info), headers=exception.response.headers
+                ) from exception
 
     def request(
         self,

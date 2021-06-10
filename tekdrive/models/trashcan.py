@@ -1,11 +1,9 @@
 """Provides the Trash class."""
-from typing import TYPE_CHECKING, Iterator, List, Optional, Union
+from typing import TYPE_CHECKING, List, Optional
 
 from ..routing import Route, ENDPOINTS
 from .base import TekDriveBase
 from .paginator import PaginatedListGenerator
-from . import File, Folder
-from ..exceptions import ClientException
 from ..utils.casing import to_camel_case
 
 if TYPE_CHECKING:

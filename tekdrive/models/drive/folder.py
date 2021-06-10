@@ -74,7 +74,12 @@ class Folder(DriveBase):
         elif attribute == "folder_type":
             value = FolderType(value)
         elif attribute == "children":
-            self._children = [File(self._tekdrive, d["id"], _data=d) if d.get('type') == 'FILE' else Folder(self._tekdrive, d["id"], _data=d) for d in value]
+            self._children = [
+                File(self._tekdrive, d["id"], _data=d)
+                if d.get("type") == "FILE"
+                else Folder(self._tekdrive, d["id"], _data=d)
+                for d in value
+            ]
             return
         super().__setattr__(attribute, value)
 
@@ -116,9 +121,7 @@ class Folder(DriveBase):
         if self._children is not None:
             return self._children
 
-        params = to_camel_case({
-            "folder_id": self.id
-        })
+        params = to_camel_case({"folder_id": self.id})
         route = Route("GET", ENDPOINTS["tree"])
         return self._tekdrive.request(route, params=params)._children
 
@@ -165,9 +168,7 @@ class Folder(DriveBase):
 
                 folder.delete(hard_delete=True)
         """
-        params = to_camel_case(
-            dict(hard_delete=hard_delete)
-        )
+        params = to_camel_case(dict(hard_delete=hard_delete))
 
         route = Route("DELETE", ENDPOINTS["folder_delete"], folder_id=self.id)
         self._tekdrive.request(route, params=params)

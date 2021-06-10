@@ -29,7 +29,9 @@ class Parser:
             return TekDriveAPIException(data, headers=headers)
 
         if error_code in ERROR_CODE_TO_API_EXCEPTION_MAPPING:
-            return ERROR_CODE_TO_API_EXCEPTION_MAPPING[error_code](to_snake_case(data), headers=headers)
+            return ERROR_CODE_TO_API_EXCEPTION_MAPPING[error_code](
+                to_snake_case(data), headers=headers
+            )
 
         return TekDriveAPIException(data, headers=headers)
 

@@ -1,3 +1,9 @@
+format:
+	black .
+
+format.diff:
+	black . --diff --color
+
 test:
 	python -m pytest 
 

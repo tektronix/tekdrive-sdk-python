@@ -73,9 +73,7 @@ class TestSearch(IntegrationTest):
 
     def test_query_include_trash(self, tekdrive_vcr):
         name = "Bark"
-        results = Search(self.tekdrive).query(
-            name=name, include_trashed=True
-        )
+        results = Search(self.tekdrive).query(name=name, include_trashed=True)
         for idx, result in enumerate(results):
             assert name.lower() in result.name.lower()
         assert idx + 1 == 3

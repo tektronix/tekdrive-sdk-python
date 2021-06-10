@@ -2,7 +2,12 @@ import pytest
 from datetime import datetime
 
 from tekdrive.models import Folder, Permissions
-from tekdrive.exceptions import FolderGoneAPIException, FolderNotFoundAPIException, ForbiddenAPIException, UnprocessableEntityAPIException
+from tekdrive.exceptions import (
+    FolderGoneAPIException,
+    FolderNotFoundAPIException,
+    ForbiddenAPIException,
+    UnprocessableEntityAPIException,
+)
 from tekdrive.enums import FolderType, ObjectType
 
 from ...base import IntegrationTest
@@ -275,7 +280,11 @@ class TestFolder(IntegrationTest):
     def test_children(self, tekdrive_vcr):
         folder_id = "61264d17-fba1-4676-bbcc-b46c1f0ddd4c"
         expected_number_of_children = 3
-        expected_children_ids = ['a3129db5-4378-4557-99b3-d07585fec604', '94cd3185-f3f4-4708-8400-069ca99732ef', 'dd5dba95-7825-4598-87f2-f29ce6424b12']
+        expected_children_ids = [
+            "a3129db5-4378-4557-99b3-d07585fec604",
+            "94cd3185-f3f4-4708-8400-069ca99732ef",
+            "dd5dba95-7825-4598-87f2-f29ce6424b12",
+        ]
         folder = Folder(self.tekdrive, id=folder_id)
         results = folder.children()
         assert len(results) == expected_number_of_children
