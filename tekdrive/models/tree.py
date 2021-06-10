@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 class Tree(TekDriveBase):
     """
-    Provides recursive directory listing down to a certain depth.
+    Provides directory listing.
     """
 
     def __init__(self, tekdrive: "TekDrive"):
@@ -24,12 +24,30 @@ class Tree(TekDriveBase):
         self,
         *,
         folder_id: [str] = None,
-        limit: Optional[int] = 100,
         silo: Optional[str] = None,
         depth: Optional[int] = 1,
         folders_only: bool = False,
         include_trashed: bool = False,
     ) -> Folder:
+        """
+        Get the tree representation from a starting folder.
+
+        Args:
+            folder_id: Unique ID of starting folder to start the tree from.
+            depth: How many nested levels to return.
+            silo: Get tree for the provided silo. Values: ``"SHARES"`` or ``"PERSONAL"``.
+            folders_only: Only include folders in the tree results? Default: ``False``.
+            include_trashed: Include files and folders that are in the trashcan.
+
+        Examples:
+            Get tree from starting folder by id::
+
+                tree = td.tree.get(folder_id="3b525331-9da7-4e8d-b045-4acdba8d9dc7")
+
+            Get tree for the ``SHARES`` silo, excluding files::
+
+                tree = td.tree.get(silo="SHARES", folders_only=True)
+        """
 
         route = Route("GET", ENDPOINTS["tree"])
         params = to_camel_case(

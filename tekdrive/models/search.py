@@ -131,7 +131,7 @@ class Search(TekDriveBase):
             silo: Name of the silo to perform the search within. Values: ``"SHARES"`` or ``"PERSONAL"``.
             file_type: Limit results to files matching the given file type(s).
             include_files: Include files in the search results? Default: ``True``.
-            include_folders: Include folders in the serach results? Default: ``True``.
+            include_folders: Include folders in the search results? Default: ``True``.
             upload_state: Limit results to files in the given upload state(s).
             include_trashed: Include files and folders in the trashcan.
 
