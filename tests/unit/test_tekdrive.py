@@ -1,7 +1,11 @@
 import pytest
 
 from tekdrive import TekDrive
-from tekdrive.exceptions import ClientException, TekDriveAPIException, FileGoneAPIException
+from tekdrive.exceptions import (
+    ClientException,
+    TekDriveAPIException,
+    FileGoneAPIException,
+)
 
 from .base import UnitTest
 
