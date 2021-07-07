@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 PACKAGE_NAME = "tekdrive"
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, "README.rst"), encoding="utf-8") as readme:
+with open(path.join(here, "README.md"), "r", encoding="utf-8") as readme:
     README = readme.read()
 
 with open(path.join(here, PACKAGE_NAME, "settings.py"), encoding="utf-8") as settings:
