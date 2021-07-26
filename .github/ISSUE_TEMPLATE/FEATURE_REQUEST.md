@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Request a new feature or enhancement
-title: "[DATE]: [FEATURE TITLE]"
+title: "[YYYY-MM-DD]: [FEATURE TITLE]"
 labels: enhancement
 assignees: tjbiii
 

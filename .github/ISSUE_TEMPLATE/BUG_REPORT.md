@@ -1,7 +1,7 @@
 ---
 name: Bug Report
 about: Report a bug to help us improve
-title: "[DATE]: [BUG TITLE]"
+title: "[YYYY-MM-DD]: [BUG TITLE]"
 labels: bug
 assignees: tjbiii
 
