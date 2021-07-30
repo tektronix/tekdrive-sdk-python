@@ -30,7 +30,7 @@ setup(
     author_email="thomas@initialstate.com",
     python_requires=">=3.6",
     classifiers=[
-        "Development Status :: 2 - Pre-Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
         "Intended Audience :: Developers",
         "Natural Language :: English",
@@ -43,7 +43,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Topic :: Utilities",
     ],
-    description=("A Python package that allows for simple access to the TekDrive API."),
+    description=("Package to interact with the TekDrive API."),
     install_requires=["requests >=2.25.0, <3.0"],
     extras_require=extras,
     keywords="tektronix tekdrive tekcloud",
