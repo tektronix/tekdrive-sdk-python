@@ -49,8 +49,3 @@ class MembersList(BaseList):
     _parent = None
 
     LIST_ATTRIBUTE = "members"
-
-    def remove(self, username: str = None, user_id: str = None):
-        # TODO: convenience for self._parent.unshare() ?
-        # print(f"parent {self._parent.id}")
-        pass
