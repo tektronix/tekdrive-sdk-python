@@ -1,6 +1,6 @@
-# TekDrive Python SDK
 [![TekCloud Logo](https://raw.githubusercontent.com/tektronix/tekdrive-sdk-python/master/ext/tekcloud-logo.png)](https://tekcloud.com)
 
+# TekDrive Python SDK
 This is a Python SDK for interacting with the TekDrive API.
 
 ## Quick Links
