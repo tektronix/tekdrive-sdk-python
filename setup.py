@@ -21,6 +21,9 @@ extras = {
         "pytest >=6.2.2",
         "vcrpy >=4.1.1",
     ],
+    "release": [
+        "twine ==3.4.2",
+    ]
 }
 extras["dev"] = extras["lint"] + extras["test"]
 
@@ -48,6 +51,7 @@ setup(
     extras_require=extras,
     keywords="tektronix tekdrive tekcloud",
     long_description=README,
+    long_description_content_type='text/markdown',
     packages=find_packages(exclude=["tests", "tests.*"]),
     version=VERSION,
 )
