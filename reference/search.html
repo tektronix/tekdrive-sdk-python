@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search &#8212; tekdrive 0.0.1-alpha documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Trashcan" href="trash.html" />
+    <link rel="prev" title="User" href="models/user.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="search">
+<span id="id1"></span><h1>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="tekdrive.models.Search">
+<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">Search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tekdrive</span><span class="p">:</span> <span class="n">TekDrive</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.Search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides various methods to help with searching for TekDrive files and folders.</p>
+<dl class="py method">
+<dt id="tekdrive.models.Search.files">
+<code class="sig-name descname">files</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">name: Optional[str] = None</em>, <em class="sig-param">limit: Optional[int] = 100</em>, <em class="sig-param">folder_id: [&lt;class 'str'&gt;] = None</em>, <em class="sig-param">silo: Optional[str] = None</em>, <em class="sig-param">depth: Optional[int] = 1</em>, <em class="sig-param">file_type: Optional[List[str]] = None</em>, <em class="sig-param">upload_state: Optional[List[str]] = None</em>, <em class="sig-param">order_by: Optional[List[str]] = None</em>, <em class="sig-param">include_trashed: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterator<span class="p">[</span>tekdrive.models.drive.file.File<span class="p">]</span><a class="headerlink" href="#tekdrive.models.Search.files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience method for files search.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>limit</strong> – Total limit for returned results.</p></li>
+<li><p><strong>name</strong> – File name to match on. Case insensitive.</p></li>
+<li><p><strong>folder_id</strong> – Unique ID of folder to perform search within.</p></li>
+<li><p><strong>silo</strong> – Name of the silo to perform the search within. Values: <code class="docutils literal notranslate"><span class="pre">&quot;SHARES&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;PERSONAL&quot;</span></code>.</p></li>
+<li><p><strong>depth</strong> – How many levels deep to perform search when specifying a <code class="docutils literal notranslate"><span class="pre">folder_id</span></code> or <code class="docutils literal notranslate"><span class="pre">silo</span></code>.</p></li>
+<li><p><strong>file_type</strong> – Limit results to files matching the given file type(s).</p></li>
+<li><p><strong>upload_state</strong> – Limit results to files in the given upload state(s).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get up to 50 WFM files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">search</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">file_type</span><span class="o">=</span><span class="s2">&quot;WFM&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tekdrive.models.Search.folders">
+<code class="sig-name descname">folders</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">name: Optional[str] = None</em>, <em class="sig-param">limit: Optional[int] = 100</em>, <em class="sig-param">folder_id: [&lt;class 'str'&gt;] = None</em>, <em class="sig-param">silo: Optional[str] = None</em>, <em class="sig-param">depth: Optional[int] = 1</em>, <em class="sig-param">order_by: Optional[List[str]] = None</em>, <em class="sig-param">include_trashed: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterator<span class="p">[</span>tekdrive.models.drive.folder.Folder<span class="p">]</span><a class="headerlink" href="#tekdrive.models.Search.folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience method for folders search.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>limit</strong> – Total limit for returned results.</p></li>
+<li><p><strong>silo</strong> – Name of the silo to perform the search within. Values: <code class="docutils literal notranslate"><span class="pre">&quot;SHARES&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;PERSONAL&quot;</span></code>.</p></li>
+<li><p><strong>name</strong> – Folder name to match on. Case insensitive.</p></li>
+<li><p><strong>folder_id</strong> – Unique ID of folder to perform search within.</p></li>
+<li><p><strong>depth</strong> – How many levels deep to perform search when specifying a <code class="docutils literal notranslate"><span class="pre">folder_id</span></code> or <code class="docutils literal notranslate"><span class="pre">silo</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get up to 10 folders with a name like <code class="docutils literal notranslate"><span class="pre">&quot;team_&quot;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">search</span><span class="o">.</span><span class="n">folders</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;team_&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tekdrive.models.Search.query">
+<code class="sig-name descname">query</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">name: Optional[str] = None</em>, <em class="sig-param">limit: Optional[int] = 100</em>, <em class="sig-param">folder_id: [&lt;class 'str'&gt;] = None</em>, <em class="sig-param">silo: Optional[str] = None</em>, <em class="sig-param">depth: Optional[int] = 1</em>, <em class="sig-param">file_type: Optional[List[str]] = None</em>, <em class="sig-param">include_files: bool = True</em>, <em class="sig-param">include_folders: bool = True</em>, <em class="sig-param">upload_state: Optional[List[str]] = None</em>, <em class="sig-param">order_by: Optional[List[str]] = None</em>, <em class="sig-param">include_trashed: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterator<span class="p">[</span>Union<span class="p">[</span>tekdrive.models.drive.file.File<span class="p">, </span>tekdrive.models.drive.folder.Folder<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#tekdrive.models.Search.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute search for files and/or folders matching the provided criteria. A global search will
+be performed by default unless a <code class="docutils literal notranslate"><span class="pre">folder_id</span></code> or <code class="docutils literal notranslate"><span class="pre">silo</span></code> is provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>limit</strong> – Total limit for returned results.</p></li>
+<li><p><strong>name</strong> – File/Folder name to match on. Case insensitive.</p></li>
+<li><p><strong>folder_id</strong> – Unique ID of folder to perform search within.</p></li>
+<li><p><strong>depth</strong> – How many levels deep to perform search when specifying a <code class="docutils literal notranslate"><span class="pre">folder_id</span></code> or <code class="docutils literal notranslate"><span class="pre">silo</span></code>.</p></li>
+<li><p><strong>silo</strong> – Name of the silo to perform the search within. Values: <code class="docutils literal notranslate"><span class="pre">&quot;SHARES&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;PERSONAL&quot;</span></code>.</p></li>
+<li><p><strong>file_type</strong> – Limit results to files matching the given file type(s).</p></li>
+<li><p><strong>include_files</strong> – Include files in the search results? Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>include_folders</strong> – Include folders in the search results? Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>upload_state</strong> – Limit results to files in the given upload state(s).</p></li>
+<li><p><strong>include_trashed</strong> – Include files and folders in the trashcan.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Get files with name like <code class="docutils literal notranslate"><span class="pre">&quot;project1&quot;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;project1&quot;</span><span class="p">,</span> <span class="n">include_folders</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet'>
+
+
+
+<h3>
+    <a href="../index.html">TekDrive SDK<a>
+</h3>
+
+<div id="logo">
+    <a href="../index.html"><img src="../_static/img/favicon.svg" width="150" alt="TekDrive logo"/></a>
+</div><h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/usage.html">Usage Overview</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trash.html">Trashcan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tree.html">Tree</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://www.tek.com/software/tekdrive">TekDrive Home</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="models/user.html" title="previous chapter">User</a></li>
+      <li>Next: <a href="trash.html" title="next chapter">Trashcan</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        
+            &copy;2021 TEKTRONIX, INC.
+        
+
+        
+            |
+             
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+        
+            |
+            
+            <a href="../_sources/reference/search.rst.txt" rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+  </body>
+</html>

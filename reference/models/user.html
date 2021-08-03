@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User &#8212; tekdrive 0.0.1-alpha documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Search" href="../search.html" />
+    <link rel="prev" title="Trash" href="trash.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="user">
+<h1>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="partial-user">
+<span id="id1"></span><h2>Partial User<a class="headerlink" href="#partial-user" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tekdrive.models.PartialUser">
+<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">PartialUser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">username</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.PartialUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a simple User which provides a subset of a full User’s attributes.</p>
+<dl class="py attribute">
+<dt id="tekdrive.models.PartialUser.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#tekdrive.models.PartialUser.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique ID for the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.PartialUser.username">
+<code class="sig-name descname">username</code><a class="headerlink" href="#tekdrive.models.PartialUser.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Username for the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<span id="id3"></span><h2>User<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="tekdrive.models.User">
+<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tekdrive</span><span class="p">:</span> <span class="n">TekDrive</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="tekdrive.models.User.me">
+<code class="sig-name descname">me</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tekdrive.models.drive.user.DriveUser<a class="headerlink" href="#tekdrive.models.User.me" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get user details for the authenticated user.</p>
+<p class="rubric">Examples</p>
+<p>Fetch user details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">me</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">me</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Get the plan the user is on:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plan</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">me</span><span class="p">()</span><span class="o">.</span><span class="n">plan</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tekdrive.models.User.usage">
+<code class="sig-name descname">usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tekdrive.models.usage.Usage<a class="headerlink" href="#tekdrive.models.User.usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get TekDrive usage details for the authenticated user.</p>
+<p class="rubric">Examples</p>
+<p>Fetch usage details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage_info</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet'>
+
+
+
+<h3>
+    <a href="../../index.html">TekDrive SDK<a>
+</h3>
+
+<div id="logo">
+    <a href="../../index.html"><img src="../../_static/img/favicon.svg" width="150" alt="TekDrive logo"/></a>
+</div><h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/usage.html">Usage Overview</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code Overview</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="folder.html">Folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="member.html">Member</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plan.html">Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trash.html">Trash</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">User</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#partial-user">Partial User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">User</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trash.html">Trashcan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tree.html">Tree</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://www.tek.com/software/tekdrive">TekDrive Home</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../models.html">Models</a><ul>
+      <li>Previous: <a href="trash.html" title="previous chapter">Trash</a></li>
+      <li>Next: <a href="../search.html" title="next chapter">Search</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        
+            &copy;2021 TEKTRONIX, INC.
+        
+
+        
+            |
+             
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+        
+            |
+            
+            <a href="../../_sources/reference/models/user.rst.txt" rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+  </body>
+</html>

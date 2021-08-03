@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Permissions &#8212; tekdrive 0.0.1-alpha documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Plan" href="plan.html" />
+    <link rel="prev" title="Member" href="member.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="permissions">
+<span id="id1"></span><h1>Permissions<a class="headerlink" href="#permissions" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="tekdrive.models.Permissions">
+<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">Permissions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">read</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">edit</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">owner</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>bool<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">creator</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>bool<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">public</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>bool<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.Permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents permissions to a TekDrive object.</p>
+<dl class="py attribute">
+<dt id="tekdrive.models.Permissions.creator">
+<code class="sig-name descname">creator</code><a class="headerlink" href="#tekdrive.models.Permissions.creator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the object creator?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Permissions.edit">
+<code class="sig-name descname">edit</code><a class="headerlink" href="#tekdrive.models.Permissions.edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Has edit access?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Permissions.read">
+<code class="sig-name descname">read</code><a class="headerlink" href="#tekdrive.models.Permissions.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Has read access?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Permissions.owner">
+<code class="sig-name descname">owner</code><a class="headerlink" href="#tekdrive.models.Permissions.owner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the object owner?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet'>
+
+
+
+<h3>
+    <a href="../../index.html">TekDrive SDK<a>
+</h3>
+
+<div id="logo">
+    <a href="../../index.html"><img src="../../_static/img/favicon.svg" width="150" alt="TekDrive logo"/></a>
+</div><h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/usage.html">Usage Overview</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code Overview</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">Models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="folder.html">Folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="member.html">Member</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plan.html">Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trash.html">Trash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">User</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trash.html">Trashcan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tree.html">Tree</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://www.tek.com/software/tekdrive">TekDrive Home</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../models.html">Models</a><ul>
+      <li>Previous: <a href="member.html" title="previous chapter">Member</a></li>
+      <li>Next: <a href="plan.html" title="next chapter">Plan</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        
+            &copy;2021 TEKTRONIX, INC.
+        
+
+        
+            |
+             
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+        
+            |
+            
+            <a href="../../_sources/reference/models/permissions.rst.txt" rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+  </body>
+</html>

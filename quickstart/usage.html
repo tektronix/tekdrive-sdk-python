@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usage Overview &#8212; tekdrive 0.0.1-alpha documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models" href="../reference/models.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="usage-overview">
+<h1>Usage Overview<a class="headerlink" href="#usage-overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Authentication with the TekDrive API is handled through the use of access keys. You will need an access key with the appropriate claims for your use case.</p>
+<p>You can learn more about access keys and their claims <a class="reference external" href="https://docs.drive.tekcloud.com/#api-authentication-access-key">here</a>.</p>
+</div>
+<div class="section" id="tekdrive-instantiation">
+<h2><code class="xref py py-class docutils literal notranslate"><span class="pre">TekDrive</span></code> Instantiation<a class="headerlink" href="#tekdrive-instantiation" title="Permalink to this headline">¶</a></h2>
+<p>All interaction with the TekDrive API is done through an instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">TekDrive</span></code> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tekdrive</span> <span class="kn">import</span> <span class="n">TekDrive</span>
+
+<span class="n">td</span> <span class="o">=</span> <span class="n">TekDrive</span><span class="p">(</span>
+    <span class="n">access_key</span><span class="o">=</span><span class="s2">&quot;MY_ACCESS_KEY&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This provides a client (<code class="docutils literal notranslate"><span class="pre">td</span></code>) which has several methods and helpers, many of which return TekDrive models offering additional methods, to make it easy to interact with the TekDrive API.</p>
+<p>For example, creating a file is as simple as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">td</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;/path/to/file.txt&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;My New File&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../reference/models.html#models"><span class="std std-ref">Models</span></a> section for more.</p>
+<p>There are also additional TekDrive classes providing helpful functionality such as <a class="reference internal" href="../reference/search.html#search"><span class="std std-ref">Search</span></a> or displaying the directory structure using <a class="reference internal" href="../reference/tree.html#tree"><span class="std std-ref">Tree</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet'>
+
+
+
+<h3>
+    <a href="../index.html">TekDrive SDK<a>
+</h3>
+
+<div id="logo">
+    <a href="../index.html"><img src="../_static/img/favicon.svg" width="150" alt="TekDrive logo"/></a>
+</div><h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Quickstart</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tekdrive-instantiation"><code class="xref py py-class docutils literal notranslate"><span class="pre">TekDrive</span></code> Instantiation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Code Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/trash.html">Trashcan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tree.html">Tree</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://www.tek.com/software/tekdrive">TekDrive Home</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="../reference/models.html" title="next chapter">Models</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        
+            &copy;2021 TEKTRONIX, INC.
+        
+
+        
+            |
+             
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+        
+            |
+            
+            <a href="../_sources/quickstart/usage.rst.txt" rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+  </body>
+</html>
