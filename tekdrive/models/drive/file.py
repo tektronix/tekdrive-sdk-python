@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 class File(DriveBase):
     """
-    A class representing a TekDrive file.
+    A class representing a TekDrive file.s
 
     Examples:
         Load a file by id::
@@ -163,6 +163,9 @@ class File(DriveBase):
 
                 for member in file.members():
                     print(member.username)
+
+        Returns:
+            List [ :ref:`member` ]
         """
         route = Route("GET", ENDPOINTS["file_members"], file_id=self.id)
         members = self._tekdrive.request(route)
@@ -332,6 +335,8 @@ class File(DriveBase):
 
                 file_member = file.add_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=True)
 
+        Returns:
+            :ref:`member`
         """
         data = dict(permissions=dict(read=True, edit=edit_access))
         if user_id:
@@ -378,6 +383,9 @@ class File(DriveBase):
             Revoke edit access::
 
                 updated_file_member = file.modify_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=False)
+
+        Returns:
+            :ref:`member`
 
         """
         route = Route(
