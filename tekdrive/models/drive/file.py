@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 class File(DriveBase):
     """
-    A class representing a TekDrive file.s
+    A class representing a TekDrive file.
 
     Examples:
         Load a file by id::
