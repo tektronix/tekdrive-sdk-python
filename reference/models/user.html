@@ -67,35 +67,76 @@
 </dd></dl>
 
 </div>
-<div class="section" id="id2">
-<span id="id3"></span><h2>User<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="drive-user">
+<span id="id2"></span><h2>Drive User<a class="headerlink" href="#drive-user" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="tekdrive.models.User">
-<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tekdrive</span><span class="p">:</span> <span class="n">TekDrive</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.User" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="py method">
-<dt id="tekdrive.models.User.me">
-<code class="sig-name descname">me</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tekdrive.models.drive.user.DriveUser<a class="headerlink" href="#tekdrive.models.User.me" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get user details for the authenticated user.</p>
-<p class="rubric">Examples</p>
-<p>Fetch user details:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">me</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">me</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Get the plan the user is on:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plan</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">me</span><span class="p">()</span><span class="o">.</span><span class="n">plan</span>
-</pre></div>
-</div>
+<dt id="tekdrive.models.DriveUser">
+<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">DriveUser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tekdrive</span><span class="p">:</span> <span class="n">TekDrive</span></em>, <em class="sig-param"><span class="n">_data</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.DriveUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a TekDrive full user.</p>
+<dl class="py attribute">
+<dt id="tekdrive.models.DriveUser.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#tekdrive.models.DriveUser.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique user ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="tekdrive.models.User.usage">
-<code class="sig-name descname">usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tekdrive.models.usage.Usage<a class="headerlink" href="#tekdrive.models.User.usage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get TekDrive usage details for the authenticated user.</p>
-<p class="rubric">Examples</p>
-<p>Fetch usage details:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage_info</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
-</pre></div>
-</div>
+<dl class="py attribute">
+<dt id="tekdrive.models.DriveUser.username">
+<code class="sig-name descname">username</code><a class="headerlink" href="#tekdrive.models.DriveUser.username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Username (email) of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.DriveUser.account_id">
+<code class="sig-name descname">account_id</code><a class="headerlink" href="#tekdrive.models.DriveUser.account_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>TekDrive account ID for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.DriveUser.created_at">
+<code class="sig-name descname">created_at</code><a class="headerlink" href="#tekdrive.models.DriveUser.created_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the user account was created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.DriveUser.updated_at">
+<code class="sig-name descname">updated_at</code><a class="headerlink" href="#tekdrive.models.DriveUser.updated_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the user account was updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.DriveUser.plan">
+<code class="sig-name descname">plan</code><a class="headerlink" href="#tekdrive.models.DriveUser.plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plan details for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="plan.html#plan"><span class="std std-ref">Plan</span></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -136,7 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="trash.html">Trash</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">User</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#partial-user">Partial User</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drive-user">Drive User</a></li>
 </ul>
 </li>
 </ul>
@@ -144,6 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../search.html">Search</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../trash.html">Trashcan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tree.html">Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user.html">User</a></li>
 </ul>
 
 

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Models &#8212; tekdrive 0.0.1-alpha documentation</title>
+    <title>User &#8212; tekdrive 0.0.1-alpha documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
@@ -16,8 +16,7 @@
     <link rel="shortcut icon" href="../_static/favicon.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="File" href="models/file.html" />
-    <link rel="prev" title="Usage Overview" href="../quickstart/usage.html" />
+    <link rel="prev" title="Tree" href="tree.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -34,24 +33,44 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="models">
-<span id="id1"></span><h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Models</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="models/file.html">File</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models/folder.html">Folder</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models/member.html">Member</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models/permissions.html">Permissions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models/plan.html">Plan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models/trash.html">Trash</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models/user.html">User</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="models/user.html#partial-user">Partial User</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/user.html#drive-user">Drive User</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="user">
+<span id="id1"></span><h1>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="tekdrive.models.User">
+<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tekdrive</span><span class="p">:</span> <span class="n">TekDrive</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="tekdrive.models.User.me">
+<code class="sig-name descname">me</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tekdrive.models.drive.user.DriveUser<a class="headerlink" href="#tekdrive.models.User.me" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get user details for the authenticated user.</p>
+<p class="rubric">Examples</p>
+<p>Fetch user details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">me</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">me</span><span class="p">()</span>
+</pre></div>
 </div>
+<p>Get the plan the user is on:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plan</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">me</span><span class="p">()</span><span class="o">.</span><span class="n">plan</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><a class="reference internal" href="models/user.html#drive-user"><span class="std std-ref">Drive User</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tekdrive.models.User.usage">
+<code class="sig-name descname">usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; tekdrive.models.usage.Usage<a class="headerlink" href="#tekdrive.models.User.usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get TekDrive usage details for the authenticated user.</p>
+<p class="rubric">Examples</p>
+<p>Fetch usage details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage_info</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -78,20 +97,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Code Overview</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="models/file.html">File</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/folder.html">Folder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/member.html">Member</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/permissions.html">Permissions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/plan.html">Plan</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/trash.html">Trash</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models/user.html">User</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="search.html">Search</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trash.html">Trashcan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree.html">Tree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="user.html">User</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User</a></li>
 </ul>
 
 
@@ -105,8 +115,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../quickstart/usage.html" title="previous chapter">Usage Overview</a></li>
-      <li>Next: <a href="models/file.html" title="next chapter">File</a></li>
+      <li>Previous: <a href="tree.html" title="previous chapter">Tree</a></li>
   </ul></li>
 </ul>
 </div>
@@ -137,7 +146,7 @@
         
             |
             
-            <a href="../_sources/reference/models.rst.txt" rel="nofollow">Page source</a>
+            <a href="../_sources/reference/user.rst.txt" rel="nofollow">Page source</a>
     </div>
 
     

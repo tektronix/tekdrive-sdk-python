@@ -62,6 +62,11 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">search</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="n">file_type</span><span class="o">=</span><span class="s2">&quot;WFM&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Iterator [ <a class="reference internal" href="models/file.html#file"><span class="std std-ref">File</span></a> ]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -84,6 +89,11 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">search</span><span class="o">.</span><span class="n">folders</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;team_&quot;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Iterator [ <a class="reference internal" href="models/folder.html#folder"><span class="std std-ref">Folder</span></a> ]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -112,6 +122,11 @@ be performed by default unless a <code class="docutils literal notranslate"><spa
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">td</span><span class="o">.</span><span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;project1&quot;</span><span class="p">,</span> <span class="n">include_folders</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Iterator [ Union [ <a class="reference internal" href="models/file.html#file"><span class="std std-ref">File</span></a> , <a class="reference internal" href="models/folder.html#folder"><span class="std std-ref">Folder</span></a> ] ]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -146,6 +161,7 @@ be performed by default unless a <code class="docutils literal notranslate"><spa
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Search</a></li>
 <li class="toctree-l1"><a class="reference internal" href="trash.html">Trashcan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tree.html">Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">User</a></li>
 </ul>
 
 
