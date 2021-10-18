@@ -45,6 +45,9 @@ class Tree(TekDriveBase):
             Get tree for the ``SHARES`` silo, excluding files::
 
                 tree = td.tree.get(silo="SHARES", folders_only=True)
+
+        Returns:
+            :ref:`folder`
         """
 
         route = Route("GET", ENDPOINTS["tree"])

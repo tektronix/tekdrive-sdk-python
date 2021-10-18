@@ -50,6 +50,9 @@ class Search(TekDriveBase):
 
                 results = td.search.files(file_type="WFM", limit=50)
 
+        Returns:
+            Iterator [ :ref:`file` ]
+
         """
         return self.query(
             limit=limit,
@@ -91,6 +94,8 @@ class Search(TekDriveBase):
 
                 results = td.search.folders(name="team_", limit=10)
 
+        Returns:
+            Iterator [ :ref:`folder` ]
         """
         return self.query(
             limit=limit,
@@ -140,6 +145,8 @@ class Search(TekDriveBase):
 
                 results = td.search.query(name="project1", include_folders=False)
 
+        Returns:
+            Iterator [ Union [ :ref:`file` , :ref:`folder` ] ]
         """
         if all(param is None for param in [name, file_type]):
             raise ClientException("Must supply `name`, `file_type`, or `upload_state`.")

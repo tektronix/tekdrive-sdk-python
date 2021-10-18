@@ -27,6 +27,9 @@ class User(TekDriveBase):
 
                 plan = td.user.me().plan
 
+        Returns: 
+            :ref:`drive_user`
+
         """
         route = Route("GET", ENDPOINTS["user"])
         return self._tekdrive.request(route)

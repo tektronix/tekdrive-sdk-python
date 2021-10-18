@@ -10,11 +10,11 @@ Partial User
    :inherited-members:
    :exclude-members: parse
 
-.. _user:
+.. _drive_user:
 
-User
-----
+Drive User
+------------
 
-.. autoclass:: tekdrive.models.User
+.. autoclass:: tekdrive.models.DriveUser
    :inherited-members:
    :exclude-members: parse

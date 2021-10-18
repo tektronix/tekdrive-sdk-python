@@ -16,3 +16,4 @@ TekDrive Python SDK
    reference/search
    reference/trash
    reference/tree
+   reference/user

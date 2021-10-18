@@ -117,6 +117,9 @@ class Folder(DriveBase):
 
                 for child in folder.children():
                     print(child.id)
+        
+        Returns:
+            List [ Union [:ref:`file` , :ref:`folder`] ]
         """
         if self._children is not None:
             return self._children
@@ -134,6 +137,9 @@ class Folder(DriveBase):
 
                 for member in folder.members():
                     print(member.username)
+
+        Returns:
+            List [ :ref:`member` ]
         """
         route = Route("GET", ENDPOINTS["folder_members"], folder_id=self.id)
         members = self._tekdrive.request(route)
@@ -228,6 +234,8 @@ class Folder(DriveBase):
 
                 folder_member = folder.add_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=True)
 
+        Returns:
+            :ref:`member`
         """
         data = dict(permissions=dict(read=True, edit=edit_access))
         if user_id:
@@ -275,6 +283,8 @@ class Folder(DriveBase):
 
                 updated_folder_member = folder.modify_member(user_id="354bcafb-6c54-4a1f-9b94-a76f38b548e5", edit_access=False)
 
+        Returns: 
+            :ref:`member`
         """
         route = Route(
             "PUT", ENDPOINTS["folder_member"], folder_id=self.id, member_id=user_id
