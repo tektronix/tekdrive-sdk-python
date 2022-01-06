@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/1.0.0
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/file/65ba67d5-eec1-41d7-b409-9918d31c0a00/artifacts?flat=False
+  response:
+    body:
+      string: '{"artifacts":[{"id":"b7369b17-63b7-4158-a1d1-c37310e00f7d","fileId":"65ba67d5-eec1-41d7-b409-9918d31c0a00","name":"ch1.wfm","fileType":"WFM","sourceId":"ddbb86c5-f926-4cf0-b566-d6b9f3200b5d","sourceName":"GRAVEMIND_TSS_PROCESSOR","contextType":"CHANNEL","parentArtifactId":null,"uploadState":"SUCCESS","bytes":"1250910","type":"ARTIFACT","createdAt":"2022-01-06T21:01:03.525Z","updatedAt":"2022-01-06T21:01:06.308Z","children":[]},{"id":"6ef7a6ac-5b25-4ebd-bf61-26aad2926ab1","fileId":"65ba67d5-eec1-41d7-b409-9918d31c0a00","name":"Tek000.set","fileType":"SETZ","sourceId":"ddbb86c5-f926-4cf0-b566-d6b9f3200b5d","sourceName":"GRAVEMIND_TSS_PROCESSOR","contextType":"SETTINGS_ZIP","parentArtifactId":null,"uploadState":"SUCCESS","bytes":"6347","type":"ARTIFACT","createdAt":"2022-01-06T21:01:03.593Z","updatedAt":"2022-01-06T21:01:07.718Z","children":[{"id":"31aba018-c9c5-4e0c-b440-9ddfc55db0eb","fileId":"65ba67d5-eec1-41d7-b409-9918d31c0a00","name":"Tek000.set","fileType":"SET","sourceId":"3c678fe3-f06a-4f8f-889a-00300bc318d1","sourceName":"GRAVEMIND_SET_PROCESSOR","contextType":"SETTINGS","parentArtifactId":"6ef7a6ac-5b25-4ebd-bf61-26aad2926ab1","uploadState":"SUCCESS","bytes":"43079","type":"ARTIFACT","createdAt":"2022-01-06T21:01:08.074Z","updatedAt":"2022-01-06T21:01:09.858Z","children":[]}]},{"id":"e68cc308-e95b-42ca-b6bc-584c9e2fe97e","fileId":"65ba67d5-eec1-41d7-b409-9918d31c0a00","name":"Tek000.png","fileType":"PNG","sourceId":"ddbb86c5-f926-4cf0-b566-d6b9f3200b5d","sourceName":"GRAVEMIND_TSS_PROCESSOR","contextType":"SCREEN_CAPTURE","parentArtifactId":null,"uploadState":"SUCCESS","bytes":"163033","type":"ARTIFACT","createdAt":"2022-01-06T21:01:03.843Z","updatedAt":"2022-01-06T21:01:07.687Z","children":[]},{"id":"75eced64-90c2-4846-8479-df487487887a","fileId":"65ba67d5-eec1-41d7-b409-9918d31c0a00","name":"ch2.wfm","fileType":"WFM","sourceId":"ddbb86c5-f926-4cf0-b566-d6b9f3200b5d","sourceName":"GRAVEMIND_TSS_PROCESSOR","contextType":"CHANNEL","parentArtifactId":null,"uploadState":"SUCCESS","bytes":"1250910","type":"ARTIFACT","createdAt":"2022-01-06T21:01:04.492Z","updatedAt":"2022-01-06T21:01:05.707Z","children":[]}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2081'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 06 Jan 2022 22:11:34 GMT
+      ETag:
+      - W/"821-28pdtTUVpPQHVpN0eJMRIg0rT3s"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - eb9fc21e-fe72-4e10-8d9d-8ad1467a4705
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,5 +1,6 @@
 from .drive.file import File  # noqa
 from .drive.folder import Folder  # noqa
+from .drive.artifact import Artifact, ArtifactsList  # noqa
 from .drive.member import Member, MembersList  # noqa
 from .drive.plan import Plan  # noqa
 from .drive.trash import Trash  # noqa

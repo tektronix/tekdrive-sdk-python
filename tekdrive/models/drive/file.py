@@ -8,6 +8,7 @@ from ...routing import Route, ENDPOINTS
 from ...exceptions import ClientException, TekDriveStorageException
 from ...utils.casing import to_snake_case, to_camel_case
 from .base import DriveBase
+from .artifact import ArtifactsList
 from .member import Member, MembersList
 from .user import PartialUser
 from ...enums import ObjectType
@@ -153,6 +154,26 @@ class File(DriveBase):
             new_file.upload(path_or_readable)
 
         return new_file
+
+    def artifacts(self, flat: bool = False) -> ArtifactsList:
+        """
+        Get a list of file artifacts.
+
+        Examples:
+            Iterate over all file artifacts::
+
+                for artifact in file.artifacts():
+                    print(artifact.name)
+
+        Returns:
+            List [ :ref:`artifact` ]
+        """
+        params = to_camel_case(dict(flat=flat))
+
+        route = Route("GET", ENDPOINTS["file_artifacts"], file_id=self.id)
+        artifacts = self._tekdrive.request(route, params=params)
+        artifacts._parent = self
+        return artifacts
 
     def members(self) -> MembersList:
         """

@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/1.0.0
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/file/3670359c-c453-40b7-bcc1-0281e2f6db94/artifacts?flat=False
+  response:
+    body:
+      string: '{"artifacts":[]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 06 Jan 2022 22:11:34 GMT
+      ETag:
+      - W/"10-0hBQjnXrQCHACluY/3M+hfcaQwE"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - a33a91e3-f48e-455d-8318-9157d520e05c
+    status:
+      code: 200
+      message: OK
+version: 1

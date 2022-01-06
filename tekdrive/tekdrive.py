@@ -64,6 +64,8 @@ class TekDrive:
 
     def _create_model_map(self):
         model_map = {
+            "Artifact": models.Artifact,
+            "ArtifactsList": models.ArtifactsList,
             "File": models.File,
             "Folder": models.Folder,
             "Member": models.Member,
