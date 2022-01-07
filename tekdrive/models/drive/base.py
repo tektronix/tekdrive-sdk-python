@@ -92,7 +92,7 @@ class Downloadable(ABC):
             r.raise_for_status()
             return r.content
         except requests.exceptions.HTTPError as exception:
-            raise TekDriveStorageException("Upload failed") from exception
+            raise TekDriveStorageException("Download failed") from exception
 
     def download(self, path_or_writable: Union[str, IO] = None) -> None:
         """

@@ -7,6 +7,7 @@ Models
    :maxdepth: 2
    :caption: Models
 
+   models/artifact
    models/file
    models/folder
    models/member
