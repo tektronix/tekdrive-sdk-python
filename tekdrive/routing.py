@@ -23,6 +23,7 @@ class Route:
 
 ENDPOINTS = {
     "file_artifacts": "/file/{file_id}/artifacts",
+    "file_artifact_download": "/file/{file_id}/artifacts/{artifact_id}/contents",
     "file_create": "/file",
     "file_details": "/file/{file_id}",
     "file_delete": "/file/{file_id}",

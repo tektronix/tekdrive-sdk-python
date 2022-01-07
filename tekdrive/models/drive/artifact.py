@@ -1,14 +1,15 @@
 """Provides the Artifact class."""
 from typing import TYPE_CHECKING, Optional, Dict, Any, Union
 
-from .base import DriveBase
+from .base import DriveBase, Downloadable
 from ..base import BaseList
+from ...routing import Route, ENDPOINTS
 
 if TYPE_CHECKING:
     from .. import TekDrive
 
 
-class Artifact(DriveBase):
+class Artifact(DriveBase, Downloadable):
     """
     Represents a file artifact.
 
@@ -43,6 +44,11 @@ class Artifact(DriveBase):
         value: Union[str, int, Dict[str, Any]],
     ):
         super().__setattr__(attribute, value)
+
+    def _fetch_download_url(self):
+        route = Route("GET", ENDPOINTS["file_artifact_download"], file_id=self.file_id, artifact_id=self.id)
+        download_details = self._tekdrive.request(route)
+        return download_details["download_url"]
 
 
 class ArtifactsList(BaseList):

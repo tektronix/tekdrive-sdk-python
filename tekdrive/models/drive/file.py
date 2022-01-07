@@ -246,7 +246,7 @@ class File(DriveBase):
 
             Upload using readable stream::
 
-                with open("./test_file.txt"), "rb") as f:
+                with open("./test_file.txt", "rb") as f:
                     new_file.upload(f)
         """
         # TODO: multipart upload support
@@ -282,7 +282,7 @@ class File(DriveBase):
 
             Download using writable stream::
 
-                with open("./download.csv"), "wb") as f:
+                with open("./download.csv", "wb") as f:
                     file.download(f)
         """
         if path_or_writable is None:

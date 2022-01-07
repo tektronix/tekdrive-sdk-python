@@ -1,7 +1,11 @@
 """Provide the DriveBase class."""
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+import os
+import requests
+from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING, Any, Dict, IO, Optional, Union
 
 from ..base import TekDriveBase
+from ...exceptions import ClientException, TekDriveStorageException
 
 if TYPE_CHECKING:
     from ... import TekDrive
@@ -70,3 +74,61 @@ class DriveBase(TekDriveBase):
             if attribute in self.__dict__:
                 del self.__dict__[attribute]
         self._fetched = False
+
+
+class Downloadable(ABC):
+    """Abstract base class for download functionality."""
+
+    @abstractmethod
+    def _fetch_download_url(self):
+        pass
+
+    def _download_from_storage(self):
+        download_url = self._fetch_download_url()
+        try:
+            r = requests.get(
+                download_url,
+            )
+            r.raise_for_status()
+            return r.content
+        except requests.exceptions.HTTPError as exception:
+            raise TekDriveStorageException("Upload failed") from exception
+
+    def download(self, path_or_writable: Union[str, IO] = None) -> None:
+        """
+        Download contents.
+
+        Args:
+            path_or_writable: Path to a local file or a writable stream
+                where contents will be written.
+
+        Raises:
+            ClientException: If invalid file path is given.
+
+        Examples:
+            Download to local file using path::
+
+                here = os.path.dirname(__file__)
+                contents_path = os.path.join(here, "test_file_overwrite.txt")
+                file.download(contents_path)
+
+            Download using writable stream::
+
+                with open("./download.csv", "wb") as f:
+                    file.download(f)
+        """
+        if path_or_writable is None:
+            # return content directly
+            return self._download_from_storage()
+
+        if isinstance(path_or_writable, str):
+            file_path = path_or_writable
+
+            if not os.path.exists(file_path):
+                raise ClientException(f"File '{file_path}' does not exist.")
+
+            with open(file_path, "wb") as file:
+                file.write(self._download_from_storage())
+        else:
+            writable = path_or_writable
+            writable.write(self._download_from_storage())
