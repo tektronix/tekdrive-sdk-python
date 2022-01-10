@@ -8,7 +8,7 @@ from ...routing import Route, ENDPOINTS
 from ...exceptions import ClientException, TekDriveStorageException
 from ...utils.casing import to_snake_case, to_camel_case
 from .base import DriveBase, Downloadable
-from .artifact import ArtifactsList
+from .artifact import Artifact, ArtifactsList
 from .member import Member, MembersList
 from .user import PartialUser
 from ...enums import ObjectType
@@ -166,6 +166,29 @@ class File(DriveBase, Downloadable):
         artifacts = self._tekdrive.request(route, params=params)
         artifacts._parent = self
         return artifacts
+
+    def artifact(self, artifact_id: str, depth: int = 1) -> Artifact:
+        """
+        Get a file artifact by ID.
+
+        Args:
+            artifact_id: Unique ID for the artifact
+            depth: How many nested levels of child artifacts to return.
+
+        Examples:
+            Load artifact with children up to 3 levels deep::
+
+                artifact_id = "017820c4-03ba-4e9d-be2f-e0ba346ddd9b"
+                artifact = file.artifact(artifact_id, depth=3)
+
+        Returns:
+            :ref:`artifact`
+        """
+        params = to_camel_case(dict(depth=depth))
+
+        route = Route("GET", ENDPOINTS["file_artifact"], file_id=self.id, artifact_id=artifact_id)
+        artifact = self._tekdrive.request(route, params=params)
+        return artifact
 
     def members(self) -> MembersList:
         """
