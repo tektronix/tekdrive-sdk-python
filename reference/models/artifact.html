@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artifact &#8212; tekdrive 0.0.1-alpha documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="File" href="file.html" />
+    <link rel="prev" title="Models" href="../models.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="artifact">
+<span id="id1"></span><h1>Artifact<a class="headerlink" href="#artifact" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="tekdrive.models.Artifact">
+<em class="property">class </em><code class="sig-prename descclassname">tekdrive.models.</code><code class="sig-name descname">Artifact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tekdrive</span><span class="p">:</span> <span class="n">TekDrive</span></em>, <em class="sig-param"><span class="n">_data</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tekdrive.models.Artifact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a file artifact.</p>
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.bytes">
+<code class="sig-name descname">bytes</code><a class="headerlink" href="#tekdrive.models.Artifact.bytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Artifact size in bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.created_at">
+<code class="sig-name descname">created_at</code><a class="headerlink" href="#tekdrive.models.Artifact.created_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the artifact was created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.context_type">
+<code class="sig-name descname">context_type</code><a class="headerlink" href="#tekdrive.models.Artifact.context_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context to identify the type of artifact such as <code class="docutils literal notranslate"><span class="pre">&quot;SETTING&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;CHANNEL&quot;</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.file_id">
+<code class="sig-name descname">file_id</code><a class="headerlink" href="#tekdrive.models.Artifact.file_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>ID of the file that the artifact is associated with.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.file_type">
+<code class="sig-name descname">file_type</code><a class="headerlink" href="#tekdrive.models.Artifact.file_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Artifact file type such as <code class="docutils literal notranslate"><span class="pre">&quot;TSS&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;SET&quot;</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#tekdrive.models.Artifact.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique artifact ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#tekdrive.models.Artifact.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Artifact name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.parent_artifact_id">
+<code class="sig-name descname">parent_artifact_id</code><a class="headerlink" href="#tekdrive.models.Artifact.parent_artifact_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>ID of the parent artifact.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="tekdrive.models.Artifact.updated_at">
+<code class="sig-name descname">updated_at</code><a class="headerlink" href="#tekdrive.models.Artifact.updated_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>When the artifact was last updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>datetime, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="tekdrive.models.Artifact.download">
+<code class="sig-name descname">download</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path_or_writable</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>str<span class="p">, </span>IO<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#tekdrive.models.Artifact.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path_or_writable</strong> – Path to a local file or a writable stream
+where contents will be written.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ClientException</strong> – If invalid file path is given.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Download to local file using path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">here</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">contents_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">here</span><span class="p">,</span> <span class="s2">&quot;test_file_overwrite.txt&quot;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">contents_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Download using writable stream:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./download.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><link href='http://fonts.googleapis.com/css?family=Oxygen:300,400,700' rel='stylesheet'>
+
+
+
+<h3>
+    <a href="../../index.html">TekDrive SDK<a>
+</h3>
+
+<div id="logo">
+    <a href="../../index.html"><img src="../../_static/img/favicon.svg" width="150" alt="TekDrive logo"/></a>
+</div><h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/usage.html">Usage Overview</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Code Overview</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">Models</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Artifact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file.html">File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="folder.html">Folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="member.html">Member</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plan.html">Plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trash.html">Trash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">User</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trash.html">Trashcan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tree.html">Tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user.html">User</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://www.tek.com/software/tekdrive">TekDrive Home</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../models.html">Models</a><ul>
+      <li>Previous: <a href="../models.html" title="previous chapter">Models</a></li>
+      <li>Next: <a href="file.html" title="next chapter">File</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        
+            &copy;2021 TEKTRONIX, INC.
+        
+
+        
+            |
+             
+            Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+            &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+        
+            |
+            
+            <a href="../../_sources/reference/models/artifact.rst.txt" rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+
+  </body>
+</html>
