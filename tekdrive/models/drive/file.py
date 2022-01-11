@@ -40,7 +40,7 @@ class File(DriveBase, Downloadable):
         shared_at (datetime, optional): When the file was shared with the
             requesting user. Will be ``None`` if the user has direct access.
         type (str): Type of TekDrive object - will always be ``"FILE"``.
-        permissions (x:ref:`permissions`): File permissions for the requesting user.
+        permissions (:ref:`permissions`): File permissions for the requesting user.
         updated_at (datetime, optional): When the file was last updated.
     """
 
