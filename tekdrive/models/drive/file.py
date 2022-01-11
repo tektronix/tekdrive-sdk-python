@@ -7,7 +7,8 @@ from typing import TYPE_CHECKING, Any, Dict, IO, Optional, Union
 from ...routing import Route, ENDPOINTS
 from ...exceptions import ClientException, TekDriveStorageException
 from ...utils.casing import to_snake_case, to_camel_case
-from .base import DriveBase
+from .base import DriveBase, Downloadable
+from .artifact import Artifact, ArtifactsList
 from .member import Member, MembersList
 from .user import PartialUser
 from ...enums import ObjectType
@@ -17,7 +18,7 @@ if TYPE_CHECKING:
     from .. import TekDrive
 
 
-class File(DriveBase):
+class File(DriveBase, Downloadable):
     """
     A class representing a TekDrive file.
 
@@ -120,17 +121,6 @@ class File(DriveBase):
         except requests.exceptions.HTTPError as exception:
             raise TekDriveStorageException("Upload failed") from exception
 
-    def _download_from_storage(self):
-        download_url = self._fetch_download_url()
-        try:
-            r = requests.get(
-                download_url,
-            )
-            r.raise_for_status()
-            return r.content
-        except requests.exceptions.HTTPError as exception:
-            raise TekDriveStorageException("Upload failed") from exception
-
     @staticmethod
     def _create(
         _tekdrive,
@@ -153,6 +143,52 @@ class File(DriveBase):
             new_file.upload(path_or_readable)
 
         return new_file
+
+    def artifacts(self, flat: bool = False) -> ArtifactsList:
+        """
+        Get a list of file artifacts.
+
+        Args:
+            flat: Return artifacts in flat list with no child nesting?
+
+        Examples:
+            Iterate over all file artifacts::
+
+                for artifact in file.artifacts():
+                    print(artifact.name)
+
+        Returns:
+            List [ :ref:`artifact` ]
+        """
+        params = to_camel_case(dict(flat=flat))
+
+        route = Route("GET", ENDPOINTS["file_artifacts"], file_id=self.id)
+        artifacts = self._tekdrive.request(route, params=params)
+        artifacts._parent = self
+        return artifacts
+
+    def artifact(self, artifact_id: str, depth: int = 1) -> Artifact:
+        """
+        Get a file artifact by ID.
+
+        Args:
+            artifact_id: Unique ID for the artifact
+            depth: How many nested levels of child artifacts to return.
+
+        Examples:
+            Load artifact with children up to 3 levels deep::
+
+                artifact_id = "017820c4-03ba-4e9d-be2f-e0ba346ddd9b"
+                artifact = file.artifact(artifact_id, depth=3)
+
+        Returns:
+            :ref:`artifact`
+        """
+        params = to_camel_case(dict(depth=depth))
+
+        route = Route("GET", ENDPOINTS["file_artifact"], file_id=self.id, artifact_id=artifact_id)
+        artifact = self._tekdrive.request(route, params=params)
+        return artifact
 
     def members(self) -> MembersList:
         """
@@ -225,7 +261,7 @@ class File(DriveBase):
 
             Upload using readable stream::
 
-                with open("./test_file.txt"), "rb") as f:
+                with open("./test_file.txt", "rb") as f:
                     new_file.upload(f)
         """
         # TODO: multipart upload support
@@ -240,45 +276,6 @@ class File(DriveBase):
         else:
             readable = path_or_readable
             self._upload_to_storage(readable)
-
-    def download(self, path_or_writable: Union[str, IO] = None) -> None:
-        """
-        Download file contents.
-
-        Args:
-            path_or_writable: Path to a local file or a writable stream
-                where file contents will be written.
-
-        Raises:
-            ClientException: If invalid file path is given.
-
-        Examples:
-            Download to local file using path::
-
-                here = os.path.dirname(__file__)
-                contents_path = os.path.join(here, "test_file_overwrite.txt")
-                file.download(contents_path)
-
-            Download using writable stream::
-
-                with open("./download.csv"), "wb") as f:
-                    file.download(f)
-        """
-        if path_or_writable is None:
-            # return content directly
-            return self._download_from_storage()
-
-        if isinstance(path_or_writable, str):
-            file_path = path_or_writable
-
-            if not os.path.exists(file_path):
-                raise ClientException(f"File '{file_path}' does not exist.")
-
-            with open(file_path, "wb") as file:
-                file.write(self._download_from_storage())
-        else:
-            writable = path_or_writable
-            writable.write(self._download_from_storage())
 
     def move(self, parent_folder_id: str) -> None:
         """

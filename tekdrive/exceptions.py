@@ -39,6 +39,10 @@ class TekDriveAPIException(TekDriveException):
         return self.headers.get("X-Request-Id")
 
 
+class ArtifactNotFoundAPIException(TekDriveAPIException):
+    """Indicate artifact is not found."""
+
+
 class FileNotFoundAPIException(TekDriveAPIException):
     """Indicate file is not found."""
 

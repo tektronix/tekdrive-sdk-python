@@ -8,6 +8,7 @@ class SharingType(Enum):
 
 
 class ObjectType(Enum):
+    ARTIFACT = "ARTIFACT"
     FILE = "FILE"
     FOLDER = "FOLDER"
 
@@ -19,6 +20,7 @@ class FolderType(Enum):
 
 
 class ErrorCode(Enum):
+    ARTIFACT_NOT_FOUND = "ARTIFACT_NOT_FOUND"
     FILE_GONE = "FILE_GONE"
     FILE_NOT_FOUND = "FILE_NOT_FOUND"
     FOLDER_GONE = "FOLDER_GONE"

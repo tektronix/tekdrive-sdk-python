@@ -7,7 +7,7 @@ from tekdrive.exceptions import (
     ForbiddenAPIException,
     UnprocessableEntityAPIException,
 )
-from tekdrive.models import File, Permissions
+from tekdrive.models import File, Permissions, Artifact, ArtifactsList
 from tekdrive.enums import ObjectType
 
 from ...base import IntegrationTest
@@ -278,3 +278,52 @@ class TestFile(IntegrationTest):
         with pytest.raises(FileNotFoundAPIException) as e:
             file.restore()
         assert e.value.error_code == "FILE_NOT_FOUND"
+
+    def test_list_artifacts_none(self, tekdrive_vcr):
+        file_id = "3670359c-c453-40b7-bcc1-0281e2f6db94"
+        file = File(self.tekdrive, id=file_id)
+        artifacts = file.artifacts()
+        assert isinstance(artifacts, ArtifactsList)
+        assert len(artifacts) == 0
+
+    def test_list_artifacts_default(self, tekdrive_vcr):
+        file_id = "65ba67d5-eec1-41d7-b409-9918d31c0a00"
+        file = File(self.tekdrive, id=file_id)
+        artifacts = file.artifacts()
+        assert isinstance(artifacts, ArtifactsList)
+        assert len(artifacts) == 4
+        for artifact in artifacts:
+            assert isinstance(artifact, Artifact)
+            assert artifact.id is not None
+            assert artifact.name is not None
+            assert artifact.children is not None
+
+            # each child should be an artifact
+            for child in artifact.children:
+                assert isinstance(artifact, Artifact)
+                assert artifact.id is not None
+                assert artifact.name is not None
+
+    def test_list_artifacts_flat(self, tekdrive_vcr):
+        file_id = "65ba67d5-eec1-41d7-b409-9918d31c0a00"
+        file = File(self.tekdrive, id=file_id)
+        artifacts = file.artifacts(flat=True)
+        assert isinstance(artifacts, ArtifactsList)
+        assert len(artifacts) == 5
+        for artifact in artifacts:
+            assert isinstance(artifact, Artifact)
+            assert artifact.id is not None
+            assert artifact.name is not None
+
+    def test_get_artifact_by_id(self, tekdrive_vcr):
+        file_id = "65ba67d5-eec1-41d7-b409-9918d31c0a00"
+        artifact_id = "75eced64-90c2-4846-8479-df487487887a"
+        file = File(self.tekdrive, id=file_id)
+
+        artifact = file.artifact(artifact_id)
+        assert isinstance(artifact, Artifact)
+        assert artifact.id == artifact_id
+        assert artifact.file_id == file_id
+        assert artifact.name == "ch2.wfm"
+        assert artifact.bytes == "1250910"
+        assert artifact.children == []

@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Accept-Version:
+      - v1
+      Connection:
+      - keep-alive
+      User-Agent:
+      - pytekdrivecore/1.0.0
+      x-is-ak:
+      - TEST_ACCESS_KEY
+    method: GET
+    uri: https://drive.api.tekcloud.com/file/65ba67d5-eec1-41d7-b409-9918d31c0a00/artifacts/75eced64-90c2-4846-8479-df487487887a?depth=1
+  response:
+    body:
+      string: '{"id":"75eced64-90c2-4846-8479-df487487887a","fileId":"65ba67d5-eec1-41d7-b409-9918d31c0a00","name":"ch2.wfm","fileType":"WFM","sourceId":"ddbb86c5-f926-4cf0-b566-d6b9f3200b5d","sourceName":"GRAVEMIND_TSS_PROCESSOR","contextType":"CHANNEL","parentArtifactId":null,"uploadState":"SUCCESS","bytes":"1250910","type":"ARTIFACT","createdAt":"2022-01-06T21:01:04.492Z","updatedAt":"2022-01-06T21:01:05.707Z","children":[]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '416'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 10 Jan 2022 21:57:52 GMT
+      ETag:
+      - W/"1a0-xBm7vRBG0iNxftcVY3LAKqnKJs8"
+      Vary:
+      - Origin
+      X-Request-Id:
+      - 3e28776c-0b26-4f9c-bb46-e8fecb1b304a
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -39,6 +39,12 @@ class Parser:
         self._tekdrive = tekdrive
         self.models = {} if models is None else models
 
+    def _is_artifact(self, data: dict) -> bool:
+        return data.get("type") == ObjectType.ARTIFACT.value
+
+    def _is_artifacts_list(self, data: dict) -> bool:
+        return "artifacts" in data
+
     def _is_file(self, data: dict) -> bool:
         return data.get("type") == ObjectType.FILE.value
 
@@ -73,6 +79,10 @@ class Parser:
             model = self.models["File"]
         elif self._is_folder(data):
             model = self.models["Folder"]
+        elif self._is_artifacts_list(data):
+            model = self.models["ArtifactsList"]
+        elif self._is_artifact(data):
+            model = self.models["Artifact"]
         elif self._is_members_list(data):
             model = self.models["MembersList"]
         elif self._is_member(data):
