@@ -8,8 +8,8 @@ on:
 
 # select correct state for repository
 env:
-  state: private
-  # state: public
+  # state: private
+  state: public
 
 jobs:
   public-or-private-repo:
