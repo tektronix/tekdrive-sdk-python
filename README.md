@@ -1,7 +1,4 @@
-<picture>
-  <source srcset="https://raw.githubusercontent.com/tektronix/tekdrive-sdk-python/master/ext/tekcloud-logo.png" width="100px">
-  <img alt="TekCloud Logo" src="https://raw.githubusercontent.com/tektronix/tekdrive-sdk-python/master/ext/tekcloud-logo.png" width="100px">
-</picture>
+<img alt="TekCloud Logo" src="https://raw.githubusercontent.com/tektronix/tekdrive-sdk-python/master/ext/tekcloud-logo.png" width="100px">
 
 # TekDrive Python SDK
 ![repo linter workflow](https://github.com/tektronix/tekdrive-sdk-python/actions/workflows/tek-repo-lint.yml/badge.svg)
