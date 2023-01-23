@@ -1,6 +1,11 @@
-[![TekCloud Logo](https://raw.githubusercontent.com/tektronix/tekdrive-sdk-python/master/ext/tekcloud-logo.png)](https://tekcloud.com)
+<picture>
+  <source srcset="https://raw.githubusercontent.com/tektronix/tekdrive-sdk-python/master/ext/tekcloud-logo.png" width="100px">
+  <img alt="TekCloud Logo" src="https://raw.githubusercontent.com/tektronix/tekdrive-sdk-python/master/ext/tekcloud-logo.png" width="100px">
+</picture>
 
 # TekDrive Python SDK
+![repo linter workflow](https://github.com/tektronix/tekdrive-sdk-python/actions/workflows/tek-repo-lint.yml/badge.svg)
+
 This is a Python SDK for interacting with the TekDrive API.
 
 ## Quick Links
